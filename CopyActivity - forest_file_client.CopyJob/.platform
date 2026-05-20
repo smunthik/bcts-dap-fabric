@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "CopyJob",
+    "displayName": "CopyActivity - forest_file_client"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fdd6a409-e140-8e8b-49f5-871625053e47"
+  }
+}

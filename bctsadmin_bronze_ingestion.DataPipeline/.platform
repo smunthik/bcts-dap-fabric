@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "bctsadmin_bronze_ingestion"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "571fda6a-ed89-875a-4566-dbd9d5541c10"
+  }
+}

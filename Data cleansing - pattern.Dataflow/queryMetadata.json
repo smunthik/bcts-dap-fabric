@@ -1,0 +1,33 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Data cleansing - pattern",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "TEST_PATTERNS scraped_data": {
+      "queryId": "2e12c3a6-0f68-4bfe-8c97-c34c4bd0a9aa",
+      "queryName": "TEST_PATTERNS scraped_data",
+      "loadEnabled": false
+    },
+    "TEST_PATTERNS scraped_data_DataDestination": {
+      "queryId": "5b9d6e1d-78b4-489b-b092-d9b91ad5e8e8",
+      "queryName": "TEST_PATTERNS scraped_data_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DefaultDestination": {
+      "queryId": "13f21959-123d-4bf5-8858-82e79a494036",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"1f7baf71-1832-47ee-ba8c-e8f46696fbb5\",\"DatasourceId\":\"549e0965-f7bb-441a-8633-eaf565a2e8ff\"}"
+    }
+  ]
+}
