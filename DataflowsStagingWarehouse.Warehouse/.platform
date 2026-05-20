@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "CopyJob",
-    "displayName": "Copy to ODS - pattern"
+    "type": "Warehouse",
+    "displayName": "DataflowsStagingWarehouse"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "7af81812-2121-b11e-4407-20ae477dc8e4"
+    "logicalId": "d4d6ce51-b376-ac33-4dfe-be704fde4b0c"
   }
 }
