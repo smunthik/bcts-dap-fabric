@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Warehouse",
-    "displayName": "bcts_metadata_wh"
+    "type": "Notebook",
+    "displayName": "metadata_config"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b02fe30a-5b74-93a6-40c6-f57433e8d584"
+    "logicalId": "820484d3-c983-a74a-4bfb-76db3ff478e5"
   }
 }

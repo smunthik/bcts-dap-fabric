@@ -1,1 +1,0 @@
-CREATE SCHEMA bcts_metada;

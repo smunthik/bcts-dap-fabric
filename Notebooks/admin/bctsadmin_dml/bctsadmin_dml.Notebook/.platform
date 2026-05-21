@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Warehouse",
-    "displayName": "DataflowsStagingWarehouse"
+    "type": "Notebook",
+    "displayName": "bctsadmin_dml"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "d4d6ce51-b376-ac33-4dfe-be704fde4b0c"
+    "logicalId": "5ec36f9c-528e-af4d-4880-b5dcb8a8b513"
   }
 }

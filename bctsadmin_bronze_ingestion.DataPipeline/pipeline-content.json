@@ -5,22 +5,23 @@
         "type": "Lookup",
         "typeProperties": {
           "source": {
-            "type": "DataWarehouseSource",
-            "sqlReaderQuery": "\nSELECT\n    application_name,\n    source_schema_name,\n    source_table_name,\n    target_schema_name,\n    target_table_name,\n    customsql_ind,\n    customsql_query,\n    replication_order\nFROM bcts_metada.cdc_master_table_list\nWHERE application_name = 'bctsadmin'\n  AND target_schema_name = 'bctsadmin_replication'\n  AND active_ind = 'Y'\nORDER BY replication_order, source_table_name\n",
-            "partitionOption": "None",
-            "queryTimeout": "02:00:00"
+            "type": "LakehouseTableSource"
           },
           "datasetSettings": {
-            "type": "DataWarehouseTable",
+            "type": "LakehouseTable",
+            "typeProperties": {
+              "schema": "bcts_metada",
+              "table": "cdc_master_table_list"
+            },
             "schema": [],
             "linkedService": {
-              "name": "bcts_metadata_wh",
+              "name": "bcts_lakehouse",
               "properties": {
-                "type": "DataWarehouse",
+                "type": "Lakehouse",
                 "typeProperties": {
-                  "artifactId": "b02fe30a-5b74-93a6-40c6-f57433e8d584",
-                  "endpoint": "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com",
-                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  "artifactId": "0d52a11b-9ed6-a774-46eb-50182fc9f370",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Tables"
                 },
                 "annotations": []
               }
@@ -36,7 +37,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Lookup_BctsAdminTables",
+        "name": "lookup_bctsadmin_tables",
         "dependsOn": []
       },
       {
@@ -44,7 +45,7 @@
         "typeProperties": {
           "batchCount": 3,
           "items": {
-            "value": "@activity('Lookup_BctsAdminTables').output.value",
+            "value": "@activity('Filter bctsadmin tables').output.value",
             "type": "Expression"
           },
           "activities": [
@@ -53,7 +54,10 @@
               "typeProperties": {
                 "source": {
                   "type": "OracleSource",
-                  "oracleReaderQuery": "@if(\n  equals(item().customsql_ind, 'Y'),\n  item().customsql_query,\n  concat(\n    'SELECT * FROM ',\n    item().source_schema_name,\n    '.',\n    item().source_table_name\n  )\n)",
+                  "oracleReaderQuery": {
+                    "value": "@if(\n  equals(item().customsql_ind, 'Y'),\n  item().customsql_query,\n  concat(\n    'SELECT * FROM ',\n    item().source_schema_name,\n    '.',\n    item().source_table_name\n  )\n)",
+                    "type": "Expression"
+                  },
                   "queryTimeout": "02:00:00",
                   "partitionOption": "None",
                   "numberPrecision": 38,
@@ -86,7 +90,7 @@
                     },
                     "schema": [],
                     "linkedService": {
-                      "name": "BCTS_Lakehouse",
+                      "name": "bcts_lakehouse",
                       "properties": {
                         "type": "Lakehouse",
                         "typeProperties": {
@@ -117,7 +121,7 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "Copy data1",
+              "name": "Copy bctsadmin tables",
               "dependsOn": []
             }
           ]
@@ -125,7 +129,30 @@
         "name": "ForEach1",
         "dependsOn": [
           {
-            "activity": "Lookup_BctsAdminTables",
+            "activity": "Filter bctsadmin tables",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Filter",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('lookup_bctsadmin_tables').output.value",
+            "type": "Expression"
+          },
+          "condition": {
+            "value": "@and(\n  and(\n    equals(item().application_name, 'bctsadmin'),\n    equals(item().target_schema_name, 'bctsadmin_replication')\n  ),\n  equals(item().active_ind, 'Y')\n)\n",
+            "type": "Expression"
+          }
+        },
+        "name": "Filter bctsadmin tables",
+        "description": "As on 2026-05-20, lakehouse doesn't support queries within lookup activity",
+        "dependsOn": [
+          {
+            "activity": "lookup_bctsadmin_tables",
             "dependencyConditions": [
               "Completed"
             ]
