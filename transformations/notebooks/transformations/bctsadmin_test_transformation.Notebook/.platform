@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Lakehouse",
-    "displayName": "bcts_lakehouse"
+    "type": "Notebook",
+    "displayName": "bctsadmin_test_transformation"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "0d52a11b-9ed6-a774-46eb-50182fc9f370"
+    "logicalId": "fb54b15b-a399-be59-448e-7a2536099e50"
   }
 }

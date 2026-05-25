@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "2fc9f370-5018-46eb-a774-9ed60d52a11b",
+# META       "default_lakehouse": "c35a1880-4d21-42b2-b055-983b7ac0563b",
 # META       "default_lakehouse_name": "bcts_lakehouse",
 # META       "default_lakehouse_workspace_id": "7a798b59-e76b-4af6-9ffb-fa0a2959519c",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "2fc9f370-5018-46eb-a774-9ed60d52a11b"
+# META           "id": "c35a1880-4d21-42b2-b055-983b7ac0563b"
 # META         }
 # META       ]
 # META     }
@@ -23,7 +23,7 @@
 # CELL ********************
 
 spark.sql("""
-INSERT INTO bcts_metada.cdc_master_table_list VALUES
+INSERT INTO bcts_metadata.cdc_master_table_list VALUES
 -- 1. NO_SALE_RATIONALE_CODE (no custom SQL)
 (
     NULL,
