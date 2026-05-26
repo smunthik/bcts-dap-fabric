@@ -80,6 +80,29 @@ USING DELTA
 
 # CELL ********************
 
+spark.sql("""
+CREATE TABLE IF NOT EXISTS bcts_metadata.run_log (
+    run_id             STRING,
+    pipeline_name      STRING,
+    report_name        STRING,
+    status             STRING,     -- STARTED / SUCCESS / FAILED
+    start_time         TIMESTAMP,
+    end_time           TIMESTAMP,
+    error_message      STRING
+)
+USING DELTA
+"""
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 

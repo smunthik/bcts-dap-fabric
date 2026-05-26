@@ -38,8 +38,44 @@ sql_text = load_sql(sql_path)
 final_sql = render_sql(sql_text, report_start_date, report_end_date)
 
 # statements execute in the same order as in the file
-for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
-    spark.sql(stmt)
+try:
+    for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
+        spark.sql(stmt)
+
+except Exception as e:
+    error_msg = str(e).replace("'", "''")
+    spark.sql(f"""
+    UPDATE bcts_metadata.run_log
+    SET status = 'FAILED',
+        end_time = current_timestamp(),
+        error_message = '{error_msg}'
+    WHERE run_id = '{run_id}'
+        AND report_name = '{report_name}'
+    """)
+
+    raise
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+spark.sql("delete from bcts_reporting.bidder_details where total_bids < 25")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 

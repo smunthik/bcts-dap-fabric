@@ -1,0 +1,40 @@
+table bidder_details
+	lineageTag: 051e3504-f458-491c-8a86-6570d34a4ba1
+	sourceLineageTag: [bcts_reporting].[bidder_details]
+
+	column client_number
+		dataType: string
+		lineageTag: c1a29435-ecdc-409e-941d-75b8255b6744
+		sourceLineageTag: client_number
+		summarizeBy: none
+		sourceColumn: client_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_bids
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e49b70e-713f-4fb1-818b-caaa96eff931
+		sourceLineageTag: total_bids
+		summarizeBy: sum
+		sourceColumn: total_bids
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_winning_bids
+		dataType: int64
+		formatString: 0
+		lineageTag: 99cf3280-fffd-43d7-adc6-d3815f511ad9
+		sourceLineageTag: total_winning_bids
+		summarizeBy: sum
+		sourceColumn: total_winning_bids
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bidder_details = entity
+		mode: directLake
+		source
+			entityName: bidder_details
+			schemaName: bcts_reporting
+			expressionSource: 'DirectLake - bcts_lakehouse'
+

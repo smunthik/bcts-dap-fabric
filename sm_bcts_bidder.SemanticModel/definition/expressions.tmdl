@@ -1,0 +1,11 @@
+expression 'DirectLake - bcts_lakehouse' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/7a798b59-e76b-4af6-9ffb-fa0a2959519c/c35a1880-4d21-42b2-b055-983b7ac0563b", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 23de9fb4-5214-48ff-9978-d3a545f1f030
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_metadata].[cdc_master_table_list]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_metadata].[transformation_config]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_staging].[bidder_details]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_metadata].[run_log]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bctsadmin_replication].[NO_SALE_RATIONALE_CODE]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bctsadmin_replication].[BCTS_TENURE_BIDDER]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bctsadmin_replication].[BCTS_TIMBER_SALE]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_staging].[the_no_sale_rationale_code]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_staging].[the_bcts_tenure_bidder]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[bcts_staging].[the_bcts_timber_sale]"}},"objectType":"Table"}]
+

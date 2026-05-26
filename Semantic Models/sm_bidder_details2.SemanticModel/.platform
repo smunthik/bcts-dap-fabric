@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Notebook",
-    "displayName": "bctsadmin_test_transformation"
+    "type": "SemanticModel",
+    "displayName": "sm_bidder_details2"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "fb54b15b-a399-be59-448e-7a2536099e50"
+    "logicalId": "67666f48-d26c-94dd-4f90-96a79a9735bd"
   }
 }

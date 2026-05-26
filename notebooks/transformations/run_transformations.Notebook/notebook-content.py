@@ -22,11 +22,14 @@
 
 # CELL ********************
 
-from datetime import date
+from datetime import datetime, date
 import calendar
+from pyspark.sql import Row
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType
 
 # --- Compute report dates (or accept from pipeline parameters) ---
 today = date.today()
+start_time = datetime.utcnow()
 fy_start_year = today.year if today.month >= 4 else today.year - 1
 report_start_date = date(fy_start_year, 4, 1)
 
@@ -37,6 +40,20 @@ report_end_date = date(prev_month_year, prev_month, last_day)
 
 start_str = report_start_date.isoformat()
 end_str = report_end_date.isoformat()
+pipeline_name = "run_transformations"
+run_id = " "
+
+
+run_log_schema = StructType([
+    StructField("run_id", StringType(), False),
+    StructField("pipeline_name", StringType(), True),
+    StructField("report_name", StringType(), False),
+    StructField("status", StringType(), False),
+    StructField("start_time", TimestampType(), True),
+    StructField("end_time", TimestampType(), True),
+    StructField("error_message", StringType(), True),
+])
+
 
 # --- Read config table ---
 cfg = spark.sql(\
@@ -67,6 +84,7 @@ for row in cfg:
 for row in cfg:
     name = row["report_name"]
     deps = parse_depends(row["depends_on"])
+    print(row["sql_path"])
 
     # Basic safety: keep only deps that exist in config
     deps = [d for d in deps if d in all_names]
@@ -92,12 +110,47 @@ dag = {
 
 # --- Validate + run ---
 notebookutils.notebook.validateDAG(dag)   # raises if broken 
-results = notebookutils.notebook.runMultiple(dag, {"displayDAGViaGraphviz": False})
 
-# Optional: surface failures clearly
-for act, r in results.items():
-    if r.get("exception"):
-        raise Exception(f"{act} failed: {r['exception']}")
+try:
+    results = notebookutils.notebook.runMultiple(dag)
+except Exception as ex:
+    # When runMultiple fails, Fabric usually still returns partial results
+    results = getattr(ex, "result", {})
+
+
+for report_name, result in results.items():
+
+    status = "SUCCESS" if result["exception"] is None else "FAILED"
+    error_msg = str(result["exception"]) if result["exception"] else None
+    error_msg = error_msg.replace("'", "''") if error_msg else None
+
+    end_time = datetime.utcnow()
+    rows = [Row(
+        run_id=run_id,
+        pipeline_name=pipeline_name,
+        report_name=report_name,
+        status=status,
+        start_time=start_time,
+        end_time=end_time,
+        error_message=error_msg
+    )]
+
+    df = spark.createDataFrame(rows, schema=run_log_schema)
+
+    df.write.mode("append").insertInto("bcts_metadata.run_log")
+
+
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 
 # METADATA ********************

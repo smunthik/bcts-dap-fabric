@@ -5,7 +5,16 @@
         "type": "TridentNotebook",
         "typeProperties": {
           "notebookId": "e10c8add-8d79-aeb4-43e8-12b5948700fd",
-          "workspaceId": "00000000-0000-0000-0000-000000000000"
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "run_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
         },
         "policy": {
           "timeout": "0.12:00:00",
