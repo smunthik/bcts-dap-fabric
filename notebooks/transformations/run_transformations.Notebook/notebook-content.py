@@ -152,6 +152,17 @@ for report_name, result in results.items():
 
 # CELL ********************
 
+print("Hello")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
