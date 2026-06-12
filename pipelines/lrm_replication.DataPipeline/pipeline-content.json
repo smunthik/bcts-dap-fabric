@@ -122,7 +122,187 @@
                 "secureOutput": false
               },
               "name": "Copy lrm tables",
+              "dependsOn": [
+                {
+                  "activity": "log_start",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "07cc309b-9d04-bed7-45e8-d34dad307f18",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "run_id": {
+                    "value": "@pipeline().RunId",
+                    "type": "string"
+                  },
+                  "pipeline_name ": {
+                    "value": "@pipeline().Pipeline",
+                    "type": "string"
+                  },
+                  "status": {
+                    "value": "STARTED",
+                    "type": "string"
+                  },
+                  "error_message ": {
+                    "value": null,
+                    "type": "string"
+                  },
+                  "source_schema ": {
+                    "value": {
+                      "value": "@item().source_schema_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "source_table  ": {
+                    "value": {
+                      "value": "@item().source_table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "report_name": {
+                    "value": "lrm_replication",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_start",
               "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "07cc309b-9d04-bed7-45e8-d34dad307f18",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "run_id": {
+                    "value": "@pipeline().RunId",
+                    "type": "string"
+                  },
+                  "pipeline_name ": {
+                    "value": "@pipeline().Pipeline",
+                    "type": "string"
+                  },
+                  "status": {
+                    "value": "SUCCESS",
+                    "type": "string"
+                  },
+                  "error_message ": {
+                    "value": null,
+                    "type": "string"
+                  },
+                  "source_schema ": {
+                    "value": {
+                      "value": "@item().source_schema_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "source_table  ": {
+                    "value": {
+                      "value": "@item().source_table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "report_name": {
+                    "value": "lrm_replication",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_success",
+              "dependsOn": [
+                {
+                  "activity": "Copy lrm tables",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "07cc309b-9d04-bed7-45e8-d34dad307f18",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "run_id": {
+                    "value": "@pipeline().RunId",
+                    "type": "string"
+                  },
+                  "pipeline_name ": {
+                    "value": "@pipeline().Pipeline",
+                    "type": "string"
+                  },
+                  "status": {
+                    "value": "FAILED",
+                    "type": "string"
+                  },
+                  "error_message ": {
+                    "value": {
+                      "value": "@activity('Copy lrm tables').error.message\n",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "source_schema ": {
+                    "value": {
+                      "value": "@item().source_schema_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "source_table  ": {
+                    "value": {
+                      "value": "@item().source_table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "report_name": {
+                    "value": "lrm_replication",
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "log_fail",
+              "dependsOn": [
+                {
+                  "activity": "Copy lrm tables",
+                  "dependencyConditions": [
+                    "Failed"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -159,6 +339,12 @@
           }
         ]
       }
-    ]
+    ],
+    "variables": {
+      "hasFailure": {
+        "type": "Boolean",
+        "defaultValue": false
+      }
+    }
   }
 }

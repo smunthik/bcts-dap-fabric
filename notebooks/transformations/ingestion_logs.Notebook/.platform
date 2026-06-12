@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "ingestion_logs"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "07cc309b-9d04-bed7-45e8-d34dad307f18"
+  }
+}
