@@ -1,0 +1,164 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource"
+          },
+          "datasetSettings": {
+            "type": "LakehouseTable",
+            "typeProperties": {
+              "schema": "bcts_metadata",
+              "table": "cdc_master_table_list"
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "bcts_lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "7ac0563b-983b-b055-42b2-4d21c35a1880",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Tables"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "lookup_lrm_tables",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "batchCount": 3,
+          "items": {
+            "value": "@activity('Filter lrm tables').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "OracleSource",
+                  "oracleReaderQuery": {
+                    "value": "@if(\n  equals(item().customsql_ind, 'Y'),\n  item().customsql_query,\n  concat(\n    'SELECT * FROM ',\n    item().source_schema_name,\n    '.',\n    item().source_table_name\n  )\n)",
+                    "type": "Expression"
+                  },
+                  "queryTimeout": "02:00:00",
+                  "partitionOption": "None",
+                  "numberPrecision": 38,
+                  "numberScale": 18,
+                  "datasetSettings": {
+                    "type": "OracleTable",
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "e516cc1f-4df5-401c-b742-d9c612e1a93d"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "OverwriteSchema",
+                  "applyVOrder": false,
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "schema": {
+                        "value": "@item().target_schema_name",
+                        "type": "Expression"
+                      },
+                      "table": {
+                        "value": "@item().target_table_name",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "bcts_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "7ac0563b-983b-b055-42b2-4d21c35a1880",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 1,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy lrm tables",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach1",
+        "dependsOn": [
+          {
+            "activity": "Filter lrm tables",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Filter",
+        "typeProperties": {
+          "items": {
+            "value": "@activity('lookup_lrm_tables').output.value",
+            "type": "Expression"
+          },
+          "condition": {
+            "value": "@and(\n  and(\n    equals(item().application_name, 'lrm'),\n    equals(item().target_schema_name, 'lrm_replication')\n  ),\n  equals(item().active_ind, 'Y')\n)\n",
+            "type": "Expression"
+          }
+        },
+        "name": "Filter lrm tables",
+        "description": "As on 2026-05-20, lakehouse doesn't support queries within lookup activity",
+        "dependsOn": [
+          {
+            "activity": "lookup_lrm_tables",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

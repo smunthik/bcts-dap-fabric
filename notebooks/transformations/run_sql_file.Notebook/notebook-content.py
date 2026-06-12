@@ -34,47 +34,52 @@ def render_sql(sql: str, start_date: str, end_date: str) -> str:
         .replace("${report_end_date}", end_date)
     )
 
-sql_text = load_sql(sql_path)
-final_sql = render_sql(sql_text, report_start_date, report_end_date)
+def report_exists(table_name: str, start_date: str, end_date: str) -> bool:
+    # Check if table exists
+    if not spark.catalog.tableExists(table_name):
+        return False  # ✅ Table doesn't exist → force run
 
-# statements execute in the same order as in the file
-try:
-    for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
-        spark.sql(stmt)
+    query = f"""
+        SELECT 1
+        FROM {table_name}
+        WHERE report_start_date = DATE '{start_date}'
+          AND report_end_date = DATE '{end_date}'
+        LIMIT 1
+    """
+    
+    df = spark.sql(query)
+    return len(df.take(1)) > 0
 
-except Exception as e:
-    error_msg = str(e).replace("'", "''")
-    spark.sql(f"""
-    UPDATE bcts_metadata.run_log
-    SET status = 'FAILED',
-        end_time = current_timestamp(),
-        error_message = '{error_msg}'
-    WHERE run_id = '{run_id}'
-        AND report_name = '{report_name}'
-    """)
+    
+    df = spark.sql(query)
+    return df.count() > 0
 
-    raise
+# Check before running SQL
+if report_exists(target_table, start_date, end_date):
+    print(f"Skipping {target_table} - already exists for {start_date} → {end_date}")
+else:
+    print(f"Running {target_table} report for {start_date} and {end_date}...")
+    sql_text = load_sql(sql_path)
+    final_sql = render_sql(sql_text, start_date, end_date)
 
+    # statements execute in the same order as in the file
+    try:
+        for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
+            spark.sql(stmt)
+        print(f" {target_table} report for {start_date} and {end_date} completed.")
 
-# METADATA ********************
+    except Exception as e:
+        error_msg = str(e).replace("'", "''")
+        spark.sql(f"""
+        UPDATE bcts_metadata.run_log
+        SET status = 'FAILED',
+            end_time = current_timestamp(),
+            error_message = '{error_msg}'
+        WHERE run_id = '{run_id}'
+            AND report_name = '{report_name}'
+        """)
 
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-spark.sql("delete from bcts_reporting.bidder_details where total_bids < 25")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
+        raise
 
 
 # METADATA ********************

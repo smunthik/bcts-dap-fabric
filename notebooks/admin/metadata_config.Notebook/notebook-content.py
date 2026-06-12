@@ -60,11 +60,14 @@ USING DELTA
 
 # CELL ********************
 
+spark.sql("""DROP TABLE IF EXISTS bcts_metadata.transformation_config""")
+
 spark.sql("""
 CREATE TABLE IF NOT EXISTS bcts_metadata.transformation_config (
   report_name        STRING,
   sql_path           STRING,   -- e.g. sql/bidder_details.sql (relative to Files/)
   enabled_ind        STRING,   -- 'Y'/'N'
+  target_table       STRING,
   execution_order    INT,      -- optional ordering hint
   depends_on         STRING    -- optional: comma-separated report_names (e.g. 'bronze_done,bidder_silver')
 )

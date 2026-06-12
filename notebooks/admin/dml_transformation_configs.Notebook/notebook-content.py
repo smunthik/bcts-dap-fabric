@@ -26,7 +26,7 @@
 spark.sql(\
 """
 INSERT INTO bcts_metadata.transformation_config VALUES
-('bidder_details', 'transformation_sql/test_transformation.sql', 'Y', 10, NULL);
+('Annual Developed Volume', 'transformation_sql/annual_developed_volume.sql', 'Y', 'annual_developed_volume', 1, NULL);
 """
 )
 

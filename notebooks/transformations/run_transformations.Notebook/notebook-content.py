@@ -58,7 +58,7 @@ run_log_schema = StructType([
 # --- Read config table ---
 cfg = spark.sql(\
 """
-SELECT report_name, sql_path, enabled_ind, execution_order, depends_on
+SELECT report_name, sql_path, enabled_ind, target_table, execution_order, depends_on
 FROM bcts_metadata.transformation_config
 WHERE enabled_ind = 'Y'
 """
@@ -95,8 +95,11 @@ for row in cfg:
         "timeoutPerCellInSeconds": 900,
         "args": {
             "sql_path": row["sql_path"],
-            "report_start_date": start_str,
-            "report_end_date": end_str
+            "start_date": start_str,
+            "end_date": end_str,
+            "target_table": row["target_table"],
+            "run_id": run_id,
+            "report_name": name
         },
         "dependencies": deps
     })

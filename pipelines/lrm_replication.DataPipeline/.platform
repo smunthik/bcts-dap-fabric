@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "lrm_replication"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "34b2d482-0723-b326-4e0c-b6f9ea156926"
+  }
+}
