@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "bulk_logs_insert"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7663dc1b-7a0e-a3fd-4a8a-d2d229715fbd"
+  }
+}

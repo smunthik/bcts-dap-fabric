@@ -35,7 +35,7 @@ df = spark.read \
     .option("multiLine", True) \
     .option("quote", '"') \
     .option("escape", '"') \
-    .csv("Files/cdc_master_table_list_ods/lrm.csv")
+    .csv("Files/cdc_master_table_list_ods/lrm_all.csv")
 
 
 df = df.withColumn("application_name", lit("lrm"))
@@ -85,7 +85,7 @@ final_sql = "INSERT INTO bcts_metadata.cdc_master_table_list VALUES\n\n"
 final_sql += ",\n\n".join(rows_sql) + "\n"
 
 # Print result
-print(final_sql)
+# print(final_sql)
 spark.sql(final_sql)
 
 
@@ -98,7 +98,10 @@ spark.sql(final_sql)
 
 # CELL ********************
 
-df.show()
+# spark.sql(\
+# """
+# delete from bcts_metadata.cdc_master_table_list;
+# """)
 
 # METADATA ********************
 

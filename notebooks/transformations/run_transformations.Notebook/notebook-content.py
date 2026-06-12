@@ -30,6 +30,7 @@ from pyspark.sql.types import StructType, StructField, StringType, TimestampType
 # --- Compute report dates (or accept from pipeline parameters) ---
 today = date.today()
 start_time = datetime.utcnow()
+
 fy_start_year = today.year if today.month >= 4 else today.year - 1
 report_start_date = date(fy_start_year, 4, 1)
 
@@ -40,13 +41,15 @@ report_end_date = date(prev_month_year, prev_month, last_day)
 
 start_str = report_start_date.isoformat()
 end_str = report_end_date.isoformat()
+
 pipeline_name = "run_transformations"
-run_id = " "
 
-
+# --- Updated run_log schema ---
 run_log_schema = StructType([
     StructField("run_id", StringType(), False),
     StructField("pipeline_name", StringType(), True),
+    StructField("source_schema", StringType(), True),
+    StructField("source_table", StringType(), True),
     StructField("report_name", StringType(), False),
     StructField("status", StringType(), False),
     StructField("start_time", TimestampType(), True),
@@ -54,15 +57,12 @@ run_log_schema = StructType([
     StructField("error_message", StringType(), True),
 ])
 
-
 # --- Read config table ---
-cfg = spark.sql(\
-"""
+cfg = spark.sql("""
 SELECT report_name, sql_path, enabled_ind, target_table, execution_order, depends_on
 FROM bcts_metadata.transformation_config
 WHERE enabled_ind = 'Y'
-"""
-).collect()
+""").collect()
 
 # --- Build DAG activities ---
 activities = []
@@ -80,13 +80,12 @@ for row in cfg:
     name = row["report_name"]
     all_names.add(name)
 
-# Create activities after collecting names (so we can validate deps)
 for row in cfg:
     name = row["report_name"]
     deps = parse_depends(row["depends_on"])
     print(row["sql_path"])
 
-    # Basic safety: keep only deps that exist in config
+    # Keep only dependencies that exist in config
     deps = [d for d in deps if d in all_names]
 
     activities.append({
@@ -106,45 +105,43 @@ for row in cfg:
 
 dag = {
     "activities": activities,
-    # tune concurrency to your capacity; start modest
     "concurrency": 6,
     "timeoutInSeconds": 43200
 }
 
 # --- Validate + run ---
-notebookutils.notebook.validateDAG(dag)   # raises if broken 
+notebookutils.notebook.validateDAG(dag)
 
 try:
     results = notebookutils.notebook.runMultiple(dag)
 except Exception as ex:
-    # When runMultiple fails, Fabric usually still returns partial results
+    # Fabric often still returns partial results
     results = getattr(ex, "result", {})
 
+# --- Log each result ---
+log_rows = []
 
 for report_name, result in results.items():
 
     status = "SUCCESS" if result["exception"] is None else "FAILED"
     error_msg = str(result["exception"]) if result["exception"] else None
-    error_msg = error_msg.replace("'", "''") if error_msg else None
-
     end_time = datetime.utcnow()
-    rows = [Row(
+
+    log_rows.append(Row(
         run_id=run_id,
         pipeline_name=pipeline_name,
+        source_schema=None,      # transformation step → keep NULL
+        source_table=None,       # transformation step → keep NULL
         report_name=report_name,
         status=status,
         start_time=start_time,
         end_time=end_time,
         error_message=error_msg
-    )]
+    ))
 
-    df = spark.createDataFrame(rows, schema=run_log_schema)
-
+if log_rows:
+    df = spark.createDataFrame(log_rows, schema=run_log_schema)
     df.write.mode("append").insertInto("bcts_metadata.run_log")
-
-
-
-
 
 # METADATA ********************
 
