@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "bctsadmin_replication"
+    "type": "Notebook",
+    "displayName": "dbp01_replication_dml"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "571fda6a-ed89-875a-4566-dbd9d5541c10"
+    "logicalId": "cdb4a739-b833-81fa-44da-3f2108dc6ec4"
   }
 }

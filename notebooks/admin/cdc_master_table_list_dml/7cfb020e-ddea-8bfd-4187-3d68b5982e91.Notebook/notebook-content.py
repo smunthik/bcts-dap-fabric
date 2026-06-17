@@ -6088,7 +6088,7 @@ spark.sql("""
             CAST(NULL AS STRING) AS cdc_flag,
             CAST(NULL AS STRING) AS full_inc_flag,
             CAST(NULL AS STRING) AS cdc_column,
-            'Y' AS active_ind,
+            'N' AS active_ind,
             1 AS replication_order,
             CAST(NULL AS STRING) AS where_clause,
             'Y' AS customsql_ind,
@@ -8667,7 +8667,7 @@ spark.sql("""
             CAST(NULL AS STRING) AS cdc_flag,
             CAST(NULL AS STRING) AS full_inc_flag,
             CAST(NULL AS STRING) AS cdc_column,
-            'Y' AS active_ind,
+            'N' AS active_ind,
             1 AS replication_order,
             CAST(NULL AS STRING) AS where_clause,
             'Y' AS customsql_ind,
@@ -9600,7 +9600,7 @@ spark.sql("""
             CAST(NULL AS STRING) AS cdc_flag,
             CAST(NULL AS STRING) AS full_inc_flag,
             CAST(NULL AS STRING) AS cdc_column,
-            'Y' AS active_ind,
+            'N' AS active_ind,
             1 AS replication_order,
             CAST(NULL AS STRING) AS where_clause,
             'Y' AS customsql_ind,
@@ -19117,144 +19117,13 @@ FROM forest.V_LRM_CUT_BLOCK' AS customsql_query,
 
 # CELL ********************
 
-spark.sql("""
-    MERGE INTO bcts_metadata.cdc_master_table_list AS tgt
-    USING (
-        SELECT
-            'lrm' AS business,
-            'lrm' AS application_name,
-            CAST(NULL AS STRING) AS custodian,
-            'forestview' AS source_schema_name,
-            'V_SILV_STOCKSTAT_HISTORY' AS source_table_name,
-            'lrm_replication' AS target_schema_name,
-            'V_SILV_STOCKSTAT_HISTORY' AS target_table_name,
-            'Y' AS truncate_flag,
-            CAST(NULL AS STRING) AS cdc_flag,
-            CAST(NULL AS STRING) AS full_inc_flag,
-            CAST(NULL AS STRING) AS cdc_column,
-            'Y' AS active_ind,
-            1 AS replication_order,
-            CAST(NULL AS STRING) AS where_clause,
-            'Y' AS customsql_ind,
-            '
-SELECT
-    "SISH_SEQ_NBR",
-    "SLAY_LAYER",
-    "SRNK_RANK",
-    "STST_STOCKING_STATUS_ID",
-    "STTP_STOCKING_TYPE_ID",
-    "SSSH_SURVEY_SOURCE",
-    "SSSH_SURVEY_DATE",
-    "SSSH_STOCK_AGE",
-    "SSSH_STOCK_AGE_PLANT",
-    "SSSH_STOCK_HEIGHT",
-    "SSSH_CROWN_CLOSURE",
-    "SSSH_REFERENCE_YEAR",
-    "SICL_SITE_CLASS",
+spark.sql(\
+"""
 
-    CAST("SSSH_SITE_INDEX" AS NUMBER(38,10)) AS "SSSH_SITE_INDEX",
-    CAST("SSSH_DENSITY" AS NUMBER(38,10)) AS "SSSH_DENSITY",
-    CAST("SSSH_WELL_SPACED_DENSITY" AS NUMBER(38,10)) AS "SSSH_WELL_SPACED_DENSITY",
-    CAST("SSSH_FREE_GROWING_DENSITY" AS NUMBER(38,10)) AS "SSSH_FREE_GROWING_DENSITY",
-
-    "SRTY_RESERVE_TYPE",
-
-    CAST("SSSH_BASAL_AREA" AS NUMBER(38,10)) AS "SSSH_BASAL_AREA",
-    CAST("SSSH_CM_TOP_HEIGHT" AS NUMBER(38,10)) AS "SSSH_CM_TOP_HEIGHT",
-    CAST("SSSH_CM_LEADER" AS NUMBER(38,10)) AS "SSSH_CM_LEADER",
-
-    CAST("SSSH_VIGOUR_PCT_GOOD" AS NUMBER(38,10)) AS "SSSH_VIGOUR_PCT_GOOD",
-    CAST("SSSH_VIGOUR_PCT_MEDIUM" AS NUMBER(38,10)) AS "SSSH_VIGOUR_PCT_MEDIUM",
-    CAST("SSSH_VIGOUR_PCT_POOR" AS NUMBER(38,10)) AS "SSSH_VIGOUR_PCT_POOR",
-
-    "SSSH_COMMENTS",
-
-    CAST("SSSH_TOTAL_CONIFEROUS" AS NUMBER(38,10)) AS "SSSH_TOTAL_CONIFEROUS",
-    CAST("SSSH_PLANTABLE_SPOTS" AS NUMBER(38,10)) AS "SSSH_PLANTABLE_SPOTS",
-    CAST("SSSH_PREPABLE_SLASH_SPOTS" AS NUMBER(38,10)) AS "SSSH_PREPABLE_SLASH_SPOTS",
-    CAST("SSSH_PREPABLE_BRUSH_SPOTS" AS NUMBER(38,10)) AS "SSSH_PREPABLE_BRUSH_SPOTS",
-    CAST("SSSH_PREPABLE_DUFF_SPOTS" AS NUMBER(38,10)) AS "SSSH_PREPABLE_DUFF_SPOTS",
-    CAST("SSSH_NON_PRODUCTIVE_SPOTS" AS NUMBER(38,10)) AS "SSSH_NON_PRODUCTIVE_SPOTS",
-    CAST("SSSH_ROOT_COLLAR_DIAMETER" AS NUMBER(38,10)) AS "SSSH_ROOT_COLLAR_DIAMETER",
-
-    "SSSC_SOURCE_CODE",
-
-    CAST("SSSH_FREE_GROW_DENSITY_PREF" AS NUMBER(38,10)) AS "SSSH_FREE_GROW_DENSITY_PREF",
-    CAST("SSSH_WELL_SPACED_DENSITY_PREF" AS NUMBER(38,10)) AS "SSSH_WELL_SPACED_DENSITY_PREF",
-    CAST("SSSH_FREE_GROW_LCL_DENSITY" AS NUMBER(38,10)) AS "SSSH_FREE_GROW_LCL_DENSITY",
-    CAST("SSSH_WELL_SPACED_LCL_DENSITY" AS NUMBER(38,10)) AS "SSSH_WELL_SPACED_LCL_DENSITY",
-    CAST("SSSH_COUNTABLE_CONIFERS" AS NUMBER(38,10)) AS "SSSH_COUNTABLE_CONIFERS",
-
-    "SSSH_REENTRY_YEAR",
-    "SSSH_CVR_PATTERN",
-    "SSSH_RES_OBJECTIVE",
-
-    CAST("SSSH_TOTAL_WELL_SPACED" AS NUMBER(38,10)) AS "SSSH_TOTAL_WELL_SPACED",
-    CAST("SSSH_GERMINANT_PER_HA" AS NUMBER(38,10)) AS "SSSH_GERMINANT_PER_HA",
-    CAST("SSSH_GREENED_UP_TREE_PER_HA" AS NUMBER(38,10)) AS "SSSH_GREENED_UP_TREE_PER_HA"
-
-FROM forestview.V_SILV_STOCKSTAT_HISTORY' AS customsql_query,
-            'Oracle' AS replication_source
-    ) AS src
-    ON tgt.source_schema_name = src.source_schema_name
-    AND tgt.source_table_name = src.source_table_name
-    
-    WHEN MATCHED THEN UPDATE SET
-        tgt.business = src.business,
-        tgt.application_name = src.application_name,
-        tgt.custodian = src.custodian,
-        tgt.target_schema_name = src.target_schema_name,
-        tgt.target_table_name = src.target_table_name,
-        tgt.truncate_flag = src.truncate_flag,
-        tgt.cdc_flag = src.cdc_flag,
-        tgt.full_inc_flag = src.full_inc_flag,
-        tgt.cdc_column = src.cdc_column,
-        tgt.active_ind = src.active_ind,
-        tgt.replication_order = src.replication_order,
-        tgt.where_clause = src.where_clause,
-        tgt.customsql_ind = src.customsql_ind,
-        tgt.customsql_query = src.customsql_query,
-        tgt.replication_source = src.replication_source
-    
-    WHEN NOT MATCHED THEN INSERT (
-        business,
-        application_name,
-        custodian,
-        source_schema_name,
-        source_table_name,
-        target_schema_name,
-        target_table_name,
-        truncate_flag,
-        cdc_flag,
-        full_inc_flag,
-        cdc_column,
-        active_ind,
-        replication_order,
-        where_clause,
-        customsql_ind,
-        customsql_query,
-        replication_source
-    )
-    VALUES (
-        src.business,
-        src.application_name,
-        src.custodian,
-        src.source_schema_name,
-        src.source_table_name,
-        src.target_schema_name,
-        src.target_table_name,
-        src.truncate_flag,
-        src.cdc_flag,
-        src.full_inc_flag,
-        src.cdc_column,
-        src.active_ind,
-        src.replication_order,
-        src.where_clause,
-        src.customsql_ind,
-        src.customsql_query,
-        src.replication_source
-    )
-    """)
+UPDATE bcts_metadata.cdc_master_table_list
+SET active_ind = 'N'
+WHERE source_table_name = 'V_TIMBER_INVENTORY_DIP'
+""")
 
 # METADATA ********************
 

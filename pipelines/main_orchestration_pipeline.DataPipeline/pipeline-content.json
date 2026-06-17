@@ -7,7 +7,7 @@
           "parameters": {},
           "waitOnCompletion": true,
           "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "pipelineId": "571fda6a-ed89-875a-4566-dbd9d5541c10",
+          "pipelineId": "b42e4248-d063-bb01-4b5c-4bfcd9dc2da8",
           "operationType": "InvokeFabricPipeline"
         },
         "externalReferences": {

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "bctsadmin_replication"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b42e4248-d063-bb01-4b5c-4bfcd9dc2da8"
+  }
+}
