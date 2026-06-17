@@ -74,6 +74,18 @@
         "name": "invoke_lrm_replication",
         "dependsOn": [
           {
+            "activity": "invoke_client_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "invoke_bctsadmin_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
             "activity": "invoke_fta_replication",
             "dependencyConditions": [
               "Succeeded"
@@ -101,14 +113,7 @@
           "secureOutput": false
         },
         "name": "invoke_fta_replication",
-        "dependsOn": [
-          {
-            "activity": "invoke_client_replication",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "dependsOn": []
       },
       {
         "type": "InvokePipeline",
@@ -130,14 +135,7 @@
           "secureOutput": false
         },
         "name": "invoke_client_replication",
-        "dependsOn": [
-          {
-            "activity": "invoke_bctsadmin_replication",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "dependsOn": []
       }
     ],
     "concurrency": 1
