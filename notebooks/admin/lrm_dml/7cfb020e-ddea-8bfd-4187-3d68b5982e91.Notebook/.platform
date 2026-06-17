@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "lrm_replication_dml",
+    "description": "cdc master table list for forest and forestview objects from LRM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7cfb020e-ddea-8bfd-4187-3d68b5982e91"
+  }
+}

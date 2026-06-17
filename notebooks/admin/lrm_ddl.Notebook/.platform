@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "lrm_replication_dml"
+    "displayName": "lrm_ddl"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "2d9e9f7f-8ad6-883f-41bb-23f857fb5c56"
+    "logicalId": "62b39e10-5b2f-ab2d-4850-5fe401eee93a"
   }
 }

@@ -27,7 +27,9 @@ from pyspark.sql import Row
 from pyspark.sql.types import (
     StructType, StructField, StringType, TimestampType
 )
-from pyspark.sql.functions import current_timestamp
+
+from pyspark.sql.functions import current_timestamp, from_utc_timestamp
+
 
 # parameters are ingested at runtime
 
@@ -61,10 +63,12 @@ schema = StructType([
 
 df = spark.createDataFrame(rows, schema=schema)
 
+
 df = (
-    df.withColumn("start_time", current_timestamp())
-      .withColumn("end_time", current_timestamp())
+    df.withColumn("start_time", from_utc_timestamp(current_timestamp(), "America/Vancouver"))
+      .withColumn("end_time", from_utc_timestamp(current_timestamp(), "America/Vancouver"))
 )
+
 
 df.write.mode("append").saveAsTable("bcts_metadata.run_log")
 

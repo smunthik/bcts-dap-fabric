@@ -61,7 +61,7 @@
                   "queryTimeout": "02:00:00",
                   "partitionOption": "None",
                   "numberPrecision": 38,
-                  "numberScale": 18,
+                  "numberScale": 10,
                   "datasetSettings": {
                     "type": "OracleTable",
                     "schema": [],
@@ -224,15 +224,24 @@
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "parameters": {
             "logArray      ": {
-              "value": "@string(variables('logArray'))",
+              "value": {
+                "value": "@string(variables('logArray'))",
+                "type": "Expression"
+              },
               "type": "string"
             },
             "run_id": {
-              "value": "@pipeline().RunId",
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
               "type": "string"
             },
             "pipeline_name ": {
-              "value": "@pipeline().Pipeline",
+              "value": {
+                "value": "@pipeline().Pipeline",
+                "type": "Expression"
+              },
               "type": "string"
             }
           }
