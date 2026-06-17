@@ -45,6 +45,93 @@
         "name": "invoke_run_transformations",
         "dependsOn": [
           {
+            "activity": "invoke_lrm_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "34b2d482-0723-b326-4e0c-b6f9ea156926",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "7e936e1c-52b3-47a4-a295-3b5ace641ddb"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "invoke_lrm_replication",
+        "dependsOn": [
+          {
+            "activity": "invoke_fta_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "ec3890f7-b5ad-91ce-45e4-99845cd18481",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "7e936e1c-52b3-47a4-a295-3b5ace641ddb"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "invoke_fta_replication",
+        "dependsOn": [
+          {
+            "activity": "invoke_client_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "47db6a92-5671-8a73-48c5-84e369c190d5",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "7e936e1c-52b3-47a4-a295-3b5ace641ddb"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "invoke_client_replication",
+        "dependsOn": [
+          {
             "activity": "invoke_bctsadmin_replication",
             "dependencyConditions": [
               "Succeeded"
@@ -52,6 +139,7 @@
           }
         ]
       }
-    ]
+    ],
+    "concurrency": 1
   }
 }
