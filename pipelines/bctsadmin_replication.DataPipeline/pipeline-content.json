@@ -43,7 +43,7 @@
       {
         "type": "ForEach",
         "typeProperties": {
-          "batchCount": 10,
+          "batchCount": 2,
           "items": {
             "value": "@activity('Filter bctsadmin tables').output.value",
             "type": "Expression"
