@@ -24,6 +24,17 @@
 
 from pathlib import Path
 
+# Workaround for legacy/bad datetime values (e.g., 0100-01-01) present in lrm_replication.activity table.
+# These invalid or placeholder dates cause Spark 3.x to fail with READ_ANCIENT_DATETIME errors
+# due to calendar differences (Julian vs Proleptic Gregorian) when reading Parquet/Delta data.
+# Setting to LEGACY ensures backward-compatible reading and prevents pipeline failures
+# during Fabric migration until the source data is cleaned.
+
+spark.conf.set("spark.sql.parquet.datetimeRebaseModeInRead", "LEGACY")
+spark.conf.set("spark.sql.parquet.int96RebaseModeInRead", "LEGACY")
+
+
+
 def load_sql(relative_path: str) -> str:
     full_path = f"/lakehouse/default/Files/{relative_path}"
     return Path(full_path).read_text(encoding="utf-8")
@@ -34,14 +45,14 @@ def render_sql(sql: str, start_date: str, end_date: str) -> str:
         .replace("${report_end_date}", end_date)
     )
 
-def report_exists(table_name: str, start_date: str, end_date: str) -> bool:
+def report_exists(target_schema: str, table_name: str, start_date: str, end_date: str) -> bool:
     # Check if table exists
     if not spark.catalog.tableExists(table_name):
         return False  # ✅ Table doesn't exist → force run
 
     query = f"""
         SELECT 1
-        FROM {table_name}
+        FROM {target_schema}.{table_name}
         WHERE report_start_date = DATE '{start_date}'
           AND report_end_date = DATE '{end_date}'
         LIMIT 1
@@ -55,10 +66,10 @@ def report_exists(table_name: str, start_date: str, end_date: str) -> bool:
     return df.count() > 0
 
 # Check before running SQL
-if report_exists(target_table, start_date, end_date):
-    print(f"Skipping {target_table} - already exists for {start_date} → {end_date}")
+if report_exists(target_schema, target_table, start_date, end_date):
+    print(f"Skipping {target_schema.target_table} - already exists for {start_date} → {end_date}")
 else:
-    print(f"Running {target_table} report for {start_date} and {end_date}...")
+    print(f"Running {target_schema}.{target_table} report for {start_date} and {end_date}...")
     sql_text = load_sql(sql_path)
     final_sql = render_sql(sql_text, start_date, end_date)
 
@@ -66,7 +77,7 @@ else:
     try:
         for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
             spark.sql(stmt)
-        print(f" {target_table} report for {start_date} and {end_date} completed.")
+        print(f" {target_schema}.{target_table} report for {start_date} and {end_date} completed.")
 
     except Exception as e:
         error_msg = str(e).replace("'", "''")

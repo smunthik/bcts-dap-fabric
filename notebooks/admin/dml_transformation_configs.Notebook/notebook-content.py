@@ -26,7 +26,7 @@
 spark.sql(\
 """
 INSERT INTO bcts_metadata.transformation_config VALUES
-('Annual Developed Volume', 'transformation_sql/annual_developed_volume.sql', 'Y', 'annual_developed_volume', 1, NULL);
+('Annual Developed Volume', 'transformation_sql/annual_developed_volume.sql', 'Y', 'annual_developed_volume', 'bcts_staging', 1, NULL);
 """
 )
 
@@ -37,13 +37,23 @@ INSERT INTO bcts_metadata.transformation_config VALUES
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+#  report_name        STRING,  
+#   sql_path           STRING,     -- e.g. sql/bidder_details.sql (relative to Files/)  
+#   enabled_ind        STRING,     -- 'Y'/'N'  
+#   target_table       STRING,  
+#   target_schema       STRING,  
+#   execution_order    INT,      -- optional ordering hint  
+#   depends_on         STRING   
+
 # CELL ********************
 
-# spark.sql(\
-# """
-# delete from bcts_metadata.transformation_config
-# """
-# )
+spark.sql(\
+"""
+delete from bcts_metadata.transformation_config
+"""
+)
 
 # METADATA ********************
 
