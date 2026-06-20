@@ -77,6 +77,45 @@ spark.sql(f"""
 # CELL ********************
 
 
+
+# Oracle JDBC connection details
+jdbc_url = "jdbc:oracle:thin:@//142.34.108.25:1527/dbq06.nrs.bcgov"
+user = "DAP_LRMBCTS"
+password = "TLprox1Mait"  # Replace with secure method (see below)
+
+
+df = spark.read.format("jdbc") \
+    .option("url", jdbc_url) \
+    .option("dbtable", "forest.division") \
+    .option("user", user) \
+    .option("password", password) \
+    .option("driver", "oracle.jdbc.driver.OracleDriver") \
+    .load()
+
+df.show()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+import oracledb
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+
 # METADATA ********************
 
 # META {

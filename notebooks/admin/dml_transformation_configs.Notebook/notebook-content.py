@@ -20,15 +20,87 @@
 # META   }
 # META }
 
+# MARKDOWN ********************
+
+# ### Upsert Helper Function
+# Utility function that performs an idempotent upsert (update or insert) into the bcts_metadata.transformation_config table.
+# It dynamically generates and executes a Delta Lake MERGE statement using report_name as the key—updating an existing record if it already exists, or inserting a new one if it does not—ensuring consistent and duplicate-free configuration management in your metadata-driven pipeline.
+
 # CELL ********************
 
-# Test transformation
-spark.sql(\
-"""
-INSERT INTO bcts_metadata.transformation_config VALUES
-('Annual Developed Volume', 'transformation_sql/annual_developed_volume.sql', 'Y', 'annual_developed_volume', 'bcts_staging', 1, NULL);
-"""
-)
+def upsert_transformation_config(
+    report_name,
+    sql_path,
+    enabled_ind,
+    target_table,
+    target_schema,
+    execution_order=None,
+    depends_on=None,
+    verbose=False
+):
+    def format_value(val):
+        if val is None:
+            return "NULL"
+        elif isinstance(val, str):
+            return f"'{val}'"
+        else:
+            return str(val)
+
+    source_sql = f"""
+        SELECT
+            {format_value(report_name)} AS report_name,
+            {format_value(sql_path)} AS sql_path,
+            {format_value(enabled_ind)} AS enabled_ind,
+            {format_value(target_table)} AS target_table,
+            {format_value(target_schema)} AS target_schema,
+            {format_value(execution_order)} AS execution_order,
+            {format_value(depends_on)} AS depends_on
+    """
+
+    merge_sql = f"""
+    MERGE INTO bcts_metadata.transformation_config AS target
+    USING ({source_sql}) AS source
+    ON target.report_name = source.report_name
+
+    WHEN MATCHED THEN
+    UPDATE SET
+        target.sql_path = source.sql_path,
+        target.enabled_ind = source.enabled_ind,
+        target.target_table = source.target_table,
+        target.target_schema = source.target_schema,
+        target.execution_order = source.execution_order,
+        target.depends_on = source.depends_on,
+        target.date_updated = current_timestamp()
+
+    WHEN NOT MATCHED THEN
+    INSERT (
+        report_name,
+        sql_path,
+        enabled_ind,
+        target_table,
+        target_schema,
+        execution_order,
+        depends_on,
+        date_updated
+    )
+    VALUES (
+        source.report_name,
+        source.sql_path,
+        source.enabled_ind,
+        source.target_table,
+        source.target_schema,
+        source.execution_order,
+        source.depends_on,
+        current_timestamp()
+    )
+    """
+
+    if verbose:
+        print(merge_sql)
+
+    spark.sql(merge_sql)
+
+    return "SUCCESS!"
 
 # METADATA ********************
 
@@ -36,6 +108,10 @@ INSERT INTO bcts_metadata.transformation_config VALUES
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# ### Annual Developed Volume
 
 # MARKDOWN ********************
 
@@ -49,10 +125,40 @@ INSERT INTO bcts_metadata.transformation_config VALUES
 
 # CELL ********************
 
-spark.sql(\
-"""
-delete from bcts_metadata.transformation_config
-"""
+upsert_transformation_config(
+    report_name="Annual Developed Volume",
+    sql_path="transformation_sql/annual_developed_volume.sql",
+    enabled_ind="Y",
+    target_table="annual_developed_volume",
+    target_schema="bcts_staging",
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ### Annual Development Ready
+
+# CELL ********************
+
+# 
+upsert_transformation_config(
+    report_name="Annual Development Ready",
+    sql_path="transformation_sql/annual_development_ready.sql",
+    enabled_ind="Y",
+    target_table="annual_development_ready",
+    target_schema="bcts_staging",
+    execution_order=1,
+    depends_on=None,
+    verbose=False
 )
 
 # METADATA ********************
