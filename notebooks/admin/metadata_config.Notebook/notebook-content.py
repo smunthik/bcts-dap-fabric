@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS bcts_metadata.transformation_config (
   target_table       STRING,
   target_schema       STRING,
   execution_order    INT,      -- optional ordering hint
-  depends_on         STRING    -- optional: comma-separated report_names (e.g. 'bronze_done,bidder_silver')
+  depends_on         STRING,    -- optional: comma-separated report_names (e.g. 'bronze_done,bidder_silver')
+  date_updated TIMESTAMP 
 )
 USING DELTA
 """)

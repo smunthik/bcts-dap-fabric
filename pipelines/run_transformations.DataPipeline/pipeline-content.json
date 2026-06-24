@@ -13,6 +13,13 @@
                 "type": "Expression"
               },
               "type": "string"
+            },
+            "report_name_parameter": {
+              "value": {
+                "value": "@pipeline().parameters.report_name_parameter",
+                "type": "Expression"
+              },
+              "type": "string"
             }
           }
         },
@@ -26,6 +33,11 @@
         "name": "run_transformations",
         "dependsOn": []
       }
-    ]
+    ],
+    "parameters": {
+      "report_name_parameter": {
+        "type": "string"
+      }
+    }
   }
 }

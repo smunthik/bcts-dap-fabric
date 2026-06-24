@@ -64,6 +64,10 @@ FROM bcts_metadata.transformation_config
 WHERE enabled_ind = 'Y'
 """).collect()
 
+# Enable running one or all transformations. Specify report_name_parameter if only one transformation needs to be run
+if report_name_parameter:
+    cfg = [row for row in cfg if row["report_name"] == report_name_parameter]
+
 # --- Build DAG activities ---
 activities = []
 all_names = set()
@@ -86,7 +90,7 @@ for row in cfg:
     print(row["sql_path"])
 
     # Keep only dependencies that exist in config
-    deps = [d for d in deps if d in all_names]
+    deps = [d for d in deps if (not report_param) or d == report_param]
 
     activities.append({
         "name": name,
