@@ -81,15 +81,8 @@ else:
 
     except Exception as e:
         error_msg = str(e).replace("'", "''")
-        spark.sql(f"""
-        UPDATE bcts_metadata.run_log
-        SET status = 'FAILED',
-            end_time = current_timestamp(),
-            error_message = '{error_msg}'
-        WHERE run_id = '{run_id}'
-            AND report_name = '{report_name}'
-        """)
-
+        print(f" {target_schema}.{target_table} report for {start_date} and {end_date} FAILED!.")
+        print(error_msg)
         raise
 
 

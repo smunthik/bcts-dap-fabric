@@ -43,7 +43,7 @@
       {
         "type": "ForEach",
         "typeProperties": {
-          "batchCount": 10,
+          "batchCount": 3,
           "items": {
             "value": "@activity('Filter lrm tables').output.value",
             "type": "Expression"
