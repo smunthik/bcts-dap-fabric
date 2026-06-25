@@ -20,7 +20,7 @@
 # META   }
 # META }
 
-# CELL *********************
+# CELL ********************
 
 import json
 from pyspark.sql import Row
@@ -31,7 +31,7 @@ from pyspark.sql.types import (
 from pyspark.sql.functions import current_timestamp, from_utc_timestamp
 
 
-# parameters are ingested at runtime
+# parameters are ingested at runtime.
 
 logArray = json.loads(logArray)
 
