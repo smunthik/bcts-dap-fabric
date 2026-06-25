@@ -1,4 +1,4 @@
-# Fabric notebook source.
+# Fabric notebook source
 
 # METADATA ********************
 
@@ -20,7 +20,7 @@
 # META   }
 # META }
 
-# CELL ********************
+# CELL *********************
 
 import json
 from pyspark.sql import Row
