@@ -127,7 +127,7 @@ def upsert_transformation_config(
 
 upsert_transformation_config(
     report_name="Annual Developed Volume",
-    sql_path="transformation_sql/annual_developed_volume.sql",
+    sql_path="transformation_sql/annual_developed_volume2.sql",
     enabled_ind="Y",
     target_table="annual_developed_volume",
     target_schema="bcts_staging",
