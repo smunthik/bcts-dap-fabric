@@ -22,7 +22,7 @@
 
 # CELL ********************
 
-from pathlib import Path
+import requests
 
 # Workaround for legacy/bad datetime values (e.g., 0100-01-01) present in lrm_replication.activity table.
 # These invalid or placeholder dates cause Spark 3.x to fail with READ_ANCIENT_DATETIME errors
@@ -35,9 +35,10 @@ spark.conf.set("spark.sql.parquet.int96RebaseModeInRead", "LEGACY")
 
 
 
-def load_sql(relative_path: str) -> str:
-    full_path = f"/lakehouse/default/Files/{relative_path}"
-    return Path(full_path).read_text(encoding="utf-8")
+def load_sql(relative_path: str, branch_name: str) -> str:
+    url = f'https://raw.githubusercontent.com/smunthik/bcts-dap-fabric/{branch_name}/{relative_path}'
+    sql_text = requests.get(url).text
+    return sql_text
 
 def render_sql(sql: str, start_date: str, end_date: str) -> str:
     return (sql
@@ -70,7 +71,7 @@ if report_exists(target_schema, target_table, start_date, end_date):
     print(f"Skipping {target_schema.target_table} - already exists for {start_date} → {end_date}")
 else:
     print(f"Running {target_schema}.{target_table} report for {start_date} and {end_date}...")
-    sql_text = load_sql(sql_path)
+    sql_text = load_sql(sql_path, branch_name)
     final_sql = render_sql(sql_text, start_date, end_date)
 
     # statements execute in the same order as in the file
@@ -84,6 +85,16 @@ else:
         print(f" {target_schema}.{target_table} report for {start_date} and {end_date} FAILED!.")
         print(error_msg)
         raise
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 
 # METADATA ********************

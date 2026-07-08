@@ -34,6 +34,7 @@ def upsert_transformation_config(
     enabled_ind,
     target_table,
     target_schema,
+    branch_name,
     execution_order=None,
     depends_on=None,
     verbose=False
@@ -53,6 +54,7 @@ def upsert_transformation_config(
             {format_value(enabled_ind)} AS enabled_ind,
             {format_value(target_table)} AS target_table,
             {format_value(target_schema)} AS target_schema,
+            {format_value(branch_name)} AS branch_name,
             {format_value(execution_order)} AS execution_order,
             {format_value(depends_on)} AS depends_on
     """
@@ -68,6 +70,7 @@ def upsert_transformation_config(
         target.enabled_ind = source.enabled_ind,
         target.target_table = source.target_table,
         target.target_schema = source.target_schema,
+        target.branch_name = source.branch_name,
         target.execution_order = source.execution_order,
         target.depends_on = source.depends_on,
         target.date_updated = current_timestamp()
@@ -79,6 +82,7 @@ def upsert_transformation_config(
         enabled_ind,
         target_table,
         target_schema,
+        branch_name,
         execution_order,
         depends_on,
         date_updated
@@ -89,6 +93,7 @@ def upsert_transformation_config(
         source.enabled_ind,
         source.target_table,
         source.target_schema,
+        source.branch_name,
         source.execution_order,
         source.depends_on,
         current_timestamp()
@@ -127,10 +132,11 @@ def upsert_transformation_config(
 
 upsert_transformation_config(
     report_name="Annual Developed Volume",
-    sql_path="transformation_sql/annual_developed_volume.sql",
+    sql_path="sql/annual_developed_volume.sql",
     enabled_ind="Y",
     target_table="annual_developed_volume",
     target_schema="bcts_staging",
+    branch_name="bcts-initial-migration",
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -152,10 +158,11 @@ upsert_transformation_config(
 # 
 upsert_transformation_config(
     report_name="Annual Development Ready",
-    sql_path="transformation_sql/annual_development_ready.sql",
+    sql_path="sql/annual_development_ready.sql",
     enabled_ind="Y",
     target_table="annual_development_ready",
     target_schema="bcts_staging",
+    branch_name="bcts-initial-migration",
     execution_order=1,
     depends_on=None,
     verbose=False
