@@ -5,13 +5,13 @@
       "name": "BCTSADMIN_SOURCE_CONNECTION_ID",
       "note": "",
       "type": "String",
-      "value": " b491a84a-ad79-4c8c-97fd-10bc0f852423"
+      "value": "7a705ad7-f98a-45fc-9645-42ee32c09653"
     },
     {
       "name": "LRM_SOURCE_CONNECTION_ID",
       "note": "",
       "type": "String",
-      "value": "e516cc1f-4df5-401c-b742-d9c612e1a93d"
+      "value": "0743fc65-a700-40ca-adfb-7eb9d7c079d3"
     }
   ]
 }
