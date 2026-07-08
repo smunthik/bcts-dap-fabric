@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "fta_replication"
+    "type": "VariableLibrary",
+    "displayName": "DATABASE-CONNECTIONS"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "ec3890f7-b5ad-91ce-45e4-99845cd18481"
+    "logicalId": "fab89e17-eeb6-96de-4436-ac8125ce73b0"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/variables/1.0.0/schema.json",
+  "variables": [
+    {
+      "name": "BCTSADMIN_SOURCE_CONNECTION_ID",
+      "note": "",
+      "type": "String",
+      "value": " b491a84a-ad79-4c8c-97fd-10bc0f852423"
+    },
+    {
+      "name": "LRM_SOURCE_CONNECTION_ID",
+      "note": "",
+      "type": "String",
+      "value": "e516cc1f-4df5-401c-b742-d9c612e1a93d"
+    }
+  ]
+}
