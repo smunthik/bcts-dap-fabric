@@ -66,7 +66,7 @@
                     "type": "OracleTable",
                     "schema": [],
                     "externalReferences": {
-                      "connection": "b491a84a-ad79-4c8c-97fd-10bc0f852423"
+                      "connection": "@pipeline().libraryVariables.DATABASECONNECTIONS_BCTSADMIN_SOURCE_CONNECTION_ID"
                     },
                     "annotations": []
                   }
@@ -264,6 +264,13 @@
         ]
       }
     ],
+    "libraryVariables": {
+      "DATABASECONNECTIONS_BCTSADMIN_SOURCE_CONNECTION_ID": {
+        "type": "String",
+        "variableName": "BCTSADMIN_SOURCE_CONNECTION_ID",
+        "libraryName": "DATABASE-CONNECTIONS"
+      }
+    },
     "variables": {
       "hasFailure": {
         "type": "Boolean",
