@@ -12,6 +12,12 @@
       "note": "",
       "type": "String",
       "value": "e516cc1f-4df5-401c-b742-d9c612e1a93d"
+    },
+    {
+      "name": "TEST",
+      "note": "",
+      "type": "String",
+      "value": "test-variable-dev"
     }
   ]
 }
