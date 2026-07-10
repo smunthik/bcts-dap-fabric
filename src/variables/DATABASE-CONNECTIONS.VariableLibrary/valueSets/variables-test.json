@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/valueSet/1.0.0/schema.json",
+  "name": "variables-test",
+  "variableOverrides": [
+    {
+      "name": "BCTSADMIN_SOURCE_CONNECTION_ID",
+      "value": "7a705ad7-f98a-45fc-9645-42ee32c09653"
+    },
+    {
+      "name": "LRM_SOURCE_CONNECTION_ID",
+      "value": "0743fc65-a700-40ca-adfb-7eb9d7c079d3"
+    },
+    {
+      "name": "TEST",
+      "value": "test-variable-test"
+    }
+  ]
+}
