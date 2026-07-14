@@ -130,13 +130,15 @@ def upsert_transformation_config(
 
 # CELL ********************
 
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
 upsert_transformation_config(
     report_name="Annual Developed Volume",
     sql_path="sql/annual_developed_volume.sql",
     enabled_ind="Y",
     target_table="annual_developed_volume",
     target_schema="bcts_staging",
-    branch_name="bcts-initial-migration",
+    branch_name=branch_name,
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -156,13 +158,15 @@ upsert_transformation_config(
 # CELL ********************
 
 # 
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
 upsert_transformation_config(
     report_name="Annual Development Ready",
     sql_path="sql/annual_development_ready.sql",
     enabled_ind="Y",
     target_table="annual_development_ready",
     target_schema="bcts_staging",
-    branch_name="bcts-initial-migration",
+    branch_name=branch_name,
     execution_order=1,
     depends_on=None,
     verbose=False

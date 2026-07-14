@@ -18,6 +18,12 @@
       "note": "",
       "type": "String",
       "value": "test-variable-dev"
+    },
+    {
+      "name": "GIT_BRANCH_NAME",
+      "note": "",
+      "type": "String",
+      "value": "bcts_initial_migration"
     }
   ]
 }

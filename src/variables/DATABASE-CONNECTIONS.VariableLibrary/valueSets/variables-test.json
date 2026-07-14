@@ -13,6 +13,10 @@
     {
       "name": "TEST",
       "value": "test-variable-test"
+    },
+    {
+      "name": "GIT_BRANCH_NAME",
+      "value": "main"
     }
   ]
 }

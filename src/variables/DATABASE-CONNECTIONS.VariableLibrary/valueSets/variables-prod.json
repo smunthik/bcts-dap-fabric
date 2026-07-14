@@ -13,6 +13,10 @@
     {
       "name": "LRM_SOURCE_CONNECTION_ID",
       "value": "0743fc65-a700-40ca-adfb-7eb9d7c079d3"
+    },
+    {
+      "name": "GIT_BRANCH_NAME",
+      "value": "main"
     }
   ]
 }
