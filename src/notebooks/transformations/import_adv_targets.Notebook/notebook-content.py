@@ -69,6 +69,87 @@ display(df)
 
 # CELL ********************
 
+sql = \
+"""
+CREATE TABLE IF NOT EXISTS bcts_reporting.bcts_adv_targets AS
+
+SELECT * FROM bcts_staging.bcts_adv_targets;
+"""
+
+spark.sql(sql)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ### Create Business Area Dimension Table
+
+# CELL ********************
+
+sql = \
+"""
+CREATE TABLE IF NOT EXISTS bcts_staging.dim_business_area AS
+
+SELECT DISTINCT
+    business_area_region_category,
+    business_area_region,
+
+    CASE
+        WHEN business_area IN ('Prince George (TPG)', 'Stuart-Nechako (TSN)')
+            THEN 'Omineca (TPG-TSN)'
+        ELSE business_area
+    END AS business_area,
+
+    business_area AS business_area_reporting_unit,
+
+    CASE
+        WHEN business_area_region = 'North Interior' THEN 1
+        WHEN business_area_region = 'South Interior' THEN 2
+        WHEN business_area_region = 'Coast' THEN 3
+    END AS business_area_region_sort_order,
+
+    CASE
+        WHEN business_area_region_category = 'Interior' THEN 1
+        ELSE 2
+    END AS business_area_region_cat_sort_order
+
+FROM bcts_staging.bcts_adv_targets;
+"""
+
+spark.sql(sql)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+sql = \
+"""
+CREATE TABLE IF NOT EXISTS bcts_reporting.dim_business_area AS
+
+SELECT * FROM bcts_staging.dim_business_area;
+"""
+
+spark.sql(sql)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
