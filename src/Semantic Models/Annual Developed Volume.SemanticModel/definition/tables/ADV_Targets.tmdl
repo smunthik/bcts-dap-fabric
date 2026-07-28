@@ -58,8 +58,8 @@ table ADV_Targets
 				let
 				    Source = Value.NativeQuery(
 				        Sql.Database(
-				            "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com",
-				            "bcts_lakehouse"
+				            server,
+				            database
 				        ),
 				        "
 				        select *

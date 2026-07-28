@@ -435,8 +435,8 @@ table 'bcts_reporting annual_developed_volume'
 		source =
 				let
 				    Source = Sql.Database(
-				        "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com",
-				        "bcts_lakehouse"
+				        server,
+				        database
 				    ),
 				    annual_developed_volume = Source{[
 				        Schema="bcts_reporting",

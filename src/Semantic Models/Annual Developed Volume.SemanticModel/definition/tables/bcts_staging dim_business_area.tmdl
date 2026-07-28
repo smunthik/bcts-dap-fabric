@@ -1,6 +1,10 @@
 table 'bcts_staging dim_business_area'
 	lineageTag: 423f3f99-ad28-4136-bebc-f2a4a8ac2914
 
+	measure Test = 1
+		formatString: 0
+		lineageTag: 639bf19c-023f-4e8b-8583-6bf6c48c2c5e
+
 	column 'Business Area'
 		dataType: string
 		lineageTag: ea3b6151-ab76-4e62-af06-c6a586427b6d
@@ -87,8 +91,8 @@ table 'bcts_staging dim_business_area'
 		source =
 				let
 				    Source = Sql.Database(
-				        "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com",
-				        "bcts_lakehouse"
+				        server,
+				        database
 				    ),
 				    bcts_staging_dim_business_area = Source{[
 				        Schema="bcts_staging",
