@@ -35,6 +35,8 @@ def upsert_transformation_config(
     target_table,
     target_schema,
     branch_name,
+    has_start_date,
+    has_end_date,
     execution_order=None,
     depends_on=None,
     verbose=False
@@ -55,6 +57,8 @@ def upsert_transformation_config(
             {format_value(target_table)} AS target_table,
             {format_value(target_schema)} AS target_schema,
             {format_value(branch_name)} AS branch_name,
+            {format_value(has_start_date)} AS has_start_date,
+            {format_value(has_end_date)} AS has_end_date,
             {format_value(execution_order)} AS execution_order,
             {format_value(depends_on)} AS depends_on
     """
@@ -71,6 +75,8 @@ def upsert_transformation_config(
         target.target_table = source.target_table,
         target.target_schema = source.target_schema,
         target.branch_name = source.branch_name,
+        target.has_start_date = source.has_start_date,
+        target.has_end_date = source.has_end_date,
         target.execution_order = source.execution_order,
         target.depends_on = source.depends_on,
         target.date_updated = current_timestamp()
@@ -83,6 +89,8 @@ def upsert_transformation_config(
         target_table,
         target_schema,
         branch_name,
+        has_start_date,
+        has_end_date,
         execution_order,
         depends_on,
         date_updated
@@ -94,6 +102,8 @@ def upsert_transformation_config(
         source.target_table,
         source.target_schema,
         source.branch_name,
+        source.has_start_date,
+        source.has_end_date,
         source.execution_order,
         source.depends_on,
         current_timestamp()
@@ -137,8 +147,10 @@ upsert_transformation_config(
     sql_path="sql/annual_developed_volume.sql",
     enabled_ind="Y",
     target_table="annual_developed_volume",
-    target_schema="bcts_staging",
+    target_schema="bcts_reporting",
     branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',  
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -165,8 +177,40 @@ upsert_transformation_config(
     sql_path="sql/annual_development_ready.sql",
     enabled_ind="Y",
     target_table="annual_development_ready",
-    target_schema="bcts_staging",
+    target_schema="bcts_reporting",
     branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',  
+    execution_order=1,
+    depends_on=None, 
+    verbose=False
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ### Development in Progress
+
+# CELL ********************
+
+# 
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="Development in Progress",
+    sql_path="sql/timber_inventory_development_in_progress.sql",
+    enabled_ind="Y",
+    target_table="timber_inventory_development_in_progress",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='yes',   
     execution_order=1,
     depends_on=None,
     verbose=False

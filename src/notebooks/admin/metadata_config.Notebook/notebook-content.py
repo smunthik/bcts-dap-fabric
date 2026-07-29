@@ -72,6 +72,8 @@ CREATE TABLE IF NOT EXISTS bcts_metadata.transformation_config (
   branch_name        STRING,
   execution_order    INT,      -- optional ordering hint
   depends_on         STRING,    -- optional: comma-separated report_names (e.g. 'bronze_done,bidder_silver')
+  has_start_date     STRING, 
+  has_end_date       STRING,
   date_updated TIMESTAMP 
 )
 USING DELTA
