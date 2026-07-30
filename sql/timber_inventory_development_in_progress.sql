@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_development_in_progress
     cutb_block_state STRING,
     deferred_at_report_date STRING,
     inventory_category STRING,
+    inventory_category_new STRING,
     merch_area DECIMAL(11,6),
     cruise_volume DECIMAL(15,6),
     rw_volume DECIMAL(15,6),
