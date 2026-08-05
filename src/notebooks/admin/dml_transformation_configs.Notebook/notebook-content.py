@@ -223,6 +223,35 @@ upsert_transformation_config(
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# ### Ready to Develop
+
+# CELL ********************
+
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="Ready to Develop",
+    sql_path="sql/timber_inventory_ready_to_develop.sql",
+    enabled_ind="Y",
+    target_table="timber_inventory_ready_to_develop",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='yes',  
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
 # CELL ********************
 
 
