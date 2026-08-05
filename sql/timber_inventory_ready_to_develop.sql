@@ -221,11 +221,11 @@ WITH ACTB AS
             a.cutb_seq_nbr,
             atype.actt_key_ind,
             a.acti_status_date
-        FROM bcts_staging.FOREST_activity_class ac
-        INNER JOIN bcts_staging.FOREST_activity_type atype
+        FROM lrm_replication.activity_class ac
+        INNER JOIN lrm_replication.activity_type atype
             ON ac.accl_seq_nbr = atype.accl_seq_nbr
             AND ac.divi_div_nbr = atype.divi_div_nbr
-        INNER JOIN bcts_staging.FOREST_activity a
+        INNER JOIN lrm_replication.activity a
             ON atype.actt_seq_nbr = a.actt_seq_nbr
             AND a.plan_seq_nbr IS NULL
         WHERE
@@ -284,11 +284,11 @@ ACTB_S AS
             a.cutb_seq_nbr,
             atype.actt_key_ind,
             a.acti_status_ind
-        FROM bcts_staging.FOREST_activity_class ac
-        INNER JOIN bcts_staging.FOREST_activity_type atype
+        FROM lrm_replication.activity_class ac
+        INNER JOIN lrm_replication.activity_type atype
             ON ac.accl_seq_nbr = atype.accl_seq_nbr
             AND ac.divi_div_nbr = atype.divi_div_nbr
-        INNER JOIN bcts_staging.FOREST_activity a
+        INNER JOIN lrm_replication.activity a
             ON atype.actt_seq_nbr = a.actt_seq_nbr
             AND
             (
