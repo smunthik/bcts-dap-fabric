@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Timber Inventory Development In Progress"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "743cc2b2-7bb9-4479-b9de-1f9bc2393097"
+  }
+}
