@@ -2,113 +2,105 @@ CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_ready_to_develop_hist
 (
     id BIGINT,
 
-    business_area_region_category VARCHAR(MAX),
-    business_area_region VARCHAR(MAX),
-    business_area VARCHAR(MAX),
-    business_area_code VARCHAR(15),
-    field_team VARCHAR(150),
-    nav_name VARCHAR(60),
-    operatingarea VARCHAR(30),
-    location VARCHAR(800),
-    tenure VARCHAR(40),
-    licence_id VARCHAR(15),
-    licence_state VARCHAR(20),
-    permit_id VARCHAR(40),
-    block_id VARCHAR(20),
-    ubi VARCHAR(15),
-    block_state VARCHAR(20),
-    deferred VARCHAR(MAX),
-    inventory_category VARCHAR(MAX),
+    business_area_region_category STRING,
+    business_area_region STRING,
+    business_area STRING,
+    business_area_code STRING,
+    field_team STRING,
+    nav_name STRING,
+    operatingarea STRING,
+    location STRING,
+    tenure STRING,
+    licence_id STRING,
+    licence_state STRING,
+    permit_id STRING,
+    block_id STRING,
+    ubi STRING,
+    block_state STRING,
+    deferred STRING,
+    inventory_category STRING,
 
     cruise_vol DECIMAL(15,6),
     rw_vol DECIMAL(15,6),
 
-    rc_status VARCHAR(MAX),
+    rc_status STRING,
     rc_date DATE,
 
-    dr_status VARCHAR(MAX),
+    dr_status STRING,
     dr_date DATE,
-    dr_fiscal DECIMAL(18,0),
-    dr_quarter DECIMAL(18,0),
-    dr_category VARCHAR(MAX),
+    dr_fiscal BIGINT,
+    dr_quarter BIGINT,
+    dr_category STRING,
 
-    dvs_status VARCHAR(MAX),
+    dvs_status STRING,
     dvs_date DATE,
 
-    dvc_status VARCHAR(MAX),
+    dvc_status STRING,
     dvc_date DATE,
 
-    dvs_fiscal DECIMAL(18,0),
-    dvs_quarter DECIMAL(18,0),
+    dvs_fiscal BIGINT,
+    dvs_quarter BIGINT,
 
-    def_change_of_op_plan_status VARCHAR(MAX),
+    def_change_of_op_plan_status STRING,
     def_change_of_op_plan DATE,
 
-    def_first_nations_status VARCHAR(MAX),
+    def_first_nations_status STRING,
     def_first_nations DATE,
 
-    def_loss_of_access_status VARCHAR(MAX),
+    def_loss_of_access_status STRING,
     def_loss_of_access DATE,
 
-    def_other_status VARCHAR(MAX),
+    def_other_status STRING,
     def_other DATE,
 
-    def_planning_constraint_status VARCHAR(MAX),
+    def_planning_constraint_status STRING,
     def_planning_constraint DATE,
 
-    def_returned_to_bcts_status VARCHAR(MAX),
+    def_returned_to_bcts_status STRING,
     def_returned_to_bcts DATE,
 
-    def_stale_dated_fieldwork_status VARCHAR(MAX),
+    def_stale_dated_fieldwork_status STRING,
     def_stale_dated_fieldwork DATE,
 
-    def_stakeholder_issue_status VARCHAR(MAX),
+    def_stakeholder_issue_status STRING,
     def_stakeholder_issue DATE,
 
-    def_environmental_stewardship_initiative_status VARCHAR(MAX),
+    def_environmental_stewardship_initiative_status STRING,
     def_environmental_stewardship_initiative DATE,
 
-    def_reactivated_status VARCHAR(MAX),
+    def_reactivated_status STRING,
     def_reactivated DATE,
 
-    old_growth_strategy_status VARCHAR(MAX),
+    old_growth_strategy_status STRING,
     old_growth_strategy DATE,
 
-    ogs_reactivated_forest_health_status VARCHAR(MAX),
+    ogs_reactivated_forest_health_status STRING,
     ogs_reactivated_forest_health DATE,
 
-    ogs_reactivated_fn_proceed_status VARCHAR(MAX),
+    ogs_reactivated_fn_proceed_status STRING,
     ogs_reactivated_fn_proceed DATE,
 
-    ogs_reactivated_field_verified_status VARCHAR(MAX),
+    ogs_reactivated_field_verified_status STRING,
     ogs_reactivated_field_verified DATE,
 
-    ogs_reactivated_minor_status VARCHAR(MAX),
+    ogs_reactivated_minor_status STRING,
     ogs_reactivated_minor DATE,
 
-    ogs_reactivated_road_status VARCHAR(MAX),
+    ogs_reactivated_road_status STRING,
     ogs_reactivated_road DATE,
 
-    ogs_reactivated_re_engineered_status VARCHAR(MAX),
+    ogs_reactivated_re_engineered_status STRING,
     ogs_reactivated_re_engineered DATE,
 
-    spatial_flag VARCHAR(3),
+    spatial_flag STRING,
     cutb_seq_nbr BIGINT,
 
     report_end_date DATE,
-    report_run_date DATE
-        DEFAULT CAST(
-            SYSDATETIMEOFFSET() AT TIME ZONE 'Pacific Standard Time'
-            AS DATE
-        ),
-
-    report_run_timestamp DATETIME2
-        DEFAULT CAST(
-            SYSDATETIMEOFFSET() AT TIME ZONE 'Pacific Standard Time'
-            AS DATETIME2
-        )
+    report_run_date DATE,
+    report_run_timestamp TIMESTAMP
 )
-USING DELTA;;
+USING DELTA;
+
 
 
 -- Report exists check is done on bcts_reporting.timber_inventory_ready_to_develop table 
@@ -352,7 +344,9 @@ INSERT INTO bcts_staging.timber_inventory_ready_to_develop_hist
     ogs_reactivated_re_engineered,
     spatial_flag,
     cutb_seq_nbr,
-    report_end_date
+    report_end_date,
+    report_run_date, 
+    report_run_timestamp 
 )
 SELECT DISTINCT
     CASE
@@ -472,7 +466,9 @@ SELECT DISTINCT
     ACTB.OGS_Reactivated_Re_Engineered,
     BS.SPATIAL_FLAG,
     BLOCK.CUTB_SEQ_NBR,
-    CAST('${report_end_date}' AS date) AS report_end_date
+    CAST('${report_end_date}' AS date) AS report_end_date,
+    CURRENT_DATE AS report_run_date,
+    CURRENT_TIMESTAMP AS report_run_timestamp
 
 FROM LRM_REPLICATION.V_BLOCK BLOCK
 INNER JOIN ACTB_S
