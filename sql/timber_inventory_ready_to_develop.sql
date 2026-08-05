@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_ready_to_develop_hist
 (
-    id BIGINT IDENTITY(1,1) NOT NULL,
+    id BIGINT,
 
     business_area_region_category VARCHAR(MAX),
     business_area_region VARCHAR(MAX),
@@ -107,7 +107,8 @@ CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_ready_to_develop_hist
             SYSDATETIMEOFFSET() AT TIME ZONE 'Pacific Standard Time'
             AS DATETIME2
         )
-);
+)
+USING DELTA;;
 
 
 -- Report exists check is done on bcts_reporting.timber_inventory_ready_to_develop table 
