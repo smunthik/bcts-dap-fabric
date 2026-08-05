@@ -108,172 +108,7 @@ USING DELTA;
 delete from bcts_staging.timber_inventory_ready_to_develop_hist 
 where report_end_date = '${report_end_date}';
 
--- Populate staging table 
-WITH ACTB AS
-(
-    SELECT
-        cutb_seq_nbr,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DEL' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEL_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSC' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DSC_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DVC' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DVC_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DVS' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DVS_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'FG' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS FG_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'HVC' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS HVC_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'HVS' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS HVS_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RC' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS RC_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DR' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DR_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'WO' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS WOFF_DATE,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DCP' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Change_of_Op_Plan,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DFN' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_First_Nations,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DLA' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Loss_of_Access,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DOR' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Other,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DPC' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Planning_Constraint,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DRB' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Returned_to_BCTS,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSD' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Stale_dated_Fieldwork,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSI' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Stakeholder_Issue,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DESI' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_Environmental_Stewardship_Initiative,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DRD' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS DEF_REACTIVATED,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DOG' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS Old_Growth_Strategy,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFH' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_Forest_Health,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFN' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_FN_Proceed,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFV' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_Field_Verified,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RMN' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_Minor,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RRD' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_Road,
-        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RRE' THEN ACTI_STATUS_DATE ELSE NULL END) AS date) AS OGS_Reactivated_Re_Engineered
-    FROM
-    (
-        SELECT
-            a.cutb_seq_nbr,
-            atype.actt_key_ind,
-            a.acti_status_date
-        FROM BCTS_STAGING.FOREST_activity_class ac
-        INNER JOIN BCTS_STAGING.FOREST_activity_type atype
-            ON ac.accl_seq_nbr = atype.accl_seq_nbr
-            AND ac.divi_div_nbr = atype.divi_div_nbr
-        INNER JOIN BCTS_STAGING.FOREST_activity a
-            ON atype.actt_seq_nbr = a.actt_seq_nbr
-            AND a.plan_seq_nbr IS NULL
-        WHERE
-            (
-                atype.actt_key_ind IN ('DSC', 'DVC', 'DVS', 'FG', 'HVC', 'HVS', 'RC', 'DR', 'WO')
-                AND ac.accl_key_ind = 'CMB'
-            )
-            OR
-            (
-                atype.actt_key_ind IN
-                (
-                    'DEL',
-                    'DCP', 'DFN', 'DLA', 'DOG', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI',
-                    'DESI', 'DRD', 'RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE'
-                )
-                AND ac.accl_key_ind = 'CSB'
-            )
-    ) TEMP
-    GROUP BY cutb_seq_nbr
-),
-ACTB_S AS
-(
-    SELECT
-        cutb_seq_nbr,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DEL' THEN ACTI_STATUS_IND ELSE NULL END) AS DEL_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DSC' THEN ACTI_STATUS_IND ELSE NULL END) AS DSC_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DVC' THEN ACTI_STATUS_IND ELSE NULL END) AS DVC_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DVS' THEN ACTI_STATUS_IND ELSE NULL END) AS DVS_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'FG' THEN ACTI_STATUS_IND ELSE NULL END) AS FG_Met_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'HVC' THEN ACTI_STATUS_IND ELSE NULL END) AS HVC_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'HVS' THEN ACTI_STATUS_IND ELSE NULL END) AS HVS_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RC' THEN ACTI_STATUS_IND ELSE NULL END) AS RC_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DR' THEN ACTI_STATUS_IND ELSE NULL END) AS DR_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'WO' THEN ACTI_STATUS_IND ELSE NULL END) AS WOFF_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DCP' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Change_of_Op_Plan_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DFN' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_First_Nations_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DLA' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Loss_of_Access_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DOR' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Other_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DPC' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Planning_Constraint_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DRB' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Returned_to_BCTS_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DSD' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Stale_dated_Fieldwork_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DSI' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Stakeholder_Issue_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DESI' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Environmental_Stewardship_Initiative_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DRD' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_REACTIVATED_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'DOG' THEN ACTI_STATUS_IND ELSE NULL END) AS Old_Growth_Strategy_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RFH' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Forest_Health_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RFN' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_FN_Proceed_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RFV' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Field_Verified_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RMN' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Minor_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RRD' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Road_Status,
-        MAX(CASE WHEN ACTT_KEY_IND = 'RRE' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Re_Engineered_Status
-    FROM
-    (
-        SELECT
-            a.cutb_seq_nbr,
-            atype.actt_key_ind,
-            a.acti_status_ind
-        FROM BCTS_STAGING.FOREST_activity_class ac
-        INNER JOIN BCTS_STAGING.FOREST_activity_type atype
-            ON ac.accl_seq_nbr = atype.accl_seq_nbr
-            AND ac.divi_div_nbr = atype.divi_div_nbr
-        INNER JOIN BCTS_STAGING.FOREST_activity a
-            ON atype.actt_seq_nbr = a.actt_seq_nbr
-            AND
-            (
-                (
-                    atype.actt_key_ind IN ('DSC', 'DVC', 'DVS', 'FG', 'HVC', 'HVS', 'RC', 'DR', 'WO')
-                    AND ac.accl_key_ind = 'CMB'
-                )
-                OR
-                (
-                    atype.actt_key_ind IN
-                    (
-                        'DEL',
-                        'DCP', 'DFN', 'DLA', 'DOG', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI',
-                        'DESI', 'DRD', 'RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE'
-                    )
-                    AND ac.accl_key_ind = 'CSB'
-                )
-            )
-            AND a.plan_seq_nbr IS NULL
-    ) TEMP
-    GROUP BY cutb_seq_nbr
-),
-LDF AS
-(
-    SELECT
-        A2.CUTB_SEQ_NBR,
-        MAX(A2.ACTIVITY_DATE) AS LATEST_DEF
-    FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL A2
-    WHERE
-        A2.ACTIVITY_CLASS = 'CSB'
-        AND A2.ACTT_KEY_IND IN ('DCP', 'DFN', 'DLA', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI', 'DESI')
-        AND A2.ACTI_STATUS_IND = 'D'
-        AND A2.ACTIVITY_DATE <= CAST('${report_end_date}' AS date)
-    GROUP BY A2.CUTB_SEQ_NBR
-),
-LRCT AS
-(
-    SELECT
-        A4.CUTB_SEQ_NBR,
-        MAX(A4.ACTIVITY_DATE) AS LATEST_OGS_REACTIVATED
-    FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL A4
-    WHERE
-        A4.ACTIVITY_CLASS = 'CSB'
-        AND A4.ACTT_KEY_IND IN ('RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE')
-        AND A4.ACTI_STATUS_IND = 'D'
-        AND A4.ACTIVITY_DATE <= CAST('${report_end_date}' AS date)
-    GROUP BY
-        A4.CUTB_SEQ_NBR,
-        A4.ACTI_STATUS_IND
-),
-EXL AS
-(
-    SELECT DISTINCT
-        LICN_SEQ_NBR
-    FROM LRM_REPLICATION.V_LICENCE_ACTIVITY_ALL
-    WHERE
-        ACTIVITY_CLASS = 'CML'
-        AND ACTT_KEY_IND IN ('HI', 'HC', 'HX', 'HS')
-        AND ACTI_STATUS_IND = 'D'
-)
-
+-- Populate staging table
 INSERT INTO bcts_staging.timber_inventory_ready_to_develop_hist
 (
     business_area_region_category,
@@ -345,9 +180,179 @@ INSERT INTO bcts_staging.timber_inventory_ready_to_develop_hist
     spatial_flag,
     cutb_seq_nbr,
     report_end_date,
-    report_run_date, 
-    report_run_timestamp 
+    report_run_date,
+    report_run_timestamp
 )
+
+WITH ACTB AS
+(
+    SELECT
+        cutb_seq_nbr,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DEL' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEL_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSC' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DSC_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DVC' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DVC_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DVS' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DVS_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'FG' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS FG_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'HVC' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS HVC_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'HVS' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS HVS_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RC' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS RC_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DR' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DR_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'WO' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS WOFF_DATE,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DCP' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Change_of_Op_Plan,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DFN' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_First_Nations,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DLA' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Loss_of_Access,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DOR' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Other,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DPC' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Planning_Constraint,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DRB' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Returned_to_BCTS,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSD' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Stale_dated_Fieldwork,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DSI' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Stakeholder_Issue,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DESI' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_Environmental_Stewardship_Initiative,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DRD' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS DEF_REACTIVATED,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'DOG' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS Old_Growth_Strategy,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFH' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_Forest_Health,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFN' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_FN_Proceed,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RFV' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_Field_Verified,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RMN' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_Minor,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RRD' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_Road,
+        CAST(MAX(CASE WHEN ACTT_KEY_IND = 'RRE' THEN ACTI_STATUS_DATE ELSE NULL END) AS DATE) AS OGS_Reactivated_Re_Engineered
+    FROM
+    (
+        SELECT
+            a.cutb_seq_nbr,
+            atype.actt_key_ind,
+            a.acti_status_date
+        FROM bcts_staging.FOREST_activity_class ac
+        INNER JOIN bcts_staging.FOREST_activity_type atype
+            ON ac.accl_seq_nbr = atype.accl_seq_nbr
+            AND ac.divi_div_nbr = atype.divi_div_nbr
+        INNER JOIN bcts_staging.FOREST_activity a
+            ON atype.actt_seq_nbr = a.actt_seq_nbr
+            AND a.plan_seq_nbr IS NULL
+        WHERE
+            (
+                atype.actt_key_ind IN ('DSC', 'DVC', 'DVS', 'FG', 'HVC', 'HVS', 'RC', 'DR', 'WO')
+                AND ac.accl_key_ind = 'CMB'
+            )
+            OR
+            (
+                atype.actt_key_ind IN
+                (
+                    'DEL',
+                    'DCP', 'DFN', 'DLA', 'DOG', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI',
+                    'DESI', 'DRD', 'RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE'
+                )
+                AND ac.accl_key_ind = 'CSB'
+            )
+    ) TEMP
+    GROUP BY cutb_seq_nbr
+),
+
+ACTB_S AS
+(
+    SELECT
+        cutb_seq_nbr,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DEL' THEN ACTI_STATUS_IND ELSE NULL END) AS DEL_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DSC' THEN ACTI_STATUS_IND ELSE NULL END) AS DSC_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DVC' THEN ACTI_STATUS_IND ELSE NULL END) AS DVC_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DVS' THEN ACTI_STATUS_IND ELSE NULL END) AS DVS_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'FG' THEN ACTI_STATUS_IND ELSE NULL END) AS FG_Met_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'HVC' THEN ACTI_STATUS_IND ELSE NULL END) AS HVC_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'HVS' THEN ACTI_STATUS_IND ELSE NULL END) AS HVS_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RC' THEN ACTI_STATUS_IND ELSE NULL END) AS RC_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DR' THEN ACTI_STATUS_IND ELSE NULL END) AS DR_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'WO' THEN ACTI_STATUS_IND ELSE NULL END) AS WOFF_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DCP' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Change_of_Op_Plan_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DFN' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_First_Nations_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DLA' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Loss_of_Access_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DOR' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Other_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DPC' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Planning_Constraint_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DRB' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Returned_to_BCTS_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DSD' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Stale_dated_Fieldwork_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DSI' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Stakeholder_Issue_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DESI' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_Environmental_Stewardship_Initiative_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DRD' THEN ACTI_STATUS_IND ELSE NULL END) AS DEF_REACTIVATED_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'DOG' THEN ACTI_STATUS_IND ELSE NULL END) AS Old_Growth_Strategy_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RFH' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Forest_Health_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RFN' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_FN_Proceed_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RFV' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Field_Verified_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RMN' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Minor_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RRD' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Road_Status,
+        MAX(CASE WHEN ACTT_KEY_IND = 'RRE' THEN ACTI_STATUS_IND ELSE NULL END) AS OGS_Reactivated_Re_Engineered_Status
+    FROM
+    (
+        SELECT
+            a.cutb_seq_nbr,
+            atype.actt_key_ind,
+            a.acti_status_ind
+        FROM bcts_staging.FOREST_activity_class ac
+        INNER JOIN bcts_staging.FOREST_activity_type atype
+            ON ac.accl_seq_nbr = atype.accl_seq_nbr
+            AND ac.divi_div_nbr = atype.divi_div_nbr
+        INNER JOIN bcts_staging.FOREST_activity a
+            ON atype.actt_seq_nbr = a.actt_seq_nbr
+            AND
+            (
+                (
+                    atype.actt_key_ind IN ('DSC', 'DVC', 'DVS', 'FG', 'HVC', 'HVS', 'RC', 'DR', 'WO')
+                    AND ac.accl_key_ind = 'CMB'
+                )
+                OR
+                (
+                    atype.actt_key_ind IN
+                    (
+                        'DEL',
+                        'DCP', 'DFN', 'DLA', 'DOG', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI',
+                        'DESI', 'DRD', 'RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE'
+                    )
+                    AND ac.accl_key_ind = 'CSB'
+                )
+            )
+            AND a.plan_seq_nbr IS NULL
+    ) TEMP
+    GROUP BY cutb_seq_nbr
+),
+
+LDF AS
+(
+    SELECT
+        A2.CUTB_SEQ_NBR,
+        MAX(A2.ACTIVITY_DATE) AS LATEST_DEF
+    FROM lrm_replication.V_BLOCK_ACTIVITY_ALL A2
+    WHERE
+        A2.ACTIVITY_CLASS = 'CSB'
+        AND A2.ACTT_KEY_IND IN ('DCP', 'DFN', 'DLA', 'DOR', 'DPC', 'DRB', 'DSD', 'DSI', 'DESI')
+        AND A2.ACTI_STATUS_IND = 'D'
+        AND A2.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
+    GROUP BY A2.CUTB_SEQ_NBR
+),
+
+LRCT AS
+(
+    SELECT
+        A4.CUTB_SEQ_NBR,
+        MAX(A4.ACTIVITY_DATE) AS LATEST_OGS_REACTIVATED
+    FROM lrm_replication.V_BLOCK_ACTIVITY_ALL A4
+    WHERE
+        A4.ACTIVITY_CLASS = 'CSB'
+        AND A4.ACTT_KEY_IND IN ('RFH', 'RFN', 'RFV', 'RMN', 'RRD', 'RRE')
+        AND A4.ACTI_STATUS_IND = 'D'
+        AND A4.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
+    GROUP BY
+        A4.CUTB_SEQ_NBR,
+        A4.ACTI_STATUS_IND
+),
+
+EXL AS
+(
+    SELECT DISTINCT
+        LICN_SEQ_NBR
+    FROM lrm_replication.V_LICENCE_ACTIVITY_ALL
+    WHERE
+        ACTIVITY_CLASS = 'CML'
+        AND ACTT_KEY_IND IN ('HI', 'HC', 'HX', 'HS')
+        AND ACTI_STATUS_IND = 'D'
+)
+
 SELECT DISTINCT
     CASE
         WHEN BLOCK.TSO_CODE IN ('TBA', 'TPL', 'TPG', 'TSK', 'TSN', 'TCC', 'TKA', 'TKO', 'TOC') THEN 'Interior'
@@ -385,109 +390,147 @@ SELECT DISTINCT
 
     CASE
         WHEN
-            ACTB.Old_Growth_Strategy > COALESCE(LRCT.LATEST_OGS_REACTIVATED, CONVERT(date, '19000101'))
-            OR LDF.LATEST_DEF > COALESCE(ACTB.DEF_REACTIVATED, CONVERT(date, '19000101'))
+            ACTB.Old_Growth_Strategy > COALESCE(LRCT.LATEST_OGS_REACTIVATED, CAST('1900-01-01' AS DATE))
+            OR LDF.LATEST_DEF > COALESCE(ACTB.DEF_REACTIVATED, CAST('1900-01-01' AS DATE))
         THEN 'Y'
         ELSE 'N'
     END AS deferred,
 
     CASE
-        WHEN ACTB.Old_Growth_Strategy > COALESCE(LRCT.LATEST_OGS_REACTIVATED, CONVERT(date, '19000101')) THEN 'Deferred-OGS'
-        WHEN LDF.LATEST_DEF > COALESCE(ACTB.DEF_REACTIVATED, CONVERT(date, '19000101')) THEN 'Deferred-Other'
+        WHEN ACTB.Old_Growth_Strategy > COALESCE(LRCT.LATEST_OGS_REACTIVATED, CAST('1900-01-01' AS DATE))
+            THEN 'Deferred-OGS'
+        WHEN LDF.LATEST_DEF > COALESCE(ACTB.DEF_REACTIVATED, CAST('1900-01-01' AS DATE))
+            THEN 'Deferred-Other'
         ELSE 'No Deferral'
     END AS inventory_category,
 
     BLOCK.CRUISE_VOL,
     BLOCK.BLAL_RW_VOL AS rw_vol,
+
     ACTB_S.RC_Status,
     ACTB.RC_DATE,
+
     ACTB_S.DR_Status,
     ACTB.DR_DATE,
 
-    YEAR(DATEADD(MONTH, 9, ACTB.DR_DATE)) AS dr_fiscal,
-    CEILING(MONTH(DATEADD(MONTH, -3, ACTB.DR_DATE)) / 3.0) AS dr_quarter,
+    YEAR(ADD_MONTHS(ACTB.DR_DATE, 9)) AS dr_fiscal,
+    CEIL(MONTH(ADD_MONTHS(ACTB.DR_DATE, -3)) / 3.0) AS dr_quarter,
 
     CASE
-        WHEN YEAR(DATEADD(MONTH, 9, CAST(GETDATE() AS date))) - YEAR(DATEADD(MONTH, 9, ACTB.DR_DATE)) > 5
+        WHEN YEAR(ADD_MONTHS(CURRENT_DATE(), 9))
+            - YEAR(ADD_MONTHS(ACTB.DR_DATE, 9)) > 5
         THEN CONCAT(
             'Before ',
-            RIGHT(CAST(YEAR(DATEADD(MONTH, -63, CAST(GETDATE() AS date))) AS varchar(4)), 2),
+            RIGHT(CAST(YEAR(ADD_MONTHS(CURRENT_DATE(), -63)) AS STRING), 2),
             '/',
-            RIGHT(CAST(YEAR(DATEADD(MONTH, -51, CAST(GETDATE() AS date))) AS varchar(4)), 2)
+            RIGHT(CAST(YEAR(ADD_MONTHS(CURRENT_DATE(), -51)) AS STRING), 2)
         )
         ELSE CONCAT(
-            RIGHT(CAST(YEAR(DATEADD(MONTH, -3, ACTB.DR_DATE)) AS varchar(4)), 2),
+            RIGHT(CAST(YEAR(ADD_MONTHS(ACTB.DR_DATE, -3)) AS STRING), 2),
             '/',
-            RIGHT(CAST(YEAR(DATEADD(MONTH, 9, ACTB.DR_DATE)) AS varchar(4)), 2)
+            RIGHT(CAST(YEAR(ADD_MONTHS(ACTB.DR_DATE, 9)) AS STRING), 2)
         )
     END AS dr_category,
 
     ACTB_S.DVS_Status,
     ACTB.DVS_DATE,
+
     ACTB_S.DVC_Status,
     ACTB.DVC_DATE,
 
-    YEAR(DATEADD(MONTH, 9, ACTB.DVS_DATE)) AS dvs_fiscal,
-    CEILING(MONTH(DATEADD(MONTH, -3, ACTB.DVS_DATE)) / 3.0) AS dvs_quarter,
+    YEAR(ADD_MONTHS(ACTB.DVS_DATE, 9)) AS dvs_fiscal,
+    CEIL(MONTH(ADD_MONTHS(ACTB.DVS_DATE, -3)) / 3.0) AS dvs_quarter,
 
     ACTB_S.DEF_Change_of_Op_Plan_Status,
     ACTB.DEF_Change_of_Op_Plan,
+
     ACTB_S.DEF_First_Nations_Status,
     ACTB.DEF_First_Nations,
+
     ACTB_S.DEF_Loss_of_Access_Status,
     ACTB.DEF_Loss_of_Access,
+
     ACTB_S.DEF_Other_Status,
     ACTB.DEF_Other,
+
     ACTB_S.DEF_Planning_Constraint_Status,
     ACTB.DEF_Planning_Constraint,
+
     ACTB_S.DEF_Returned_to_BCTS_Status,
     ACTB.DEF_Returned_to_BCTS,
+
     ACTB_S.DEF_Stale_dated_Fieldwork_Status,
     ACTB.DEF_Stale_dated_Fieldwork,
+
     ACTB_S.DEF_Stakeholder_Issue_Status,
     ACTB.DEF_Stakeholder_Issue,
+
     ACTB_S.DEF_Environmental_Stewardship_Initiative_Status,
     ACTB.DEF_Environmental_Stewardship_Initiative,
+
     ACTB_S.DEF_REACTIVATED_Status,
     ACTB.DEF_REACTIVATED,
+
     ACTB_S.Old_Growth_Strategy_Status,
     ACTB.Old_Growth_Strategy,
+
     ACTB_S.OGS_Reactivated_Forest_Health_Status,
     ACTB.OGS_Reactivated_Forest_Health,
+
     ACTB_S.OGS_Reactivated_FN_Proceed_Status,
     ACTB.OGS_Reactivated_FN_Proceed,
+
     ACTB_S.OGS_Reactivated_Field_Verified_Status,
     ACTB.OGS_Reactivated_Field_Verified,
+
     ACTB_S.OGS_Reactivated_Minor_Status,
     ACTB.OGS_Reactivated_Minor,
+
     ACTB_S.OGS_Reactivated_Road_Status,
     ACTB.OGS_Reactivated_Road,
+
     ACTB_S.OGS_Reactivated_Re_Engineered_Status,
     ACTB.OGS_Reactivated_Re_Engineered,
+
     BS.SPATIAL_FLAG,
     BLOCK.CUTB_SEQ_NBR,
-    CAST('${report_end_date}' AS date) AS report_end_date,
-    CURRENT_DATE AS report_run_date,
-    CURRENT_TIMESTAMP AS report_run_timestamp
 
-FROM LRM_REPLICATION.V_BLOCK BLOCK
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
+
+    TO_DATE(
+        FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
+    ) AS report_run_date,
+
+    FROM_UTC_TIMESTAMP(
+        CURRENT_TIMESTAMP(),
+        'America/Vancouver'
+    ) AS report_run_timestamp
+
+FROM lrm_replication.V_BLOCK BLOCK
+
 INNER JOIN ACTB_S
     ON BLOCK.CUTB_SEQ_NBR = ACTB_S.CUTB_SEQ_NBR
+
 INNER JOIN ACTB
     ON BLOCK.CUTB_SEQ_NBR = ACTB.CUTB_SEQ_NBR
-LEFT JOIN LRM_REPLICATION.V_BLOCK_SPATIAL BS
+
+LEFT JOIN lrm_replication.V_BLOCK_SPATIAL BS
     ON BLOCK.CUTB_SEQ_NBR = BS.CUTB_SEQ_NBR
+
 LEFT JOIN LDF
     ON BLOCK.CUTB_SEQ_NBR = LDF.CUTB_SEQ_NBR
+
 LEFT JOIN LRCT
     ON BLOCK.CUTB_SEQ_NBR = LRCT.CUTB_SEQ_NBR
-LEFT JOIN LRM_REPLICATION.V_LICENCE LICENCE
+
+LEFT JOIN lrm_replication.V_LICENCE LICENCE
     ON BLOCK.LICN_SEQ_NBR = LICENCE.LICN_SEQ_NBR
+
 LEFT JOIN EXL
     ON LICENCE.LICN_SEQ_NBR = EXL.LICN_SEQ_NBR
 
 WHERE 1 = 1
-    AND ACTB.DR_DATE <= CAST('${report_end_date}' AS date)
+    AND ACTB.DR_DATE <= CAST('${report_end_date}' AS DATE)
     AND ACTB_S.DR_STATUS = 'D'
     AND COALESCE(ACTB_S.DVC_STATUS, ' ') <> 'D'
     AND COALESCE(ACTB_S.DVS_STATUS, ' ') <> 'D'
