@@ -59,7 +59,7 @@ run_log_schema = StructType([
 
 # --- Read config table ---
 cfg = spark.sql("""
-SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on
+SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date
 FROM bcts_metadata.transformation_config
 WHERE enabled_ind = 'Y'
 """).collect()
@@ -104,7 +104,8 @@ for row in cfg:
             "target_schema": row["target_schema"],
             "branch_name": row["branch_name"],
             "run_id": run_id,
-            "report_name": name
+            "report_name": name,
+            "has_end_date": row["has_end_date"]
         },
         "dependencies": deps
     })
