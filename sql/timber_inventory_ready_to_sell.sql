@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_ready_to_sell (
+CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_ready_to_sell_hist (
     id INT,
     business_area_region_category STRING,
     business_area_region STRING,
@@ -77,7 +77,7 @@ USING DELTA;
 
 -- Report exists check is done on bcts_reporting.timber_inventory_ready_to_sell table 
 -- If report exists in bcts_staging.timber_inventory_ready_to_sell, clear the staging table before inserting new records 
-delete from bcts_staging.timber_inventory_ready_to_sell 
+delete from bcts_staging.timber_inventory_ready_to_sell_hist
 where report_end_date = '${report_end_date}';
 
 -- Populate staging table
