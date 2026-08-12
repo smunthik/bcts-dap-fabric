@@ -95,8 +95,8 @@ SELECT
     DEAC_LEVEL_TYPE,
     DEAC_METHOD_TYPE,
 
-    CAST('{start_date}' AS DATE) AS fiscal_year_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(
@@ -151,8 +151,8 @@ FROM (
             'Perm = 40 yrs'
         )
         AND a.DEAC_END_DATE BETWEEN
-            CAST('{start_date}' AS DATE)
-            AND CAST('{end_date}' AS DATE)
+            CAST('${report_start_date}' AS DATE)
+            AND CAST('${report_end_date}' AS DATE)
         AND a.DEAC_METHOD_TYPE IN ('DEACT', 'REHAB')
 ) RGA
 

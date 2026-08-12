@@ -97,8 +97,8 @@ SELECT DISTINCT
     RDST_STEWARD_NAME,
     FIELD_TEAM_DESC,
 
-    CAST('{start_date}' AS DATE) AS fiscal_year_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(
@@ -122,8 +122,8 @@ WHERE URI IS NOT NULL
     )
     AND RDST_STEWARD_NAME = 'BCTS'
     AND RCOM_COMPLETION_DATE BETWEEN
-        CAST('{start_date}' AS DATE)
-        AND CAST('{end_date}' AS DATE)
+        CAST('${report_start_date}' AS DATE)
+        AND CAST('${report_end_date}' AS DATE)
     AND (
         (
             CONST_METHOD_TYPE = 'NEW ROAD'

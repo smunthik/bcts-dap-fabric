@@ -92,8 +92,8 @@ SELECT DISTINCT
     DEAC_LEVEL_TYPE,
     RDST_STEWARD_NAME,
 
-    CAST('{start_date}' AS DATE) AS fiscal_year_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(
@@ -117,8 +117,8 @@ WHERE UPPER(DEAC_METHOD_TYPE) = 'TRANSFER OUT'
         'Perm = 40 yrs'
     )
     AND DEAC_END_DATE BETWEEN
-        CAST('{start_date}' AS DATE)
-        AND CAST('{end_date}' AS DATE)
+        CAST('${report_start_date}' AS DATE)
+        AND CAST('${report_end_date}' AS DATE)
 
 ORDER BY
     business_area_region_category DESC,
