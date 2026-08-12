@@ -27,7 +27,7 @@ USING DELTA;
 -- Report exists check is done on bcts_reporting table 
 -- If report exists in bcts_staging.***_hist table, clear the staging table before inserting new records 
 delete from bcts_staging.roads_constructed_hist
-where  report_start_date = '${report_start_date}'
+where  fiscal_year_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
 
 -- Populate staging table
