@@ -573,8 +573,8 @@ WITH issued AS
 
     INNER JOIN bcts_staging.fta_tenure_term tt
         ON pfu.forest_file_id = tt.forest_file_id
-        AND tt.legal_effective_dt BETWEEN TO_DATE($start_date, 'yyyy-MM-dd')
-                                      AND TO_DATE($end_date, 'yyyy-MM-dd')
+        AND tt.legal_effective_dt BETWEEN TO_DATE($report_start_date, 'yyyy-MM-dd')
+                                      AND TO_DATE($report_end_date, 'yyyy-MM-dd')
 
     INNER JOIN bcts_staging.the_v_client_public fc
         ON tb.client_number = fc.client_number
@@ -709,7 +709,7 @@ advertised AS
         FROM bcts_staging.the_bcts_timber_sale ts
 
         WHERE COALESCE(no_sale_rationale_code, ' ') <> 'TB'
-          AND ts.auction_date <= TO_DATE($end_date, 'yyyy-MM-dd')
+          AND ts.auction_date <= TO_DATE($report_end_date, 'yyyy-MM-dd')
 
         GROUP BY
             ts.forest_file_id
@@ -738,8 +738,8 @@ advertised_in_report_period AS
 
     FROM bcts_staging.the_bcts_timber_sale
 
-    WHERE auction_date BETWEEN TO_DATE($start_date, 'yyyy-MM-dd')
-                           AND TO_DATE($end_date, 'yyyy-MM-dd')
+    WHERE auction_date BETWEEN TO_DATE($report_start_date, 'yyyy-MM-dd')
+                           AND TO_DATE($report_end_date, 'yyyy-MM-dd')
 ),
 
 bidder_count AS
@@ -819,20 +819,20 @@ SELECT DISTINCT
     advertised.first_auction_category_2_and_4_volume,
 
     CASE
-        WHEN advertised.first_auction_date BETWEEN TO_DATE($start_date, 'yyyy-MM-dd')
-                                               AND TO_DATE($end_date, 'yyyy-MM-dd')
+        WHEN advertised.first_auction_date BETWEEN TO_DATE($report_start_date, 'yyyy-MM-dd')
+                                               AND TO_DATE($report_end_date, 'yyyy-MM-dd')
             THEN advertised.first_auction_volume
     END AS first_auction_volume_is_in_report_period,
 
     CASE
-        WHEN advertised.first_auction_date BETWEEN TO_DATE($start_date, 'yyyy-MM-dd')
-                                               AND TO_DATE($end_date, 'yyyy-MM-dd')
+        WHEN advertised.first_auction_date BETWEEN TO_DATE($report_start_date, 'yyyy-MM-dd')
+                                               AND TO_DATE($report_end_date, 'yyyy-MM-dd')
             THEN advertised.first_auction_category_a_and_1_volume
     END AS first_auction_category_a_and_1_volume_is_in_report_period,
 
     CASE
-        WHEN advertised.first_auction_date BETWEEN TO_DATE($start_date, 'yyyy-MM-dd')
-                                               AND TO_DATE($end_date, 'yyyy-MM-dd')
+        WHEN advertised.first_auction_date BETWEEN TO_DATE($report_start_date, 'yyyy-MM-dd')
+                                               AND TO_DATE($report_end_date, 'yyyy-MM-dd')
             THEN advertised.first_auction_category_2_and_4_volume
     END AS first_auction_category_2_and_4_volume_is_in_report_period,
 
@@ -919,8 +919,8 @@ SELECT DISTINCT
 
     pfu.file_status_date AS fta_file_status_date,
     bc.bidder_count,
-    TO_DATE($start_date, 'yyyy-MM-dd') AS report_start_date,
-    TO_DATE($end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE($report_start_date, 'yyyy-MM-dd') AS report_start_date,
+    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
 
     CASE
         WHEN MONTH(CURRENT_DATE()) >= 4 THEN YEAR(CURRENT_DATE())
@@ -1053,8 +1053,8 @@ SELECT
     CAST(NULL AS STRING) AS fta_file_status,
     CAST(NULL AS DATE) AS fta_file_status_date,
     CAST(NULL AS DECIMAL(38,18)) AS bidder_count,
-    TO_DATE($start_date, 'yyyy-MM-dd') AS report_start_date,
-    TO_DATE($end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE($report_start_date, 'yyyy-MM-dd') AS report_start_date,
+    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
 
     CASE
         WHEN MONTH(CURRENT_DATE()) >= 4 THEN YEAR(CURRENT_DATE())
@@ -1488,7 +1488,7 @@ SELECT
     'Y' AS in_currentlyinmarket_query,
     CAST(NULL AS STRING) AS on_bc_bid,
     CAST(NULL AS STRING) AS data_error,
-    TO_DATE($end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
@@ -1518,15 +1518,15 @@ LEFT JOIN lv
 
 WHERE 1 = 1
     AND tenpost.licn_seq_nbr IS NOT NULL
-    AND tenpost.lrm_tender_posted_done_date <= TO_DATE($end_date, 'yyyy-MM-dd')
+    AND tenpost.lrm_tender_posted_done_date <= TO_DATE($report_end_date, 'yyyy-MM-dd')
     AND (
         ha.licn_seq_nbr IS NULL
-        OR ha.lrm_licence_awarded_done_date > TO_DATE($end_date, 'yyyy-MM-dd')
+        OR ha.lrm_licence_awarded_done_date > TO_DATE($report_end_date, 'yyyy-MM-dd')
     )
     AND (
         NOT (
             auc.lrm_auction_done_date BETWEEN tenpost.lrm_tender_posted_done_date
-                                          AND TO_DATE($end_date, 'yyyy-MM-dd')
+                                          AND TO_DATE($report_end_date, 'yyyy-MM-dd')
         )
         OR auc.lrm_auction_done_date IS NULL
     )
@@ -1580,7 +1580,7 @@ SELECT
     'Y' AS in_currentlyinmarket_query,
     'Not applicable' AS on_bc_bid,
     'Not applicable' AS data_error,
-    TO_DATE($end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
