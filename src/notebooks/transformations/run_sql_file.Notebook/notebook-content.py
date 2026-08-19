@@ -51,20 +51,26 @@ def report_exists(target_schema: str, table_name: str, start_date: str, end_date
     if not spark.catalog.tableExists(table_name):
         return False  # ✅ Table doesn't exist → force run
 
-    if has_start_date == 'no':
-        query = f"""
-            SELECT 1
-            FROM {target_schema}.{table_name}
-            WHERE report_end_date = DATE '{start_date}'
-            LIMIT 1
-    """
+    if has_start_date == 'no' and has_end_date == 'no':
+        where_clause = """
+            YEAR(report_date) = YEAR(CAST('${end_date}' AS DATE))
+            AND MONTH(report_date) = MONTH(CAST('${end_date}' AS DATE))
+        """
+    elif has_start_date == 'no':
+        where_clause = f"""
+            report_end_date = DATE '{start_date}'
+        """
     else:
-        query = f"""
-            SELECT 1
-            FROM {target_schema}.{table_name}
-            WHERE report_start_date = DATE '{start_date}'
+        where_clause = f"""
+            report_start_date = DATE '{start_date}'
             AND report_end_date = DATE '{end_date}'
-            LIMIT 1
+        """
+
+    query = f"""
+    SELECT 1
+    FROM {target_schema}.{table_name}
+    WHERE {where_clause}
+    LIMIT 1
     """
     
     df = spark.sql(query)
@@ -75,7 +81,7 @@ def report_exists(target_schema: str, table_name: str, start_date: str, end_date
     return df.count() > 0
 
 # Check before running SQL
-if report_exists(target_schema, target_table, start_date, end_date, has_end_date):
+if report_exists(target_schema, target_table, start_date, end_date, has_start_date, has_end_date):
     print(f"Skipping {target_schema.target_table} - already exists for {start_date} → {end_date}")
 else:
     print(f"Running {target_schema}.{target_table} report for {start_date} and {end_date}...")

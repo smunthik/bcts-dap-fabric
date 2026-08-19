@@ -254,6 +254,168 @@ upsert_transformation_config(
 
 # CELL ********************
 
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="Timber Inventory Ready to Sell",
+    sql_path="sql/timber_inventory_ready_to_sell.sql",
+    enabled_ind="Y",
+    target_table="timber_inventory_ready_to_sell",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Volume Advertised",
+    sql_path="sql/volume_advertised.sql",
+    enabled_ind="Y",
+    target_table="volume_advertised_main",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Roads Transferred In",
+    sql_path="sql/roads_transferred_in.sql",
+    enabled_ind="Y",
+    target_table="roads_transferred_in",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Roads Transferred Out",
+    sql_path="sql/roads_transferred_out.sql",
+    enabled_ind="Y",
+    target_table="roads_transferred_out",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Roads Constructed",
+    sql_path="sql/roads_constructed.sql",
+    enabled_ind="Y",
+    target_table="roads_constructed",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Roads Deactivated",
+    sql_path="sql/roads_deactivated.sql",
+    enabled_ind="Y",
+    target_table="roads_deactivated",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Licence Transfer",
+    sql_path="sql/licence_transfer.sql",
+    enabled_ind="Y",
+    target_table="licence_transfer",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Licence Issued with Unbilled Volume",
+    sql_path="sql/licence_issued_with_unbilled_volume.sql",
+    enabled_ind="Y",
+    target_table="licence_issued_with_unbilled_volume",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='no',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+upsert_transformation_config(
+    report_name="Weighted Sale Term",
+    sql_path="sql/weighted_sale_term.sql",
+    enabled_ind="Y",
+    target_table="weighted_sale_term",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="BCTS Performance Report",
+    sql_path="sql/bcts_performance_report.sql",
+    enabled_ind="Y",
+    target_table="licence_issued_advertised_main",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes',
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
