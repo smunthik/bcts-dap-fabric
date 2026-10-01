@@ -1,0 +1,107 @@
+table 'dbp01_fta_sharing sv_sale_method_code'
+	lineageTag: 30e22e1f-4edd-49f1-8f3d-e9a26458288e
+
+	column SALE_METHOD_CODE
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(4)
+		lineageTag: 04e18dc9-4d88-4c1d-a732-f42f2224a4ea
+		summarizeBy: none
+		sourceColumn: SALE_METHOD_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPTION
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(480)
+		lineageTag: 65476bf5-c993-4275-9f3d-9145df32ff40
+		summarizeBy: none
+		sourceColumn: DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column EFFECTIVE_DATE
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 4ff6ab68-057a-4b14-b1e4-e83d945cfce8
+		summarizeBy: none
+		sourceColumn: EFFECTIVE_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPIRY_DATE
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: c51e4e95-f653-4286-a6b8-529ae4964c8c
+		summarizeBy: none
+		sourceColumn: EXPIRY_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPDATE_TIMESTAMP
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 21c89234-7f53-4e04-a390-09a9c92e368d
+		summarizeBy: none
+		sourceColumn: UPDATE_TIMESTAMP
+
+		annotation SummarizationSetBy = Automatic
+
+	column pipeline_run_id
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(64)
+		lineageTag: cc252072-f2d0-4ad9-93ef-edf92f987e64
+		summarizeBy: none
+		sourceColumn: pipeline_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column replicated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: fe10db75-3f3c-4dbe-b77b-9e7acb487dd1
+		summarizeBy: none
+		sourceColumn: replicated_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column staged_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 3924d0b4-81e4-49be-a7ee-d6616ffe0010
+		summarizeBy: none
+		sourceColumn: staged_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column served_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 02007fe1-49f7-456f-ad82-d2eadff9de5d
+		summarizeBy: none
+		sourceColumn: served_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbp01_fta_sharing sv_sale_method_code' = m
+		mode: directQuery
+		source =
+				let
+				  Source = Sql.Database("abjnw3ynhwfevmbw2nuf4nm23q-obt5oh5exxjexaat53kzzdyntu.datawarehouse.fabric.microsoft.com", "cdp_wh"),
+				  #"Navigation 1" = Source{[Schema = "dbp01_fta_sharing", Item = "sv_sale_method_code"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

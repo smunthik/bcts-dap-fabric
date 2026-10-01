@@ -17,6 +17,10 @@
     {
       "name": "GIT_BRANCH_NAME",
       "value": "main"
+    },
+    {
+      "name": "DATABASECONNECTIONS_CDP_LAKEHOUSE_SOURCE_CONNECTION_ID",
+      "value": "30649065-45f4-4aab-9c27-06db1a5eee17"
     }
   ]
 }

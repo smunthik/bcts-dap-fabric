@@ -1,0 +1,452 @@
+table 'dbp01_fta_sharing sv_timber_mark'
+	lineageTag: c2d3940e-fcc6-4ee2-8b4f-56cf7a627a2f
+
+	column TIMBER_MARK
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(24)
+		lineageTag: 1d30b279-cbee-4284-ac7b-6379f6e3bbf7
+		summarizeBy: none
+		sourceColumn: TIMBER_MARK
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOREST_FILE_ID
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(40)
+		lineageTag: dee61712-39f6-42d2-bc93-aeb7562ee719
+		summarizeBy: none
+		sourceColumn: FOREST_FILE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUTTING_PERMIT_ID
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(12)
+		lineageTag: 4303f51b-18ad-48d9-a201-d810125d9368
+		summarizeBy: none
+		sourceColumn: CUTTING_PERMIT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOREST_DISTRICT
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bcd1ec43-b7fd-4f0d-89b1-e1653aef38a0
+		summarizeBy: sum
+		sourceColumn: FOREST_DISTRICT
+
+		annotation SummarizationSetBy = Automatic
+
+	column GEOGRAPHIC_DISTRCT
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 452d3e4b-2b65-48d6-bedb-63c359c9f15e
+		summarizeBy: sum
+		sourceColumn: GEOGRAPHIC_DISTRCT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CASCADE_SPLIT_CODE
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 95a072a0-f613-43a0-b39b-0494a098f529
+		summarizeBy: none
+		sourceColumn: CASCADE_SPLIT_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUOTA_TYPE_CODE
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 0a58538d-594e-4f1a-9f95-d03fb77f5956
+		summarizeBy: none
+		sourceColumn: QUOTA_TYPE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DECIDUOUS_IND
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(4)
+		lineageTag: f4739630-a2fb-4f9e-b442-1e26a47440cf
+		summarizeBy: none
+		sourceColumn: DECIDUOUS_IND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATASTROPHIC_IND
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 9c585667-4aff-4eaa-a8c2-0f1eff5e9764
+		summarizeBy: none
+		sourceColumn: CATASTROPHIC_IND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CROWN_GRANTED_IND
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(4)
+		lineageTag: 74e5d139-1a3d-4d56-af4e-36b08bdaeaaf
+		summarizeBy: none
+		sourceColumn: CROWN_GRANTED_IND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CRUISE_BASED_IND
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(4)
+		lineageTag: a3dd9d6d-047b-404f-b3f9-8c4c41d40b3e
+		summarizeBy: none
+		sourceColumn: CRUISE_BASED_IND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CERTIFICATE
+		dataType: string
+		sourceProviderType: varchar(24)
+		lineageTag: 6c03f40d-64a8-4e90-b747-70f6ed440626
+		summarizeBy: none
+		sourceColumn: CERTIFICATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDBS_TIMBER_MARK
+		dataType: string
+		sourceProviderType: varchar(28)
+		lineageTag: 28a1dbb1-1140-4929-8589-946c9b931abd
+		summarizeBy: none
+		sourceColumn: HDBS_TIMBER_MARK
+
+		annotation SummarizationSetBy = Automatic
+
+	column VM_TIMBER_MARK
+		dataType: string
+		sourceProviderType: varchar(24)
+		lineageTag: c70e1b81-2ba9-46c9-a9ab-3fcb6a586413
+		summarizeBy: none
+		sourceColumn: VM_TIMBER_MARK
+
+		annotation SummarizationSetBy = Automatic
+
+	column TENURE_TERM
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9750edbe-217a-4d8a-b508-59005a9a2df5
+		summarizeBy: sum
+		sourceColumn: TENURE_TERM
+
+		annotation SummarizationSetBy = Automatic
+
+	column BCAA_FOLIO_NUMBER
+		dataType: string
+		sourceProviderType: varchar(92)
+		lineageTag: b17927ca-d716-4c6e-a5dd-e1c445cdd566
+		summarizeBy: none
+		sourceColumn: BCAA_FOLIO_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVATED_USERID
+		dataType: string
+		sourceProviderType: varchar(120)
+		lineageTag: 018a8dec-df9a-4d55-88de-70173c48951e
+		summarizeBy: none
+		sourceColumn: ACTIVATED_USERID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMENDED_USERID
+		dataType: string
+		sourceProviderType: varchar(120)
+		lineageTag: 9262a3b2-833b-4787-9d38-d85e13a1df30
+		summarizeBy: none
+		sourceColumn: AMENDED_USERID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISTRICT_ADMN_ZONE
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: c3fd0510-e43c-4272-ac02-b556c75c9ed7
+		summarizeBy: none
+		sourceColumn: DISTRICT_ADMN_ZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column GRANTED_ACQRD_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: cd795e1f-3339-4b8b-8f41-ad9e2d3cf48e
+		summarizeBy: none
+		sourceColumn: GRANTED_ACQRD_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LANDS_REGION
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 41e41c66-3c7d-4bee-af68-d709a93f08d4
+		summarizeBy: none
+		sourceColumn: LANDS_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CROWN_GRANTED_ACQ_DESC
+		dataType: string
+		sourceProviderType: varchar(960)
+		lineageTag: b20a59c4-389c-46be-8d27-8223905e5ae0
+		summarizeBy: none
+		sourceColumn: CROWN_GRANTED_ACQ_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_STATUS_ST
+		dataType: string
+		sourceProviderType: varchar(12)
+		lineageTag: f006bd44-e996-47e9-9de7-76cb945f9f2b
+		summarizeBy: none
+		sourceColumn: MARK_STATUS_ST
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_STATUS_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ed218f8c-2c56-4a0b-822d-c71c258e09b6
+		summarizeBy: none
+		sourceColumn: MARK_STATUS_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_AMEND_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: fb2b0c2a-e006-4401-8963-5b32ccc3dba5
+		summarizeBy: none
+		sourceColumn: MARK_AMEND_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_APPL_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 3209ef8f-d21c-4aaa-b64d-a96ba92fde89
+		summarizeBy: none
+		sourceColumn: MARK_APPL_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_CANCEL_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ec5df786-b86a-4d24-87a6-837a8805a26f
+		summarizeBy: none
+		sourceColumn: MARK_CANCEL_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_EXTEND_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ca53c8f9-60e8-4e12-900d-a6232e86837e
+		summarizeBy: none
+		sourceColumn: MARK_EXTEND_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_EXTEND_RSN_CD
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 1ec83597-e536-4151-8269-4074599af483
+		summarizeBy: none
+		sourceColumn: MARK_EXTEND_RSN_CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_EXTEND_COUNT
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 38b029cc-f399-4a4a-ab7c-ce735531d1c8
+		summarizeBy: sum
+		sourceColumn: MARK_EXTEND_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_ISSUE_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: d38aa4c7-50c4-422e-9fe0-f7681223b7f1
+		summarizeBy: none
+		sourceColumn: MARK_ISSUE_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARK_EXPIRY_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f86c2679-2475-4d47-9585-9c63ae9c0a11
+		summarizeBy: none
+		sourceColumn: MARK_EXPIRY_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARKNG_INSTRMNT_CD
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 1b4573c3-a1c2-4298-8432-93448000e8c9
+		summarizeBy: none
+		sourceColumn: MARKNG_INSTRMNT_CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column MARKING_METHOD_CD
+		dataType: string
+		sourceProviderType: varchar(4)
+		lineageTag: 1fb157bb-81d8-41f6-aabe-fd26a318c312
+		summarizeBy: none
+		sourceColumn: MARKING_METHOD_CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTRY_USERID
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(120)
+		lineageTag: bf3fb94d-6c3d-49ba-9c60-be996e1c7b5c
+		summarizeBy: none
+		sourceColumn: ENTRY_USERID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTRY_TIMESTAMP
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e130fc6b-b397-4dbd-ba04-0a68a73c7540
+		summarizeBy: none
+		sourceColumn: ENTRY_TIMESTAMP
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPDATE_USERID
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(120)
+		lineageTag: ff769a60-bdae-45e4-86a3-31d5185b4c77
+		summarizeBy: none
+		sourceColumn: UPDATE_USERID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPDATE_TIMESTAMP
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 06529f48-10ad-4dbd-8b39-b2faf36a96cc
+		summarizeBy: none
+		sourceColumn: UPDATE_TIMESTAMP
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVISION_COUNT
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ffe5e226-1f45-46e2-8859-170dd36d1cd2
+		summarizeBy: sum
+		sourceColumn: REVISION_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column SMALL_PATCH_SALVAGE_IND
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(4)
+		lineageTag: fd725948-0427-4c5a-a874-1ed1c69023ec
+		summarizeBy: none
+		sourceColumn: SMALL_PATCH_SALVAGE_IND
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALVAGE_TYPE_CODE
+		dataType: string
+		sourceProviderType: varchar(12)
+		lineageTag: 9f5beef6-05d1-4dc4-8cb4-b1f0f34f487c
+		summarizeBy: none
+		sourceColumn: SALVAGE_TYPE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column pipeline_run_id
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(64)
+		lineageTag: 435f3e05-be9e-4103-b667-5c536665597f
+		summarizeBy: none
+		sourceColumn: pipeline_run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column replicated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 992d7e07-f5af-4b73-b0a4-b504547a7071
+		summarizeBy: none
+		sourceColumn: replicated_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column staged_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 556536be-849a-4e4b-8951-dc1a5f7a895b
+		summarizeBy: none
+		sourceColumn: staged_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column served_at_utc
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f6c43fb3-27c7-4f43-88be-e5c79383486c
+		summarizeBy: none
+		sourceColumn: served_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbp01_fta_sharing sv_timber_mark' = m
+		mode: directQuery
+		source =
+				let
+				  Source = Sql.Database("abjnw3ynhwfevmbw2nuf4nm23q-obt5oh5exxjexaat53kzzdyntu.datawarehouse.fabric.microsoft.com", "cdp_wh"),
+				  #"Navigation 1" = Source{[Schema = "dbp01_fta_sharing", Item = "sv_timber_mark"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

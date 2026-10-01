@@ -1,0 +1,28 @@
+model Model
+	culture: en-CA
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-CA
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dbp01_corp_sharing sv_org_unit","dbp01_corp_sharing sv_tfl_number_code","dbp01_fta_sharing sv_forest_file_client","dbp01_fta_sharing sv_harvest_sale","dbp01_fta_sharing sv_mgmt_unit_type_code","dbp01_fta_sharing sv_prov_forest_use","dbp01_fta_sharing sv_sale_method_code","dbp01_fta_sharing sv_sb_category_code","dbp01_fta_sharing sv_tenure_file_status_code","dbp01_fta_sharing sv_tenure_term","dbp01_fta_sharing sv_timber_mark","dbp01_fta_sharing sv_tsa_number_code"]
+
+ref table 'dbp01_corp_sharing sv_org_unit'
+ref table 'dbp01_corp_sharing sv_tfl_number_code'
+ref table 'dbp01_fta_sharing sv_forest_file_client'
+ref table 'dbp01_fta_sharing sv_harvest_sale'
+ref table 'dbp01_fta_sharing sv_mgmt_unit_type_code'
+ref table 'dbp01_fta_sharing sv_prov_forest_use'
+ref table 'dbp01_fta_sharing sv_sale_method_code'
+ref table 'dbp01_fta_sharing sv_sb_category_code'
+ref table 'dbp01_fta_sharing sv_tenure_file_status_code'
+ref table 'dbp01_fta_sharing sv_tenure_term'
+ref table 'dbp01_fta_sharing sv_timber_mark'
+ref table 'dbp01_fta_sharing sv_tsa_number_code'
+
+ref cultureInfo en-CA
+

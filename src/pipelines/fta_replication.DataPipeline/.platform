@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "fta_replication"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "745032f7-8072-8e96-4728-359038a4cb26"
+  }
+}

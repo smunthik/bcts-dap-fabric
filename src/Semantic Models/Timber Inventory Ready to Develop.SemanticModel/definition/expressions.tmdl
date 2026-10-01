@@ -1,4 +1,4 @@
-expression server = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+expression server = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 56e85d55-4048-4852-a342-67d7f3fa1553
 
 	annotation PBI_NavigationStepName = Navigation
