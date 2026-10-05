@@ -269,29 +269,23 @@
             "value": "@equals(variables('HasFailure'), true)",
             "type": "Expression"
           },
-          "ifTrueActivities": [],
+          "ifTrueActivities": [
+            {
+              "type": "Fail",
+              "typeProperties": {
+                "message": "One or more Copy Data activities failed. Check the replication run log for details.",
+                "errorCode": "REPLICATION_FAILED"
+              },
+              "name": "Fail Replication",
+              "dependsOn": []
+            }
+          ],
           "ifFalseActivities": []
         },
         "name": "Check_HasFailure",
         "dependsOn": [
           {
             "activity": "bulk_insert_logs",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "Fail",
-        "typeProperties": {
-          "message": "One or more Copy Data activities failed. Check the replication run log for details.",
-          "errorCode": "REPLICATION_FAILED"
-        },
-        "name": "Fail Replication",
-        "dependsOn": [
-          {
-            "activity": "Check_HasFailure",
             "dependencyConditions": [
               "Succeeded"
             ]
