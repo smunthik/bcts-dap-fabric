@@ -929,5 +929,5 @@ table 'bcts_reporting timber_inventory_ready_to_develop'
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 
