@@ -280,7 +280,24 @@
               "dependsOn": []
             }
           ],
-          "ifFalseActivities": []
+          "ifFalseActivities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "d795d80a-51b2-b800-465c-a60b517bcbef",
+                "workspaceId": "00000000-0000-0000-0000-000000000000"
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 1,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy to Staging",
+              "dependsOn": []
+            }
+          ]
         },
         "name": "Check_HasFailure",
         "dependsOn": [
