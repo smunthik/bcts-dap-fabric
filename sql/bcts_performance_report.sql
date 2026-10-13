@@ -695,7 +695,7 @@ advertised AS
 
     FROM bctsadmin_replication.bcts_timber_sale ts
 
-    LEFT JOIN bctsadmin_replication.the_no_sale_rationale_code nsrc
+    LEFT JOIN bctsadmin_replication.no_sale_rationale_code nsrc
         ON ts.no_sale_rationale_code = nsrc.no_sale_rationale_code
 
     INNER JOIN
@@ -736,7 +736,7 @@ advertised_in_report_period AS
     SELECT DISTINCT
         forest_file_id
 
-    FROM bctsadmin_replication.the_bcts_timber_sale
+    FROM bctsadmin_replication.bcts_timber_sale
 
     WHERE auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
                            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
