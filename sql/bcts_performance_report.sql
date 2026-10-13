@@ -559,24 +559,24 @@ WITH issued AS
             COALESCE(fc.client_name, '')
         ) AS issued_licence_client_name
 
-    FROM bcts_staging.the_bcts_timber_sale ts0
+    FROM bctsadmin_replication.bcts_timber_sale ts0
 
-    INNER JOIN bcts_staging.the_bcts_tenure_bidder tb
+    INNER JOIN bctsadmin_replication.bcts_tenure_bidder tb
         ON ts0.forest_file_id = tb.forest_file_id
         AND ts0.auction_date = tb.auction_date
         AND ts0.no_sale_rationale_code IS NULL
         AND UPPER(tb.sale_awarded_ind) = 'Y'
 
-    INNER JOIN bcts_staging.fta_prov_forest_use pfu
+    INNER JOIN fta_replication.prov_forest_use pfu
         ON pfu.forest_file_id = ts0.forest_file_id
         AND pfu.file_status_st IN ('HI', 'HC', 'LC', 'HX', 'HS', 'HRS')
 
-    INNER JOIN bcts_staging.fta_tenure_term tt
+    INNER JOIN fta_replication.tenure_term tt
         ON pfu.forest_file_id = tt.forest_file_id
         AND tt.legal_effective_dt BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
                                       AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
 
-    INNER JOIN bcts_staging.the_v_client_public fc
+    INNER JOIN mofclient_replication.the_v_client_public fc
         ON tb.client_number = fc.client_number
 ),
 
@@ -693,9 +693,9 @@ advertised AS
                 THEN ts.sale_volume
         END AS original_cat_a_and_1_readvertised_cat_2_and_4_volume
 
-    FROM bcts_staging.the_bcts_timber_sale ts
+    FROM bctsadmin_replication.bcts_timber_sale ts
 
-    LEFT JOIN bcts_staging.the_no_sale_rationale_code nsrc
+    LEFT JOIN bctsadmin_replication.the_no_sale_rationale_code nsrc
         ON ts.no_sale_rationale_code = nsrc.no_sale_rationale_code
 
     INNER JOIN
@@ -706,7 +706,7 @@ advertised AS
             MIN(ts.auction_date) AS first_auction_date,
             MAX(ts.auction_date) AS last_auction_date
 
-        FROM bcts_staging.the_bcts_timber_sale ts
+        FROM bctsadmin_replication.bcts_timber_sale ts
 
         WHERE COALESCE(no_sale_rationale_code, ' ') <> 'TB'
           AND ts.auction_date <= TO_DATE('${report_end_date}', 'yyyy-MM-dd')
@@ -725,7 +725,7 @@ advertised AS
             bcts_category_code,
             sale_volume
 
-        FROM bcts_staging.the_bcts_timber_sale
+        FROM bctsadmin_replication.bcts_timber_sale
     ) first_auction
         ON ts.forest_file_id = first_auction.forest_file_id
         AND all_auctions_to_date.first_auction_date = first_auction.auction_date
@@ -736,7 +736,7 @@ advertised_in_report_period AS
     SELECT DISTINCT
         forest_file_id
 
-    FROM bcts_staging.the_bcts_timber_sale
+    FROM bctsadmin_replication.the_bcts_timber_sale
 
     WHERE auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
                            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
@@ -749,7 +749,7 @@ bidder_count AS
         auction_date,
         COUNT(DISTINCT client_number) AS bidder_count
 
-    FROM bcts_staging.the_bcts_tenure_bidder
+    FROM bctsadmin_replication.bcts_tenure_bidder
 
     GROUP BY
         forest_file_id,
@@ -931,18 +931,18 @@ SELECT DISTINCT
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
     ) AS report_run_date
 
-FROM bcts_staging.fta_prov_forest_use pfu
+FROM fta_replication.prov_forest_use pfu
 
-INNER JOIN bcts_staging.the_org_unit ou
+INNER JOIN mofclient_replication.org_unit ou
     ON pfu.bcts_org_unit = ou.org_unit_no
 
-LEFT JOIN bcts_staging.the_bcts_timber_sale ts
+LEFT JOIN bctsadmin_replication.bcts_timber_sale ts
     ON pfu.forest_file_id = ts.forest_file_id
 
-LEFT JOIN bcts_staging.fta_tenure_term tt
+LEFT JOIN fta_replication.tenure_term tt
     ON pfu.forest_file_id = tt.forest_file_id
 
-LEFT JOIN bcts_staging.fta_tenure_file_status_code tfsc
+LEFT JOIN fta_replication.tenure_file_status_code tfsc
     ON pfu.file_status_st = tfsc.tenure_file_status_code
 
 LEFT JOIN issued
@@ -1065,7 +1065,7 @@ SELECT
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
     ) AS report_run_date
 
-FROM bcts_staging.the_org_unit ou
+FROM mofclient_replication.org_unit ou
 
 WHERE ou.org_unit_no IN
 (
