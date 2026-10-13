@@ -576,7 +576,7 @@ WITH issued AS
         AND tt.legal_effective_dt BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
                                       AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
 
-    INNER JOIN mofclient_replication.the_v_client_public fc
+    INNER JOIN mofclient_replication.v_client_public fc
         ON tb.client_number = fc.client_number
 ),
 
