@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS bcts_staging.volume_advertised_official (
 )
 USING DELTA;
 
+
 CREATE TABLE IF NOT EXISTS bcts_staging.volume_advertised_main_hist (
     business_area_region_category STRING,
     business_area_region STRING,
@@ -100,6 +101,230 @@ USING DELTA;
 delete from bcts_staging.volume_advertised_main_hist
 where  report_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
+
+
+DROP TABLE IF EXISTS bcts_staging.v_volume_advertised_lrm;
+
+
+CREATE TABLE bcts_staging.v_volume_advertised_lrm
+USING DELTA
+AS
+
+WITH LV AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        MAX(B.OPAR_OPERATING_AREA_NAME) AS OperatingArea,
+        MAX(B.CUTB_LOCATION) AS BlockLocation,
+        SUM(B.BLAL_RW_VOL) AS LRM_RW_VOLUME,
+        SUM(B.CRUISE_VOL) AS LRM_CRUISE_VOLUME,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME
+    FROM LRM_REPLICATION.V_BLOCK B
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+AUC AS
+(
+    SELECT
+        A.LICN_SEQ_NBR,
+        A.ACTIVITY_DATE AS Auction,
+        A.ACTI_STATUS_IND AS Auction_Status
+    FROM LRM_REPLICATION.V_LICENCE_ACTIVITY_ALL A
+    WHERE A.ACTIVITY_CLASS = 'CML'
+      AND A.ACTT_KEY_IND = 'AUC'
+),
+
+salvage_all_fire_year AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_ALL_FIRE_YEARS,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_ALL_FIRE_YEARS,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_ALL_FIRE_YEARS
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND LIKE 'SFIRE%'
+    ) block_with_any_sfire_year
+        ON B.CUTB_SEQ_NBR = block_with_any_sfire_year.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+salvage21fire AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_2021_FIRE,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_2021_FIRE,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_2021_FIRE
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND = 'SFIRE21'
+    ) block_with_sfire21
+        ON B.CUTB_SEQ_NBR = block_with_sfire21.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+salvage22fire AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_2022_FIRE,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_2022_FIRE,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_2022_FIRE
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND = 'SFIRE22'
+    ) block_with_sfire22
+        ON B.CUTB_SEQ_NBR = block_with_sfire22.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+salvage23fire AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_2023_FIRE,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_2023_FIRE,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_2023_FIRE
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND = 'SFIRE23'
+    ) block_with_sfire23
+        ON B.CUTB_SEQ_NBR = block_with_sfire23.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+salvage24fire AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_2024_FIRE,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_2024_FIRE,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_2024_FIRE
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND = 'SFIRE24'
+    ) block_with_sfire24
+        ON B.CUTB_SEQ_NBR = block_with_sfire24.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+),
+
+salvage25fire AS
+(
+    SELECT
+        B.LICN_SEQ_NBR,
+        SUM(B.BLAL_RW_VOL)
+            AS LRM_RW_VOLUME_SALVAGE_2025_FIRE,
+        SUM(B.CRUISE_VOL)
+            AS LRM_CRUISE_VOLUME_SALVAGE_2025_FIRE,
+        SUM(
+            COALESCE(B.CRUISE_VOL, 0)
+            + COALESCE(B.BLAL_RW_VOL, 0)
+        ) AS LRM_TOTAL_VOLUME_SALVAGE_2025_FIRE
+    FROM LRM_REPLICATION.V_BLOCK B
+    INNER JOIN
+    (
+        SELECT DISTINCT
+            CUTB_SEQ_NBR
+        FROM LRM_REPLICATION.V_BLOCK_ACTIVITY_ALL
+        WHERE ACTIVITY_CLASS = 'CSB'
+          AND ACTT_KEY_IND = 'SFIRE25'
+    ) block_with_sfire25
+        ON B.CUTB_SEQ_NBR = block_with_sfire25.CUTB_SEQ_NBR
+    GROUP BY B.LICN_SEQ_NBR
+)
+
+SELECT
+    L.LICENCE_ID,
+    L.CATEGORY,
+    L.DISTRICT_NAME,
+    L.FIELD_TEAM,
+    L.NAV_NAME,
+    CP.PERM_APPLICATION_DESCRIPTION AS GeographicLocation,
+    LV.OperatingArea,
+    AUC.Auction AS LRM_Auction_Date,
+    AUC.Auction_Status AS LRM_Auction_Status,
+    LV.LRM_CRUISE_VOLUME,
+    LV.LRM_RW_VOLUME,
+    LV.LRM_TOTAL_VOLUME,
+    SALVAGE_ALL.LRM_TOTAL_VOLUME_SALVAGE_ALL_FIRE_YEARS,
+    S21.LRM_TOTAL_VOLUME_SALVAGE_2021_FIRE,
+    S22.LRM_TOTAL_VOLUME_SALVAGE_2022_FIRE,
+    S23.LRM_TOTAL_VOLUME_SALVAGE_2023_FIRE,
+    S24.LRM_TOTAL_VOLUME_SALVAGE_2024_FIRE,
+    S25.LRM_TOTAL_VOLUME_SALVAGE_2025_FIRE
+FROM LRM_REPLICATION.V_LICENCE L
+LEFT JOIN LRM_REPLICATION.V_CP CP
+    ON L.LICN_SEQ_NBR = CP.LICN_SEQ_NBR
+LEFT JOIN LV
+    ON L.LICN_SEQ_NBR = LV.LICN_SEQ_NBR
+LEFT JOIN AUC
+    ON L.LICN_SEQ_NBR = AUC.LICN_SEQ_NBR
+LEFT JOIN salvage_all_fire_year SALVAGE_ALL
+    ON L.LICN_SEQ_NBR = SALVAGE_ALL.LICN_SEQ_NBR
+LEFT JOIN salvage21fire S21
+    ON L.LICN_SEQ_NBR = S21.LICN_SEQ_NBR
+LEFT JOIN salvage22fire S22
+    ON L.LICN_SEQ_NBR = S22.LICN_SEQ_NBR
+LEFT JOIN salvage23fire S23
+    ON L.LICN_SEQ_NBR = S23.LICN_SEQ_NBR
+LEFT JOIN salvage24fire S24
+    ON L.LICN_SEQ_NBR = S24.LICN_SEQ_NBR
+LEFT JOIN salvage25fire S25
+    ON L.LICN_SEQ_NBR = S25.LICN_SEQ_NBR;
 
 
 -- Populate staging table
