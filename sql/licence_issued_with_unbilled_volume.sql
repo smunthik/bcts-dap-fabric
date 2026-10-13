@@ -634,9 +634,9 @@ FROM bcts_staging.licence_issued_with_unbilled_volume_main;
 
 -- Publish the latest report to reporting area. This will overwrite the existing report in reporting area with the same report_end_date.
 
-DROP TABLE IF EXISTS bcts_reporting.licence_issued_with_unbilled_volume_main cascade;
+DROP TABLE IF EXISTS bcts_reporting.licence_issued_with_unbilled_volume_main;
 CREATE TABLE bcts_reporting.licence_issued_with_unbilled_volume_main AS SELECT * FROM bcts_staging.licence_issued_with_unbilled_volume_main;
 
-DROP TABLE IF EXISTS bcts_reporting.licence_issued_with_unbilled_volume_hist cascade;
+DROP TABLE IF EXISTS bcts_reporting.licence_issued_with_unbilled_volume_hist;
 CREATE TABLE bcts_reporting.licence_issued_with_unbilled_volume_hist AS SELECT * FROM bcts_staging.licence_issued_with_unbilled_volume_hist;    
     
