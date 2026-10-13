@@ -709,7 +709,7 @@ advertised AS
         FROM bcts_staging.the_bcts_timber_sale ts
 
         WHERE COALESCE(no_sale_rationale_code, ' ') <> 'TB'
-          AND ts.auction_date <= TO_DATE($report_end_date, 'yyyy-MM-dd')
+          AND ts.auction_date <= TO_DATE('${report_end_date}', 'yyyy-MM-dd')
 
         GROUP BY
             ts.forest_file_id
@@ -1488,7 +1488,7 @@ SELECT
     'Y' AS in_currentlyinmarket_query,
     CAST(NULL AS STRING) AS on_bc_bid,
     CAST(NULL AS STRING) AS data_error,
-    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE('${report_end_date}', 'yyyy-MM-dd') AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
@@ -1518,15 +1518,15 @@ LEFT JOIN lv
 
 WHERE 1 = 1
     AND tenpost.licn_seq_nbr IS NOT NULL
-    AND tenpost.lrm_tender_posted_done_date <= TO_DATE($report_end_date, 'yyyy-MM-dd')
+    AND tenpost.lrm_tender_posted_done_date <= TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     AND (
         ha.licn_seq_nbr IS NULL
-        OR ha.lrm_licence_awarded_done_date > TO_DATE($report_end_date, 'yyyy-MM-dd')
+        OR ha.lrm_licence_awarded_done_date > TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     )
     AND (
         NOT (
             auc.lrm_auction_done_date BETWEEN tenpost.lrm_tender_posted_done_date
-                                          AND TO_DATE($report_end_date, 'yyyy-MM-dd')
+                                          AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
         )
         OR auc.lrm_auction_done_date IS NULL
     )
@@ -1580,7 +1580,7 @@ SELECT
     'Y' AS in_currentlyinmarket_query,
     'Not applicable' AS on_bc_bid,
     'Not applicable' AS data_error,
-    TO_DATE($report_end_date, 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE('${report_end_date}', 'yyyy-MM-dd') AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
