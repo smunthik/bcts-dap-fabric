@@ -24,15 +24,21 @@
 
 import requests
 
-# Workaround for legacy/bad datetime values (e.g., 0100-01-01) present in lrm_replication.activity table.
-# These invalid or placeholder dates cause Spark 3.x to fail with READ_ANCIENT_DATETIME errors
-# due to calendar differences (Julian vs Proleptic Gregorian) when reading Parquet/Delta data.
-# Setting to LEGACY ensures backward-compatible reading and prevents pipeline failures
-# during Fabric migration until the source data is cleaned.
+# Workaround for legacy/placeholder datetime values (e.g., 0100-01-01)
+# originating from Oracle and replicated into lrm_replication.
+# These ancient dates can cause Spark 3.x READ_ANCIENT_DATETIME or
+# WRITE_ANCIENT_DATETIME errors due to calendar differences between
+# legacy and Proleptic Gregorian date handling.
+#
+# LEGACY read mode allows the replicated source data to be read using
+# legacy datetime rebasing. CORRECTED write mode writes the resulting
+# Fabric Delta/Parquet data using Spark 3.x date semantics.
+#
+# Temporary migration workaround until the source dates are cleaned.
 
 spark.conf.set("spark.sql.parquet.datetimeRebaseModeInRead", "LEGACY")
 spark.conf.set("spark.sql.parquet.int96RebaseModeInRead", "LEGACY")
-
+spark.conf.set("spark.sql.parquet.datetimeRebaseModeInWrite", "CORRECTED")
 
 
 def load_sql(relative_path: str, branch_name: str) -> str:
