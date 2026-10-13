@@ -24,6 +24,12 @@
       "note": "",
       "type": "String",
       "value": "main"
+    },
+    {
+      "name": "DATABASECONNECTIONS_CDP_LAKEHOUSE_SOURCE_CONNECTION_ID",
+      "note": "",
+      "type": "String",
+      "value": "27e27d28-8c88-48a7-b2d0-49ea0e3055c3"
     }
   ]
 }

@@ -55,7 +55,9 @@
       {
         "type": "InvokePipeline",
         "typeProperties": {
-          "parameters": {},
+          "parameters": {
+            "p_table_name": "*"
+          },
           "waitOnCompletion": true,
           "workspaceId": "00000000-0000-0000-0000-000000000000",
           "pipelineId": "34b2d482-0723-b326-4e0c-b6f9ea156926",
@@ -84,6 +86,12 @@
             "dependencyConditions": [
               "Succeeded"
             ]
+          },
+          {
+            "activity": "invoke_fta_replication",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
           }
         ]
       },
@@ -107,6 +115,28 @@
           "secureOutput": false
         },
         "name": "invoke_client_replication",
+        "dependsOn": []
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "745032f7-8072-8e96-4728-359038a4cb26",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "7e936e1c-52b3-47a4-a295-3b5ace641ddb"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "invoke_fta_replication",
         "dependsOn": []
       }
     ],

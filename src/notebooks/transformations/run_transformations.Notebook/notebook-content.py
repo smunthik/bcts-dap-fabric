@@ -105,6 +105,7 @@ for row in cfg:
             "branch_name": row["branch_name"],
             "run_id": run_id,
             "report_name": name,
+            "has_start_date": row["has_start_date"],
             "has_end_date": row["has_end_date"]
         },
         "dependencies": deps
