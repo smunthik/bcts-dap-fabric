@@ -206,28 +206,28 @@ FROM dbp01_fta_sharing.sv_sb_category_code"""
     "UPDATE_TIMESTAMP"
 FROM dbp01_fta_sharing.sv_tenure_file_status_code"""
     },
-    {
-        "source_schema_name": "dbp01_corp_sharing",
-        "source_table_name": "sv_org_unit",
-        "target_table_name": "ORG_UNIT",
-        "customsql_query": """SELECT
-    "ORG_UNIT_NO",
-    "ORG_UNIT_CODE",
-    "ORG_UNIT_NAME",
-    "LOCATION_CODE",
-    "AREA_CODE",
-    "TELEPHONE_NO",
-    "ORG_LEVEL_CODE",
-    "OFFICE_NAME_CODE",
-    "ROLLUP_REGION_NO",
-    "ROLLUP_REGION_CODE",
-    "ROLLUP_DIST_NO",
-    "ROLLUP_DIST_CODE",
-    "EFFECTIVE_DATE",
-    "EXPIRY_DATE",
-    "UPDATE_TIMESTAMP"
-FROM dbp01_corp_sharing.sv_org_unit"""
-    },
+#     {
+#         "source_schema_name": "dbp01_corp_sharing",
+#         "source_table_name": "sv_org_unit",
+#         "target_table_name": "ORG_UNIT",
+#         "customsql_query": """SELECT
+#     "ORG_UNIT_NO",
+#     "ORG_UNIT_CODE",
+#     "ORG_UNIT_NAME",
+#     "LOCATION_CODE",
+#     "AREA_CODE",
+#     "TELEPHONE_NO",
+#     "ORG_LEVEL_CODE",
+#     "OFFICE_NAME_CODE",
+#     "ROLLUP_REGION_NO",
+#     "ROLLUP_REGION_CODE",
+#     "ROLLUP_DIST_NO",
+#     "ROLLUP_DIST_CODE",
+#     "EFFECTIVE_DATE",
+#     "EXPIRY_DATE",
+#     "UPDATE_TIMESTAMP"
+# FROM dbp01_corp_sharing.sv_org_unit"""
+#     },
     {
         "source_schema_name": "dbp01_fta_sharing",
         "source_table_name": "sv_forest_file_client",
