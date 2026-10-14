@@ -1,5 +1,5 @@
 
-# Definitions
+-- Definitions
 
 CREATE TABLE IF NOT EXISTS bcts_reporting.bcts_performance_report_definitions
 USING DELTA
