@@ -14,7 +14,7 @@ SELECT * FROM VALUES
     (7, 'Auctioned: Value Added', 'New-to-market Value Added auctions. Includes issued licences, awarded licences that are not yet issued, and licences not awarded. Excludes reauctions.'),
     (8, 'Currently in Market: Value Added', 'Value Added volume open to bidders on BC Bid at the end of the reporting period. Includes reauctions.'),
     (9, 'Licence Issued: Value Added', 'Volume of timber sold in Value Added issued licences. Issued licences may be first auctioned in a previous fiscal and not appear in this report’s Auctioned: Value Added volume.'),
-    (10, 'Not Awarded: Value Added', 'No successful bidder for licence advertised as Value Added; to be reauctioned.')
+    (10, 'Not Awarded: Value Added', 'No successful bidder for licence advertised as Value Added. To be reauctioned.')
 AS definitions(id, term, definition);
 
 CREATE TABLE IF NOT EXISTS bcts_reporting.v_forest_division
