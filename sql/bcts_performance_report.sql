@@ -1663,6 +1663,11 @@ DROP TABLE IF EXISTS bcts_staging.currently_in_market_summary;
 
 CREATE TABLE bcts_staging.currently_in_market_summary
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     business_area_region_category,
@@ -1683,17 +1688,28 @@ DROP TABLE IF EXISTS bcts_staging.ytd_auctioned_issued_not_awarded;
 
 CREATE TABLE bcts_staging.ytd_auctioned_issued_not_awarded
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     business_area_region_category,
     business_area_region,
     business_area,
-    SUM(first_auction_volume_is_in_report_period) AS `Auctioned (First Auction is in Report Period)`,
-    SUM(issued_licence_volume) AS `Licence Issued`,
-    SUM(last_auction_no_sale_volume) AS `Not Awarded (Last Auction in Report Period is No Sale)`,
-    SUM(first_auction_category_2_and_4_volume_is_in_report_period) AS `Auctioned (First Auction is in Report Period): Category 2/4`,
-    SUM(category_2_and_4_issued_volume) AS `Licence Issued: Cat 2/4`,
-    SUM(last_auction_no_sale_category_2_4_volume) AS `Not Awarded: Category 2/4`
+    SUM(first_auction_volume_is_in_report_period)
+        AS `Auctioned (First Auction is in Report Period)`,
+    SUM(issued_licence_volume)
+        AS `Licence Issued`,
+    SUM(last_auction_no_sale_volume)
+        AS `Not Awarded (Last Auction in Report Period is No Sale)`,
+    SUM(first_auction_category_2_and_4_volume_is_in_report_period)
+        AS `Auctioned (First Auction is in Report Period): Category 2/4`,
+    SUM(category_2_and_4_issued_volume)
+        AS `Licence Issued: Cat 2/4`,
+    SUM(last_auction_no_sale_category_2_4_volume)
+        AS `Not Awarded: Category 2/4`
 FROM bcts_staging.licence_issued_advertised_main
 GROUP BY
     business_area_region_category,
@@ -1705,6 +1721,11 @@ DROP TABLE IF EXISTS bcts_staging.recent_auction_results;
 
 CREATE TABLE bcts_staging.recent_auction_results
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 WITH temp AS
 (
@@ -1712,24 +1733,25 @@ WITH temp AS
         d.business_area_region_category,
         d.business_area_region,
         d.business_area,
-        SUM(COALESCE(m.issued_licence_volume, 0)) AS `Licence Issued`,
-        SUM(COALESCE(m.category_2_and_4_issued_volume, 0)) AS `Licence Issued: Value Added`,
-        SUM(COALESCE(m.last_auction_no_sale_volume, 0)) AS `Not Awarded`,
-        SUM(COALESCE(m.last_auction_no_sale_category_2_4_volume, 0)) AS `Not Awarded: Value Added`
+        SUM(COALESCE(m.issued_licence_volume, 0))
+            AS `Licence Issued`,
+        SUM(COALESCE(m.category_2_and_4_issued_volume, 0))
+            AS `Licence Issued: Value Added`,
+        SUM(COALESCE(m.last_auction_no_sale_volume, 0))
+            AS `Not Awarded`,
+        SUM(COALESCE(m.last_auction_no_sale_category_2_4_volume, 0))
+            AS `Not Awarded: Value Added`
     FROM bcts_reporting.v_forest_division d
-
     LEFT JOIN bcts_staging.licence_issued_advertised_main m
         ON m.business_area_region_category = d.business_area_region_category
         AND m.business_area_region = d.business_area_region
         AND m.business_area = d.business_area
         AND m.include_in_semi_monthly_report = 'Y'
-
     GROUP BY
         d.business_area_region_category,
         d.business_area_region,
         d.business_area
 )
-
 SELECT
     *,
     GREATEST(
@@ -1740,10 +1762,14 @@ SELECT
     ) * 1.1 AS y_max_business_area,
 
     GREATEST(
-        SUM(`Licence Issued`) OVER (PARTITION BY business_area_region),
-        SUM(`Licence Issued: Value Added`) OVER (PARTITION BY business_area_region),
-        SUM(`Not Awarded`) OVER (PARTITION BY business_area_region),
-        SUM(`Not Awarded: Value Added`) OVER (PARTITION BY business_area_region)
+        SUM(`Licence Issued`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Licence Issued: Value Added`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Not Awarded`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Not Awarded: Value Added`)
+            OVER (PARTITION BY business_area_region)
     ) * 1.1 AS y_max_region,
 
     CASE
@@ -1751,7 +1777,6 @@ SELECT
         WHEN business_area_region = 'South Interior' THEN 2
         ELSE 3
     END AS business_area_region_sort_order
-
 FROM temp;
 
 
@@ -1759,21 +1784,29 @@ DROP TABLE IF EXISTS bcts_staging.bcts_performance_report_not_awarded_details;
 
 CREATE TABLE bcts_staging.bcts_performance_report_not_awarded_details
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     business_area AS `Business Area`,
     business_area_region AS `Business Area Region`,
     licence,
     CASE
-        WHEN last_auction_bcts_category_code IN ('2', '4') THEN 'Value Added'
+        WHEN last_auction_bcts_category_code IN ('2', '4')
+            THEN 'Value Added'
         ELSE '-'
     END AS `Value Added`,
     CASE
-        WHEN total_volume_salvage_all_fire_year_lrm > 0 THEN 'Fire salvage'
+        WHEN total_volume_salvage_all_fire_year_lrm > 0
+            THEN 'Fire salvage'
         ELSE '-'
     END AS `Includes Fire Salvage`,
     last_auction_date AS auction,
-    FORMAT_NUMBER(last_auction_no_sale_volume, 0) AS `Volume (cubic metres)`,
+    FORMAT_NUMBER(last_auction_no_sale_volume, 0)
+        AS `Volume (cubic metres)`,
     last_auction_no_sale_rationale AS `No Sale Rationale`,
     CASE
         WHEN business_area_region = 'North Interior' THEN 1
@@ -1783,30 +1816,40 @@ SELECT
 FROM bcts_staging.licence_issued_advertised_main
 WHERE advertised_in_report_period = 'Y'
   AND last_auction_no_sale_rationale IS NOT NULL
-  AND last_auction_date BETWEEN semi_monthly_report_start_date AND report_end_date;
+  AND last_auction_date
+      BETWEEN semi_monthly_report_start_date AND report_end_date;
 
 
 DROP TABLE IF EXISTS bcts_staging.bcts_performance_report_licence_issued_details;
 
 CREATE TABLE bcts_staging.bcts_performance_report_licence_issued_details
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     business_area AS `Business Area`,
     business_area_region AS `Business Area Region`,
     licence,
     CASE
-        WHEN issued_licence_bcts_category_code IN ('2', '4') THEN 'Value Added'
+        WHEN issued_licence_bcts_category_code IN ('2', '4')
+            THEN 'Value Added'
         ELSE '-'
     END AS `Value Added`,
     CASE
-        WHEN total_volume_salvage_all_fire_year_lrm > 0 THEN 'Fire salvage'
+        WHEN total_volume_salvage_all_fire_year_lrm > 0
+            THEN 'Fire salvage'
         ELSE '-'
     END AS `Includes Fire Salvage`,
     bidder_count AS `# of Bidders`,
     issued_licence_legal_effective_date AS issued,
-    FORMAT_NUMBER(issued_licence_volume, 0) AS `Volume (cubic metres)`,
-    CONCAT('$', FORMAT_NUMBER(issued_licence_maximum_value, 0)) AS `Max Value`,
+    FORMAT_NUMBER(issued_licence_volume, 0)
+        AS `Volume (cubic metres)`,
+    CONCAT('$', FORMAT_NUMBER(issued_licence_maximum_value, 0))
+        AS `Max Value`,
     issued_licence_client_name AS client,
     CASE
         WHEN business_area_region = 'North Interior' THEN 1
@@ -1815,19 +1858,29 @@ SELECT
     END AS business_area_region_sort_order
 FROM bcts_staging.licence_issued_advertised_main
 WHERE issued_in_report_period = 'Y'
-  AND issued_licence_legal_effective_date BETWEEN semi_monthly_report_start_date AND report_end_date;
+  AND issued_licence_legal_effective_date
+      BETWEEN semi_monthly_report_start_date AND report_end_date;
 
 
 DROP TABLE IF EXISTS bcts_staging.recent_auctions_chart_2;
 
 CREATE TABLE bcts_staging.recent_auctions_chart_2
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     'Licence Issued' AS metric,
-    COALESCE(SUM(issued_licence_volume), 0) - COALESCE(SUM(category_2_and_4_issued_volume), 0) AS `Total Excluding Value Added`,
-    COALESCE(SUM(issued_licence_volume), 0) AS `Total`,
-    COALESCE(SUM(category_2_and_4_issued_volume), 0) AS `Value Added`
+    COALESCE(SUM(issued_licence_volume), 0)
+        - COALESCE(SUM(category_2_and_4_issued_volume), 0)
+        AS `Total Excluding Value Added`,
+    COALESCE(SUM(issued_licence_volume), 0)
+        AS `Total`,
+    COALESCE(SUM(category_2_and_4_issued_volume), 0)
+        AS `Value Added`
 FROM bcts_staging.licence_issued_advertised_main
 WHERE include_in_semi_monthly_report = 'Y'
 
@@ -1835,9 +1888,13 @@ UNION ALL
 
 SELECT
     'Not Awarded' AS metric,
-    COALESCE(SUM(last_auction_no_sale_volume), 0) - COALESCE(SUM(last_auction_no_sale_category_2_4_volume), 0) AS `Total Excluding Value Added`,
-    COALESCE(SUM(last_auction_no_sale_volume), 0) AS `Total`,
-    COALESCE(SUM(last_auction_no_sale_category_2_4_volume), 0) AS `Value Added`
+    COALESCE(SUM(last_auction_no_sale_volume), 0)
+        - COALESCE(SUM(last_auction_no_sale_category_2_4_volume), 0)
+        AS `Total Excluding Value Added`,
+    COALESCE(SUM(last_auction_no_sale_volume), 0)
+        AS `Total`,
+    COALESCE(SUM(last_auction_no_sale_category_2_4_volume), 0)
+        AS `Value Added`
 FROM bcts_staging.licence_issued_advertised_main
 WHERE include_in_semi_monthly_report = 'Y';
 
@@ -1846,6 +1903,11 @@ DROP TABLE IF EXISTS bcts_staging.bcts_performance_report_ytd_all;
 
 CREATE TABLE bcts_staging.bcts_performance_report_ytd_all
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 WITH base AS
 (
@@ -1854,25 +1916,47 @@ WITH base AS
         st.business_area_region,
         st.business_area,
 
-        COALESCE(st.q1_ytd_sales_target_volume, 0) AS `Q1 Licence Issued Target`,
-        COALESCE(st.q2_ytd_sales_target_volume, 0) AS `Q2 Licence Issued Target`,
-        COALESCE(st.q3_ytd_sales_target_volume, 0) AS `Q3 Licence Issued Target`,
-        COALESCE(st.total_fiscal_year_sales_target_volume, 0) AS `Fiscal Year Licence Issued Target`,
+        COALESCE(st.q1_ytd_sales_target_volume, 0)
+            AS `Q1 Licence Issued Target`,
+        COALESCE(st.q2_ytd_sales_target_volume, 0)
+            AS `Q2 Licence Issued Target`,
+        COALESCE(st.q3_ytd_sales_target_volume, 0)
+            AS `Q3 Licence Issued Target`,
+        COALESCE(st.total_fiscal_year_sales_target_volume, 0)
+            AS `Fiscal Year Licence Issued Target`,
 
-        COALESCE(st.q1_ytd_sales_target_volume_cat_4, 0) AS `Q1 Licence Issued Target: Value Added`,
-        COALESCE(st.q2_ytd_sales_target_volume_cat_4, 0) AS `Q2 Licence Issued Target: Value Added`,
-        COALESCE(st.q3_ytd_sales_target_volume_cat_4, 0) AS `Q3 Licence Issued Target: Value Added`,
-        COALESCE(st.total_fiscal_year_sales_target_volume_cat_4, 0) AS `Fiscal Year Licence Issued Target: Value Added`,
+        COALESCE(st.q1_ytd_sales_target_volume_cat_4, 0)
+            AS `Q1 Licence Issued Target: Value Added`,
+        COALESCE(st.q2_ytd_sales_target_volume_cat_4, 0)
+            AS `Q2 Licence Issued Target: Value Added`,
+        COALESCE(st.q3_ytd_sales_target_volume_cat_4, 0)
+            AS `Q3 Licence Issued Target: Value Added`,
+        COALESCE(st.total_fiscal_year_sales_target_volume_cat_4, 0)
+            AS `Fiscal Year Licence Issued Target: Value Added`,
 
-        COALESCE(cms.`Currently in Market`, 0) AS `Currently in Market`,
-        COALESCE(ain.`Auctioned (First Auction is in Report Period)`, 0) AS `Auctioned`,
-        COALESCE(ain.`Licence Issued`, 0) AS `Licence Issued`,
-        COALESCE(ain.`Not Awarded (Last Auction in Report Period is No Sale)`, 0) AS `Not Awarded`,
+        COALESCE(cms.`Currently in Market`, 0)
+            AS `Currently in Market`,
+        COALESCE(
+            ain.`Auctioned (First Auction is in Report Period)`,
+            0
+        ) AS `Auctioned`,
+        COALESCE(ain.`Licence Issued`, 0)
+            AS `Licence Issued`,
+        COALESCE(
+            ain.`Not Awarded (Last Auction in Report Period is No Sale)`,
+            0
+        ) AS `Not Awarded`,
 
-        COALESCE(cms.`Volume: Value Added`, 0) AS `Currently in Market: Value Added`,
-        COALESCE(ain.`Auctioned (First Auction is in Report Period): Category 2/4`, 0) AS `Auctioned: Value Added`,
-        COALESCE(ain.`Licence Issued: Cat 2/4`, 0) AS `Licence Issued: Value Added`,
-        COALESCE(ain.`Not Awarded: Category 2/4`, 0) AS `Not Awarded: Value Added`
+        COALESCE(cms.`Volume: Value Added`, 0)
+            AS `Currently in Market: Value Added`,
+        COALESCE(
+            ain.`Auctioned (First Auction is in Report Period): Category 2/4`,
+            0
+        ) AS `Auctioned: Value Added`,
+        COALESCE(ain.`Licence Issued: Cat 2/4`, 0)
+            AS `Licence Issued: Value Added`,
+        COALESCE(ain.`Not Awarded: Category 2/4`, 0)
+            AS `Not Awarded: Value Added`
 
     FROM bcts_staging.bcts_sales_targets st
 
@@ -1884,39 +1968,56 @@ WITH base AS
         ON cms.business_area_region = ain.business_area_region
         AND cms.business_area = ain.business_area
 )
-
 SELECT
     *,
 
     GREATEST(
-        SUM(`Licence Issued`) OVER (PARTITION BY business_area),
-        SUM(`Licence Issued: Value Added`) OVER (PARTITION BY business_area),
-        SUM(`Not Awarded`) OVER (PARTITION BY business_area),
-        SUM(`Not Awarded: Value Added`) OVER (PARTITION BY business_area),
-        SUM(`Auctioned`) OVER (PARTITION BY business_area),
-        SUM(`Auctioned: Value Added`) OVER (PARTITION BY business_area),
+        SUM(`Licence Issued`)
+            OVER (PARTITION BY business_area),
+        SUM(`Licence Issued: Value Added`)
+            OVER (PARTITION BY business_area),
+        SUM(`Not Awarded`)
+            OVER (PARTITION BY business_area),
+        SUM(`Not Awarded: Value Added`)
+            OVER (PARTITION BY business_area),
+        SUM(`Auctioned`)
+            OVER (PARTITION BY business_area),
+        SUM(`Auctioned: Value Added`)
+            OVER (PARTITION BY business_area),
         MAX(
             CASE
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6 THEN `Q1 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9 THEN `Q2 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12 THEN `Q3 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6
+                    THEN `Q1 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9
+                    THEN `Q2 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12
+                    THEN `Q3 Licence Issued Target`
                 ELSE `Fiscal Year Licence Issued Target`
             END
         ) OVER (PARTITION BY business_area)
     ) * 1.1 AS y_max_business_area,
 
     GREATEST(
-        SUM(`Licence Issued`) OVER (PARTITION BY business_area_region),
-        SUM(`Licence Issued: Value Added`) OVER (PARTITION BY business_area_region),
-        SUM(`Not Awarded`) OVER (PARTITION BY business_area_region),
-        SUM(`Not Awarded: Value Added`) OVER (PARTITION BY business_area_region),
-        SUM(`Auctioned`) OVER (PARTITION BY business_area_region),
-        SUM(`Auctioned: Value Added`) OVER (PARTITION BY business_area_region),
+        SUM(`Licence Issued`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Licence Issued: Value Added`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Not Awarded`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Not Awarded: Value Added`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Auctioned`)
+            OVER (PARTITION BY business_area_region),
+        SUM(`Auctioned: Value Added`)
+            OVER (PARTITION BY business_area_region),
         SUM(
             CASE
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6 THEN `Q1 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9 THEN `Q2 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12 THEN `Q3 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6
+                    THEN `Q1 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9
+                    THEN `Q2 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12
+                    THEN `Q3 Licence Issued Target`
                 ELSE `Fiscal Year Licence Issued Target`
             END
         ) OVER (PARTITION BY business_area_region)
@@ -1931,9 +2032,12 @@ SELECT
         SUM(`Auctioned: Value Added`) OVER (),
         SUM(
             CASE
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6 THEN `Q1 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9 THEN `Q2 Licence Issued Target`
-                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12 THEN `Q3 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 4 AND 6
+                    THEN `Q1 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 7 AND 9
+                    THEN `Q2 Licence Issued Target`
+                WHEN MONTH(DATE_SUB(CURRENT_DATE(), 15)) BETWEEN 10 AND 12
+                    THEN `Q3 Licence Issued Target`
                 ELSE `Fiscal Year Licence Issued Target`
             END
         ) OVER ()
@@ -1949,7 +2053,6 @@ SELECT
         WHEN business_area_region_category = 'Interior' THEN 1
         ELSE 2
     END AS business_area_region_category_sort_order
-
 FROM base;
 
 
@@ -1957,6 +2060,11 @@ DROP TABLE IF EXISTS bcts_staging.bcts_volume_summary_chart_2;
 
 CREATE TABLE bcts_staging.bcts_volume_summary_chart_2
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT
     'Q1 Licence Issued Target' AS metric,
@@ -2025,6 +2133,11 @@ DROP TABLE IF EXISTS bcts_reporting.bcts_performance_report_ytd_all;
 
 CREATE TABLE bcts_reporting.bcts_performance_report_ytd_all
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.bcts_performance_report_ytd_all;
@@ -2034,6 +2147,11 @@ DROP TABLE IF EXISTS bcts_reporting.bcts_volume_summary_chart_2;
 
 CREATE TABLE bcts_reporting.bcts_volume_summary_chart_2
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.bcts_volume_summary_chart_2;
@@ -2043,6 +2161,11 @@ DROP TABLE IF EXISTS bcts_reporting.recent_auctions_chart_2;
 
 CREATE TABLE bcts_reporting.recent_auctions_chart_2
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.recent_auctions_chart_2;
@@ -2052,6 +2175,11 @@ DROP TABLE IF EXISTS bcts_reporting.recent_auction_results;
 
 CREATE TABLE bcts_reporting.recent_auction_results
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.recent_auction_results;
@@ -2061,6 +2189,11 @@ DROP TABLE IF EXISTS bcts_reporting.bcts_performance_report_not_awarded_details;
 
 CREATE TABLE bcts_reporting.bcts_performance_report_not_awarded_details
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.bcts_performance_report_not_awarded_details;
@@ -2070,6 +2203,11 @@ DROP TABLE IF EXISTS bcts_reporting.bcts_performance_report_licence_issued_detai
 
 CREATE TABLE bcts_reporting.bcts_performance_report_licence_issued_details
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
 FROM bcts_staging.bcts_performance_report_licence_issued_details;
@@ -2079,6 +2217,11 @@ DROP TABLE IF EXISTS bcts_staging.bcts_performance_report_current_prev_ytd_issue
 
 CREATE TABLE bcts_staging.bcts_performance_report_current_prev_ytd_issued_lic_volume
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 WITH current_ytd AS
 (
@@ -2086,8 +2229,10 @@ WITH current_ytd AS
         business_area_region_category,
         business_area_region,
         business_area,
-        COALESCE(SUM(issued_licence_volume), 0) AS `Current YTD Licence Issued`,
-        COALESCE(SUM(category_2_and_4_issued_volume), 0) AS `Current YTD Licence Issued: Value Added`
+        COALESCE(SUM(issued_licence_volume), 0)
+            AS `Current YTD Licence Issued`,
+        COALESCE(SUM(category_2_and_4_issued_volume), 0)
+            AS `Current YTD Licence Issued: Value Added`
     FROM bcts_reporting.licence_issued_advertised_main
     GROUP BY
         business_area_region_category,
@@ -2101,8 +2246,10 @@ previous_ytd AS
         business_area_region_category,
         business_area_region,
         business_area,
-        COALESCE(SUM(issued_licence_volume), 0) AS `Previous YTD Licence Issued`,
-        COALESCE(SUM(category_2_and_4_issued_volume), 0) AS `Previous YTD Licence Issued: Value Added`
+        COALESCE(SUM(issued_licence_volume), 0)
+            AS `Previous YTD Licence Issued`,
+        COALESCE(SUM(category_2_and_4_issued_volume), 0)
+            AS `Previous YTD Licence Issued: Value Added`
     FROM bcts_reporting.licence_issued_advertised_main_hist
     WHERE report_start_date =
     (
@@ -2126,28 +2273,42 @@ base AS
         current_ytd.business_area_region_category,
         current_ytd.business_area_region,
         current_ytd.business_area,
+
         current_ytd.`Current YTD Licence Issued`,
         current_ytd.`Current YTD Licence Issued: Value Added`,
-        current_ytd.`Current YTD Licence Issued` - current_ytd.`Current YTD Licence Issued: Value Added` AS `Current YTD Licence Issued: Other`,
+
+        current_ytd.`Current YTD Licence Issued`
+            - current_ytd.`Current YTD Licence Issued: Value Added`
+            AS `Current YTD Licence Issued: Other`,
+
         previous_ytd.`Previous YTD Licence Issued`,
         previous_ytd.`Previous YTD Licence Issued: Value Added`,
-        previous_ytd.`Previous YTD Licence Issued` - previous_ytd.`Previous YTD Licence Issued: Value Added` AS `Previous YTD Licence Issued: Other`,
+
+        previous_ytd.`Previous YTD Licence Issued`
+            - previous_ytd.`Previous YTD Licence Issued: Value Added`
+            AS `Previous YTD Licence Issued: Other`,
 
         GREATEST(
-            SUM(current_ytd.`Current YTD Licence Issued`) OVER (PARTITION BY current_ytd.business_area),
-            SUM(previous_ytd.`Previous YTD Licence Issued`) OVER (PARTITION BY current_ytd.business_area),
-            SUM(current_ytd.`Current YTD Licence Issued: Value Added`) OVER (PARTITION BY current_ytd.business_area),
-            SUM(previous_ytd.`Previous YTD Licence Issued: Value Added`) OVER (PARTITION BY current_ytd.business_area)
+            SUM(current_ytd.`Current YTD Licence Issued`)
+                OVER (PARTITION BY current_ytd.business_area),
+            SUM(previous_ytd.`Previous YTD Licence Issued`)
+                OVER (PARTITION BY current_ytd.business_area),
+            SUM(current_ytd.`Current YTD Licence Issued: Value Added`)
+                OVER (PARTITION BY current_ytd.business_area),
+            SUM(previous_ytd.`Previous YTD Licence Issued: Value Added`)
+                OVER (PARTITION BY current_ytd.business_area)
         ) AS y_business_area
 
     FROM previous_ytd
 
     LEFT JOIN current_ytd
-        ON previous_ytd.business_area_region_category = current_ytd.business_area_region_category
-        AND previous_ytd.business_area_region = current_ytd.business_area_region
-        AND previous_ytd.business_area = current_ytd.business_area
+        ON previous_ytd.business_area_region_category =
+           current_ytd.business_area_region_category
+        AND previous_ytd.business_area_region =
+            current_ytd.business_area_region
+        AND previous_ytd.business_area =
+            current_ytd.business_area
 )
-
 SELECT
     business_area_region_category,
     business_area_region,
@@ -2157,7 +2318,9 @@ SELECT
     `Current YTD Licence Issued: Other`,
     `Previous YTD Licence Issued`,
     `Previous YTD Licence Issued: Value Added`,
-    `Previous YTD Licence Issued` - `Previous YTD Licence Issued: Value Added` AS `Previous YTD Licence Issued: Other`,
+    `Previous YTD Licence Issued`
+        - `Previous YTD Licence Issued: Value Added`
+        AS `Previous YTD Licence Issued: Other`,
     y_business_area * 1.1 AS y_max_business_area
 FROM base;
 
@@ -2166,6 +2329,11 @@ DROP TABLE IF EXISTS bcts_reporting.bcts_performance_report_current_prev_ytd_iss
 
 CREATE TABLE bcts_reporting.bcts_performance_report_current_prev_ytd_issued_lic_volume
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name',
+    'delta.minReaderVersion' = '2',
+    'delta.minWriterVersion' = '5'
+)
 AS
 SELECT *
-FROM bcts_staging.bcts_performance_report_current_prev_ytd_issued_lic_volume;    
+FROM bcts_staging.bcts_performance_report_current_prev_ytd_issued_lic_volume;
