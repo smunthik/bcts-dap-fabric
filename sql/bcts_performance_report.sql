@@ -1,4 +1,22 @@
 
+# Definitions
+
+CREATE TABLE IF NOT EXISTS bcts_reporting.bcts_performance_report_definitions
+USING DELTA
+AS
+SELECT * FROM VALUES
+    (1, 'Licence Issued Target', 'Cumulative target volume of timber sold in issued licences for the end of the current quarter, updated quarterly.'),
+    (2, 'Auctioned', 'New-to-market auctions. Includes issued licences, awarded licences that are not yet issued, and licences not awarded. Excludes reauctions. Licence Issued volume may exceed Auctioned volume when the first auction of a licence occurs in a previous fiscal.'),
+    (3, 'Currently in Market', 'Open to bidders on BC Bid at the end of the reporting period. Includes reauctions.'),
+    (4, 'Licence Issued', 'Volume of timber sold in issued licences. Issued licences may be first auctioned in a previous fiscal and not appear in this report’s Auctioned volume.'),
+    (5, 'Not Awarded', 'Volume of timber in auctioned licences that did not have a successful bidder. Includes reauctioned licences.'),
+    (6, 'Auctioned Target: Value Added', 'Cumulative target volume of timber volume auctioned, targeted at the value-added sector for the end of the current quarter, updated quarterly. Based on 20% of the Rationalized Apportionment of 6,467,328 m³, proportionate to quarterly target.'),
+    (7, 'Auctioned: Value Added', 'New-to-market Value Added auctions. Includes issued licences, awarded licences that are not yet issued, and licences not awarded. Excludes reauctions.'),
+    (8, 'Currently in Market: Value Added', 'Value Added volume open to bidders on BC Bid at the end of the reporting period. Includes reauctions.'),
+    (9, 'Licence Issued: Value Added', 'Volume of timber sold in Value Added issued licences. Issued licences may be first auctioned in a previous fiscal and not appear in this report’s Auctioned: Value Added volume.'),
+    (10, 'Not Awarded: Value Added', 'No successful bidder for licence advertised as Value Added; to be reauctioned.')
+AS definitions(id, term, definition);
+
 CREATE TABLE IF NOT EXISTS bcts_reporting.v_forest_division
 USING DELTA
 AS
