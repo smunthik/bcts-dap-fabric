@@ -1,3 +1,111 @@
+
+CREATE TABLE IF NOT EXISTS bcts_reporting.v_forest_division
+USING DELTA
+AS
+SELECT 
+    CASE
+        WHEN d.divi_short_code IN (
+            'TBA', 'TPL', 'TPG', 'TSK', 'TSN',
+            'TCC', 'TKA', 'TKO', 'TOC'
+        ) THEN 'Interior'
+        WHEN d.divi_short_code IN ('TCH', 'TST', 'TSG') THEN 'Coast'
+    END AS business_area_region_category,
+
+    CASE
+        WHEN d.divi_short_code IN (
+            'TBA', 'TPL', 'TPG', 'TSK', 'TSN'
+        ) THEN 'North Interior'
+        WHEN d.divi_short_code IN (
+            'TCC', 'TKA', 'TKO', 'TOC'
+        ) THEN 'South Interior'
+        WHEN d.divi_short_code IN (
+            'TCH', 'TST', 'TSG'
+        ) THEN 'Coast'
+    END AS business_area_region,
+
+    CONCAT(
+        CASE
+            WHEN d.divi_division_name = 'Seaward-tlasta'
+                THEN 'Seaward-Tlasta'
+            ELSE d.divi_division_name
+        END,
+        ' (',
+        d.divi_short_code,
+        ')'
+    ) AS business_area,
+
+    d.divi_short_code AS business_area_code
+
+FROM bcts_staging.forest_division d;
+
+
+CREATE TABLE IF NOT EXISTS bcts_staging.bcts_sales_targets_hist (
+    business_area_region_category STRING,
+    business_area_region STRING,
+    business_area STRING,
+    q1_ytd_sales_target_volume DECIMAL(38,18),
+    q2_ytd_sales_target_volume DECIMAL(38,18),
+    q3_ytd_sales_target_volume DECIMAL(38,18),
+    total_fiscal_year_sales_target_volume DECIMAL(38,18),
+    rationalized_apportionment DECIMAL(38,18),
+    full_apportionment DECIMAL(38,18),
+    q1_ytd_sales_target_volume_cat_4 DECIMAL(38,18),
+    q2_ytd_sales_target_volume_cat_4 DECIMAL(38,18),
+    q3_ytd_sales_target_volume_cat_4 DECIMAL(38,18),
+    total_fiscal_year_sales_target_volume_cat_4 DECIMAL(38,18),
+    fiscal_year INT,
+    date_updated TIMESTAMP
+)
+USING DELTA;
+
+
+DROP TABLE IF EXISTS bcts_reporting.bcts_sales_targets;
+
+CREATE TABLE bcts_reporting.bcts_sales_targets
+USING DELTA
+AS
+SELECT
+    business_area_region_category,
+    business_area_region,
+    business_area,
+    q1_ytd_sales_target_volume,
+    q2_ytd_sales_target_volume,
+    q3_ytd_sales_target_volume,
+    total_fiscal_year_sales_target_volume,
+    q1_ytd_sales_target_volume_cat_4,
+    q2_ytd_sales_target_volume_cat_4,
+    q3_ytd_sales_target_volume_cat_4,
+    total_fiscal_year_sales_target_volume_cat_4
+FROM bcts_staging.bcts_sales_targets_hist
+WHERE date_updated = (
+    SELECT MAX(date_updated)
+    FROM bcts_staging.bcts_sales_targets_hist
+);
+
+
+DROP TABLE IF EXISTS bcts_staging.bcts_sales_targets;
+
+CREATE TABLE bcts_staging.bcts_sales_targets
+USING DELTA
+AS
+SELECT
+    business_area_region_category,
+    business_area_region,
+    business_area,
+    q1_ytd_sales_target_volume,
+    q2_ytd_sales_target_volume,
+    q3_ytd_sales_target_volume,
+    total_fiscal_year_sales_target_volume,
+    q1_ytd_sales_target_volume_cat_4,
+    q2_ytd_sales_target_volume_cat_4,
+    q3_ytd_sales_target_volume_cat_4,
+    total_fiscal_year_sales_target_volume_cat_4
+FROM bcts_staging.bcts_sales_targets_hist
+WHERE date_updated = (
+    SELECT MAX(date_updated)
+    FROM bcts_staging.bcts_sales_targets_hist
+);
+
 -- Create _hist table if it does not exist
 CREATE TABLE IF NOT EXISTS bcts_staging.licence_issued_advertised_main_hist
 (
