@@ -54,7 +54,7 @@ SELECT
 
     d.divi_short_code AS business_area_code
 
-FROM bcts_staging.forest_division d;
+FROM lrm_replication.division d;
 
 
 CREATE TABLE IF NOT EXISTS bcts_staging.bcts_sales_targets_hist (
