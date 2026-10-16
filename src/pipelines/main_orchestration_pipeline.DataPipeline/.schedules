@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/schedules/1.0.0/schema.json",
   "schedules": [
     {
-      "enabled": false,
-      "enabledControlType": "UserDisabled",
+      "enabled": true,
+      "enabledControlType": "UserEnabled",
       "jobType": "Execute",
       "configuration": {
         "type": "Daily",
