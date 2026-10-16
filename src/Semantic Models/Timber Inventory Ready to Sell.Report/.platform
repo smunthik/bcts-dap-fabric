@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Timber Inventory Ready to Sell"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0e3e0d21-1cb2-49b4-8f26-60562ee1f21f"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "0df9ff2e810497b66b7b",
+  "position": {
+    "x": 48,
+    "y": 96,
+    "z": 0,
+    "height": 352.00000000000006,
+    "width": 1231.9999999999998,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "recent_auctions_layered_charts",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "31321132e3900163593d"
+}
