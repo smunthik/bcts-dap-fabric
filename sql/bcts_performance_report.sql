@@ -194,6 +194,75 @@ CREATE TABLE IF NOT EXISTS bcts_staging.licence_issued_advertised_main_hist
 )
 USING DELTA;
 
+CREATE TABLE IF NOT EXISTS bcts_staging.licence_issued_advertised_main_previous_ytd
+(
+    business_area_region_category STRING,
+    business_area_region STRING,
+    business_area STRING,
+    management_unit STRING,
+    district STRING,
+    x_axis_date TIMESTAMP,
+    x_axis_fiscal STRING,
+    x_axis_quarter STRING,
+    licence STRING,
+    file_type_code STRING,
+    auction_count_all_time_to_report_period_end BIGINT,
+    first_auction_date TIMESTAMP,
+    first_auction_fiscal STRING,
+    first_auction_quarter STRING,
+    first_bcts_category_code STRING,
+    first_auction_volume DECIMAL(38,18),
+    first_auction_category_a_and_1_volume DECIMAL(38,18),
+    first_auction_category_2_and_4_volume DECIMAL(38,18),
+    first_auction_volume_is_in_report_period DECIMAL(38,18),
+    first_auction_category_a_and_1_volume_is_in_report_period DECIMAL(38,18),
+    first_auction_category_2_and_4_volume_is_in_report_period DECIMAL(38,18),
+    last_auction_date TIMESTAMP,
+    last_auction_fiscal STRING,
+    last_auction_quarter STRING,
+    last_auction_bcts_category_code STRING,
+    last_auction_volume DECIMAL(38,18),
+    last_auction_category_a_and_1_volume DECIMAL(38,18),
+    last_auction_category_2_and_4_volume DECIMAL(38,18),
+    original_cat_2_and_4_readvertised_cat_a_and_1_volume DECIMAL(38,18),
+    original_cat_a_and_1_readvertised_cat_2_and_4_volume DECIMAL(38,18),
+    last_auction_no_sale_rationale STRING,
+    last_auction_no_sale_volume DECIMAL(38,18),
+    last_auction_no_sale_category_a_1_volume DECIMAL(38,18),
+    last_auction_no_sale_category_2_4_volume DECIMAL(38,18),
+    last_auction_no_sale STRING,
+    last_auction_no_sale_cat_a STRING,
+    last_auction_no_sale_cat_2_4 STRING,
+    issued_licence_legal_effective_date DATE,
+    issued_licence_legal_effective_fiscal STRING,
+    issued_licence_legal_effective_quarter STRING,
+    issued_licence_bcts_category_code STRING,
+    issued_licence_volume DECIMAL(38,18),
+    category_a_and_1_issued_volume DECIMAL(38,18),
+    category_2_and_4_issued_volume DECIMAL(38,18),
+    issued_licence_maximum_value DECIMAL(38,18),
+    issued_licence_maximum_value_cat_a DECIMAL(38,18),
+    issued_licence_maximum_value_cat_2_4 DECIMAL(38,18),
+    issued_licence_client_number STRING,
+    issued_licence_client_name STRING,
+    issued_in_report_period STRING,
+    issued_in_report_period_cat_a STRING,
+    issued_in_report_period_cat_2_4 STRING,
+    advertised_in_report_period STRING,
+    total_volume_salvage_all_fire_year_lrm DECIMAL(38,18),
+    fta_file_status STRING,
+    fta_file_status_date DATE,
+    bidder_count DECIMAL(38,18),
+    report_start_date DATE,
+    report_end_date DATE,
+    fiscal_year DECIMAL(38,18),
+    semi_monthly_report_start_date DATE,
+    include_in_semi_monthly_report STRING,
+    report_run_date DATE,
+    report_run_timestamp TIMESTAMP
+)
+USING DELTA;
+
 CREATE TABLE IF NOT EXISTS bcts_staging.licence_issued_advertised_official
 (
     business_area_region_category STRING,
@@ -563,6 +632,8 @@ where  report_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
 
 delete from bcts_staging.licence_issued_advertised_official;
+delete from bcts_staging.licence_issued_advertised_official_previous_ytd;
+delete from bcts_staging.licence_issued_advertised_main_previous_ytd;
 
 -- Populate staging table
 INSERT INTO bcts_staging.licence_issued_advertised_official
@@ -1209,6 +1280,808 @@ WHERE ou.org_unit_no IN
     1818
 );
 
+
+
+INSERT INTO bcts_staging.licence_issued_advertised_official_previous_ytd
+(
+    business_area_region_category,
+    business_area_region,
+    business_area,
+    business_area_code,
+    forest_file_id,
+    x_axis_date,
+    x_axis_fiscal,
+    x_axis_quarter,
+    file_type_code,
+    auction_count_all_time_to_report_period_end,
+    first_auction_date,
+    first_auction_fiscal,
+    first_auction_quarter,
+    first_bcts_category_code,
+    first_auction_volume,
+    first_auction_category_a_and_1_volume,
+    first_auction_category_2_and_4_volume,
+    first_auction_volume_is_in_report_period,
+    first_auction_category_a_and_1_volume_is_in_report_period,
+    first_auction_category_2_and_4_volume_is_in_report_period,
+    last_auction_date,
+    last_auction_fiscal,
+    last_auction_quarter,
+    last_auction_bcts_category_code,
+    last_auction_volume,
+    last_auction_category_a_and_1_volume,
+    last_auction_category_2_and_4_volume,
+    original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+    original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+    last_auction_no_sale_rationale,
+    last_auction_no_sale_volume,
+    last_auction_no_sale_category_a_1_volume,
+    last_auction_no_sale_category_2_4_volume,
+    last_auction_no_sale,
+    last_auction_no_sale_cat_a,
+    last_auction_no_sale_cat_2_4,
+    issued_licence_legal_effective_date,
+    issued_licence_legal_effective_fiscal,
+    issued_licence_legal_effective_quarter,
+    issued_licence_bcts_category_code,
+    issued_licence_volume,
+    category_a_and_1_issued_volume,
+    category_2_and_4_issued_volume,
+    issued_licence_maximum_value,
+    issued_licence_maximum_value_cat_a,
+    issued_licence_maximum_value_cat_2_4,
+    issued_licence_client_number,
+    issued_licence_client_name,
+    issued_in_report_period,
+    issued_in_report_period_cat_a,
+    issued_in_report_period_cat_2_4,
+    advertised_in_report_period,
+    fta_file_status,
+    fta_file_status_date,
+    bidder_count,
+    report_start_date,
+    report_end_date,
+    fiscal_year
+)
+
+WITH issued AS
+(
+    SELECT
+        ts0.forest_file_id,
+        tt.legal_effective_dt AS issued_licence_legal_effective_date,
+
+        CASE
+            WHEN tt.legal_effective_dt IS NULL THEN NULL
+            ELSE CONCAT(
+                'Fiscal ',
+                CAST(YEAR(ADD_MONTHS(tt.legal_effective_dt, 9)) - 1 AS STRING),
+                '/',
+                CAST(YEAR(ADD_MONTHS(tt.legal_effective_dt, 9)) AS STRING)
+            )
+        END AS issued_licence_legal_effective_fiscal,
+
+        CASE
+            WHEN tt.legal_effective_dt IS NULL THEN NULL
+            ELSE CONCAT(
+                'Q',
+                CAST(
+                    CEIL(
+                        CAST(MONTH(ADD_MONTHS(tt.legal_effective_dt, -3)) AS DECIMAL(10,2)) / 3
+                    ) AS STRING
+                )
+            )
+        END AS issued_licence_legal_effective_quarter,
+
+        ts0.auction_date,
+        ts0.bcts_category_code AS issued_licence_bcts_category_code,
+        ts0.sale_volume AS issued_licence_volume,
+
+        CASE
+            WHEN ts0.bcts_category_code IN ('2', '4')
+            THEN ts0.sale_volume
+        END AS category_2_and_4_issued_volume,
+
+        CASE
+            WHEN ts0.bcts_category_code IN ('A', '1')
+            THEN ts0.sale_volume
+        END AS category_a_and_1_issued_volume,
+
+        ts0.total_upset_value AS cruise_total_upset_value,
+        ts0.upset_rate AS scale_upset_rate,
+        tb.bonus_bid AS issued_licence_bonus_bid,
+        tb.bonus_offer AS issued_licence_bonus_offer,
+
+        CASE
+            WHEN ts0.total_upset_value > 0
+            THEN ROUND(
+                ts0.total_upset_value + tb.bonus_offer,
+                2
+            )
+            ELSE ROUND(
+                (ts0.upset_rate + tb.bonus_bid) * ts0.sale_volume,
+                2
+            )
+        END AS issued_licence_maximum_value,
+
+        tb.client_number AS issued_licence_client_number,
+
+        CONCAT(
+            COALESCE(CONCAT(fc.legal_first_name, ' '), ''),
+            COALESCE(CONCAT(fc.legal_middle_name, ' '), ''),
+            COALESCE(fc.client_name, '')
+        ) AS issued_licence_client_name
+
+    FROM bcts_staging.the_bcts_timber_sale ts0
+
+    INNER JOIN bcts_staging.the_bcts_tenure_bidder tb
+        ON ts0.forest_file_id = tb.forest_file_id
+        AND ts0.auction_date = tb.auction_date
+        AND ts0.no_sale_rationale_code IS NULL
+        AND UPPER(tb.sale_awarded_ind) = 'Y'
+
+    INNER JOIN bcts_staging.fta_prov_forest_use pfu
+        ON pfu.forest_file_id = ts0.forest_file_id
+        AND pfu.file_status_st IN (
+            'HI',
+            'HC',
+            'LC',
+            'HX',
+            'HS',
+            'HRS'
+        )
+
+    INNER JOIN bcts_staging.fta_tenure_term tt
+        ON pfu.forest_file_id = tt.forest_file_id
+        AND tt.legal_effective_dt BETWEEN
+            ADD_MONTHS(TO_DATE('${report_start_date}', 'yyyy-MM-dd'), -12)
+            AND ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
+
+    INNER JOIN bcts_staging.the_v_client_public fc
+        ON tb.client_number = fc.client_number
+),
+
+all_auctions_to_date AS
+(
+    SELECT
+        ts.forest_file_id,
+        COUNT(ts.auction_date) AS auction_count_all_time_to_report_period_end,
+        MIN(ts.auction_date) AS first_auction_date,
+        MAX(ts.auction_date) AS last_auction_date
+    FROM bcts_staging.the_bcts_timber_sale ts
+    WHERE COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB'
+      AND ts.auction_date <=
+          ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
+    GROUP BY ts.forest_file_id
+),
+
+advertised AS
+(
+    SELECT
+        ts.forest_file_id,
+        all_auctions_to_date.first_auction_date,
+
+        CASE
+            WHEN all_auctions_to_date.first_auction_date IS NULL THEN NULL
+            ELSE CONCAT(
+                'Fiscal ',
+                CAST(
+                    YEAR(ADD_MONTHS(all_auctions_to_date.first_auction_date, 9)) - 1
+                    AS STRING
+                ),
+                '/',
+                CAST(
+                    YEAR(ADD_MONTHS(all_auctions_to_date.first_auction_date, 9))
+                    AS STRING
+                )
+            )
+        END AS first_auction_fiscal,
+
+        CASE
+            WHEN all_auctions_to_date.first_auction_date IS NULL THEN NULL
+            ELSE CONCAT(
+                'Q',
+                CAST(
+                    CEIL(
+                        CAST(
+                            MONTH(
+                                ADD_MONTHS(
+                                    all_auctions_to_date.first_auction_date,
+                                    -3
+                                )
+                            ) AS DECIMAL(10,2)
+                        ) / 3
+                    ) AS STRING
+                )
+            )
+        END AS first_auction_quarter,
+
+        all_auctions_to_date.last_auction_date,
+
+        CASE
+            WHEN all_auctions_to_date.last_auction_date IS NULL THEN NULL
+            ELSE CONCAT(
+                'Fiscal ',
+                CAST(
+                    YEAR(ADD_MONTHS(all_auctions_to_date.last_auction_date, 9)) - 1
+                    AS STRING
+                ),
+                '/',
+                CAST(
+                    YEAR(ADD_MONTHS(all_auctions_to_date.last_auction_date, 9))
+                    AS STRING
+                )
+            )
+        END AS last_auction_fiscal,
+
+        CASE
+            WHEN all_auctions_to_date.last_auction_date IS NULL THEN NULL
+            ELSE CONCAT(
+                'Q',
+                CAST(
+                    CEIL(
+                        CAST(
+                            MONTH(
+                                ADD_MONTHS(
+                                    all_auctions_to_date.last_auction_date,
+                                    -3
+                                )
+                            ) AS DECIMAL(10,2)
+                        ) / 3
+                    ) AS STRING
+                )
+            )
+        END AS last_auction_quarter,
+
+        all_auctions_to_date.auction_count_all_time_to_report_period_end,
+        first_auction.bcts_category_code AS first_bcts_category_code,
+        ts.bcts_category_code AS last_auction_bcts_category_code,
+
+        CASE
+            WHEN first_auction.bcts_category_code = ts.bcts_category_code
+            THEN 'No category change'
+            ELSE 'Category change'
+        END AS category_change,
+
+        CASE
+            WHEN nsrc.description IS NULL
+            THEN ts.no_sale_rationale_code
+            ELSE CONCAT(
+                nsrc.description,
+                ' (',
+                ts.no_sale_rationale_code,
+                ')'
+            )
+        END AS last_auction_no_sale_rationale,
+
+        CAST(
+            CASE
+                WHEN ts.no_sale_rationale_code IS NULL THEN NULL
+                ELSE ts.sale_volume
+            END AS DECIMAL(38,18)
+        ) AS last_auction_no_sale_volume,
+
+        CASE
+            WHEN ts.no_sale_rationale_code IS NOT NULL
+                 AND ts.bcts_category_code IN ('2', '4')
+            THEN ts.sale_volume
+        END AS last_auction_no_sale_category_2_4_volume,
+
+        CASE
+            WHEN ts.no_sale_rationale_code IS NOT NULL
+                 AND ts.bcts_category_code IN ('A', '1')
+            THEN ts.sale_volume
+        END AS last_auction_no_sale_category_a_1_volume,
+
+        first_auction.sale_volume AS first_auction_volume,
+        ts.sale_volume AS last_auction_volume,
+
+        CASE
+            WHEN first_auction.bcts_category_code IN ('2', '4')
+            THEN first_auction.sale_volume
+        END AS first_auction_category_2_and_4_volume,
+
+        CASE
+            WHEN first_auction.bcts_category_code IN ('A', '1')
+            THEN first_auction.sale_volume
+        END AS first_auction_category_a_and_1_volume,
+
+        CASE
+            WHEN ts.bcts_category_code IN ('2', '4')
+            THEN ts.sale_volume
+        END AS last_auction_category_2_and_4_volume,
+
+        CASE
+            WHEN ts.bcts_category_code IN ('A', '1')
+            THEN ts.sale_volume
+        END AS last_auction_category_a_and_1_volume,
+
+        CASE
+            WHEN first_auction.bcts_category_code IN ('2', '4')
+                 AND ts.bcts_category_code IN ('A', '1')
+            THEN ts.sale_volume
+        END AS original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+
+        CASE
+            WHEN first_auction.bcts_category_code IN ('A', '1')
+                 AND ts.bcts_category_code IN ('2', '4')
+            THEN ts.sale_volume
+        END AS original_cat_a_and_1_readvertised_cat_2_and_4_volume
+
+    FROM bcts_staging.the_bcts_timber_sale ts
+
+    LEFT JOIN bcts_staging.the_no_sale_rationale_code nsrc
+        ON ts.no_sale_rationale_code = nsrc.no_sale_rationale_code
+
+    INNER JOIN all_auctions_to_date
+        ON ts.forest_file_id = all_auctions_to_date.forest_file_id
+        AND ts.auction_date = all_auctions_to_date.last_auction_date
+
+    INNER JOIN bcts_staging.the_bcts_timber_sale first_auction
+        ON ts.forest_file_id = first_auction.forest_file_id
+        AND all_auctions_to_date.first_auction_date =
+            first_auction.auction_date
+),
+
+advertised_in_report_period AS
+(
+    SELECT DISTINCT
+        forest_file_id
+    FROM bcts_staging.the_bcts_timber_sale
+    WHERE auction_date BETWEEN
+        ADD_MONTHS(TO_DATE('${report_start_date}', 'yyyy-MM-dd'), -12)
+        AND ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
+),
+
+bidder_count AS
+(
+    SELECT
+        forest_file_id,
+        auction_date,
+        COUNT(DISTINCT client_number) AS bidder_count
+    FROM bcts_staging.the_bcts_tenure_bidder
+    GROUP BY
+        forest_file_id,
+        auction_date
+),
+
+licence_issued_advertised_official AS
+(
+    SELECT DISTINCT
+        CASE
+            WHEN ou.org_unit_code IN (
+                'TBA', 'TPL', 'TPG', 'TSK', 'TSN',
+                'TCC', 'TKA', 'TKO', 'TOC'
+            )
+            THEN 'Interior'
+            WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
+            THEN 'Coast'
+        END AS business_area_region_category,
+
+        CASE
+            WHEN ou.org_unit_code IN ('TBA', 'TPL', 'TPG', 'TSK', 'TSN')
+            THEN 'North Interior'
+            WHEN ou.org_unit_code IN ('TCC', 'TKA', 'TKO', 'TOC')
+            THEN 'South Interior'
+            WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
+            THEN 'Coast'
+        END AS business_area_region,
+
+        CASE
+            WHEN ou.org_unit_code IS NULL THEN NULL
+            ELSE REPLACE(
+                CONCAT(
+                    CASE
+                        WHEN ou.org_unit_name =
+                             'Seaward-tlasta Timber Sales Office'
+                        THEN 'Seaward-Tlasta'
+                        ELSE ou.org_unit_name
+                    END,
+                    ' (',
+                    ou.org_unit_code,
+                    ')'
+                ),
+                ' Timber Sales Office',
+                ''
+            )
+        END AS business_area,
+
+        ou.org_unit_code AS business_area_code,
+        ts.forest_file_id,
+
+        COALESCE(
+            issued.issued_licence_legal_effective_date,
+            advertised.last_auction_date
+        ) AS x_axis_date,
+
+        COALESCE(
+            issued.issued_licence_legal_effective_fiscal,
+            advertised.last_auction_fiscal
+        ) AS x_axis_fiscal,
+
+        COALESCE(
+            issued.issued_licence_legal_effective_quarter,
+            advertised.last_auction_quarter
+        ) AS x_axis_quarter,
+
+        pfu.file_type_code,
+        advertised.auction_count_all_time_to_report_period_end,
+        advertised.first_auction_date,
+        advertised.first_auction_fiscal,
+        advertised.first_auction_quarter,
+        advertised.first_bcts_category_code,
+        advertised.first_auction_volume,
+        advertised.first_auction_category_a_and_1_volume,
+        advertised.first_auction_category_2_and_4_volume,
+
+        CASE
+            WHEN advertised.first_auction_date BETWEEN
+                ADD_MONTHS(
+                    TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+                AND ADD_MONTHS(
+                    TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+            THEN advertised.first_auction_volume
+        END AS first_auction_volume_is_in_report_period,
+
+        CASE
+            WHEN advertised.first_auction_date BETWEEN
+                ADD_MONTHS(
+                    TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+                AND ADD_MONTHS(
+                    TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+            THEN advertised.first_auction_category_a_and_1_volume
+        END AS first_auction_category_a_and_1_volume_is_in_report_period,
+
+        CASE
+            WHEN advertised.first_auction_date BETWEEN
+                ADD_MONTHS(
+                    TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+                AND ADD_MONTHS(
+                    TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                    -12
+                )
+            THEN advertised.first_auction_category_2_and_4_volume
+        END AS first_auction_category_2_and_4_volume_is_in_report_period,
+
+        advertised.last_auction_date,
+        advertised.last_auction_fiscal,
+        advertised.last_auction_quarter,
+        advertised.last_auction_bcts_category_code,
+        advertised.last_auction_volume,
+        advertised.last_auction_category_a_and_1_volume,
+        advertised.last_auction_category_2_and_4_volume,
+        advertised.original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+        advertised.original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+        advertised.last_auction_no_sale_rationale,
+        advertised.last_auction_no_sale_volume,
+        advertised.last_auction_no_sale_category_a_1_volume,
+        advertised.last_auction_no_sale_category_2_4_volume,
+
+        CASE
+            WHEN advertised.last_auction_no_sale_rationale IS NULL THEN NULL
+            ELSE 'Y'
+        END AS last_auction_no_sale,
+
+        CASE
+            WHEN advertised.last_auction_no_sale_rationale IS NULL THEN NULL
+            WHEN advertised.last_auction_no_sale_category_a_1_volume IS NULL
+            THEN NULL
+            ELSE 'Y'
+        END AS last_auction_no_sale_cat_a,
+
+        CASE
+            WHEN advertised.last_auction_no_sale_rationale IS NULL THEN NULL
+            WHEN advertised.last_auction_no_sale_category_2_4_volume IS NULL
+            THEN NULL
+            ELSE 'Y'
+        END AS last_auction_no_sale_cat_2_4,
+
+        issued.issued_licence_legal_effective_date,
+        issued.issued_licence_legal_effective_fiscal,
+        issued.issued_licence_legal_effective_quarter,
+        issued.issued_licence_bcts_category_code,
+        issued.issued_licence_volume,
+        issued.category_a_and_1_issued_volume,
+        issued.category_2_and_4_issued_volume,
+        issued.issued_licence_maximum_value,
+
+        CASE
+            WHEN issued.issued_licence_bcts_category_code = 'A'
+            THEN issued.issued_licence_maximum_value
+        END AS issued_licence_maximum_value_cat_a,
+
+        CASE
+            WHEN issued.issued_licence_bcts_category_code IN ('2', '4')
+            THEN issued.issued_licence_maximum_value
+        END AS issued_licence_maximum_value_cat_2_4,
+
+        issued.issued_licence_client_number,
+        issued.issued_licence_client_name,
+
+        CASE
+            WHEN issued.forest_file_id IS NULL THEN NULL
+            ELSE 'Y'
+        END AS issued_in_report_period,
+
+        CASE
+            WHEN issued.forest_file_id IS NULL THEN NULL
+            WHEN issued.category_a_and_1_issued_volume IS NULL THEN NULL
+            ELSE 'Y'
+        END AS issued_in_report_period_cat_a,
+
+        CASE
+            WHEN issued.forest_file_id IS NULL THEN NULL
+            WHEN issued.category_2_and_4_issued_volume IS NULL THEN NULL
+            ELSE 'Y'
+        END AS issued_in_report_period_cat_2_4,
+
+        CASE
+            WHEN advertised_in_report_period.forest_file_id IS NULL THEN NULL
+            ELSE 'Y'
+        END AS advertised_in_report_period,
+
+        CASE
+            WHEN tfsc.description IS NOT NULL
+            THEN CONCAT(
+                tfsc.description,
+                ' (',
+                pfu.file_status_st,
+                ')'
+            )
+            ELSE pfu.file_status_st
+        END AS fta_file_status,
+
+        pfu.file_status_date AS fta_file_status_date,
+        bc.bidder_count,
+
+        ADD_MONTHS(
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+            -12
+        ) AS report_start_date,
+
+        ADD_MONTHS(
+            TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+            -12
+        ) AS report_end_date,
+
+        CASE
+            WHEN MONTH(CURRENT_DATE()) >= 4
+            THEN YEAR(CURRENT_DATE())
+            ELSE YEAR(CURRENT_DATE()) - 1
+        END AS fiscal_year
+
+    FROM bcts_staging.fta_prov_forest_use pfu
+
+    INNER JOIN bcts_staging.the_org_unit ou
+        ON pfu.bcts_org_unit = ou.org_unit_no
+
+    LEFT JOIN bcts_staging.the_bcts_timber_sale ts
+        ON pfu.forest_file_id = ts.forest_file_id
+
+    LEFT JOIN bcts_staging.fta_tenure_term tt
+        ON pfu.forest_file_id = tt.forest_file_id
+
+    LEFT JOIN bcts_staging.fta_tenure_file_status_code tfsc
+        ON pfu.file_status_st = tfsc.tenure_file_status_code
+
+    LEFT JOIN issued
+        ON ts.forest_file_id = issued.forest_file_id
+
+    LEFT JOIN advertised
+        ON ts.forest_file_id = advertised.forest_file_id
+
+    LEFT JOIN advertised_in_report_period
+        ON ts.forest_file_id =
+           advertised_in_report_period.forest_file_id
+
+    LEFT JOIN bidder_count bc
+        ON ts.forest_file_id = bc.forest_file_id
+        AND advertised.last_auction_date = bc.auction_date
+
+    WHERE
+        (
+            issued.forest_file_id IS NOT NULL
+            OR advertised_in_report_period.forest_file_id IS NOT NULL
+        )
+        AND ts.forest_file_id IS NOT NULL
+
+    UNION
+
+    SELECT
+        CASE
+            WHEN ou.org_unit_code IN (
+                'TBA', 'TPL', 'TPG', 'TSK', 'TSN',
+                'TCC', 'TKA', 'TKO', 'TOC'
+            )
+            THEN 'Interior'
+            WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
+            THEN 'Coast'
+        END AS business_area_region_category,
+
+        CASE
+            WHEN ou.org_unit_code IN ('TBA', 'TPL', 'TPG', 'TSK', 'TSN')
+            THEN 'North Interior'
+            WHEN ou.org_unit_code IN ('TCC', 'TKA', 'TKO', 'TOC')
+            THEN 'South Interior'
+            WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
+            THEN 'Coast'
+        END AS business_area_region,
+
+        CASE
+            WHEN ou.org_unit_code IS NULL THEN NULL
+            ELSE REPLACE(
+                CONCAT(
+                    CASE
+                        WHEN ou.org_unit_name =
+                             'Seaward-tlasta Timber Sales Office'
+                        THEN 'Seaward-Tlasta'
+                        ELSE ou.org_unit_name
+                    END,
+                    ' (',
+                    ou.org_unit_code,
+                    ')'
+                ),
+                ' Timber Sales Office',
+                ''
+            )
+        END AS business_area,
+
+        ou.org_unit_code AS business_area_code,
+        CAST(NULL AS STRING) AS forest_file_id,
+        CAST(NULL AS TIMESTAMP) AS x_axis_date,
+        CAST(NULL AS STRING) AS x_axis_fiscal,
+        CAST(NULL AS STRING) AS x_axis_quarter,
+        CAST(NULL AS STRING) AS file_type_code,
+        CAST(NULL AS BIGINT) AS auction_count_all_time_to_report_period_end,
+        CAST(NULL AS TIMESTAMP) AS first_auction_date,
+        CAST(NULL AS STRING) AS first_auction_fiscal,
+        CAST(NULL AS STRING) AS first_auction_quarter,
+        CAST(NULL AS STRING) AS first_bcts_category_code,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_category_a_and_1_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_category_2_and_4_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_volume_is_in_report_period,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_category_a_and_1_volume_is_in_report_period,
+        CAST(NULL AS DECIMAL(38,18)) AS first_auction_category_2_and_4_volume_is_in_report_period,
+        CAST(NULL AS TIMESTAMP) AS last_auction_date,
+        CAST(NULL AS STRING) AS last_auction_fiscal,
+        CAST(NULL AS STRING) AS last_auction_quarter,
+        CAST(NULL AS STRING) AS last_auction_bcts_category_code,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_category_a_and_1_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_category_2_and_4_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+        CAST(NULL AS STRING) AS last_auction_no_sale_rationale,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_no_sale_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_no_sale_category_a_1_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS last_auction_no_sale_category_2_4_volume,
+        CAST(NULL AS STRING) AS last_auction_no_sale,
+        CAST(NULL AS STRING) AS last_auction_no_sale_cat_a,
+        CAST(NULL AS STRING) AS last_auction_no_sale_cat_2_4,
+        CAST(NULL AS DATE) AS issued_licence_legal_effective_date,
+        CAST(NULL AS STRING) AS issued_licence_legal_effective_fiscal,
+        CAST(NULL AS STRING) AS issued_licence_legal_effective_quarter,
+        CAST(NULL AS STRING) AS issued_licence_bcts_category_code,
+        CAST(NULL AS DECIMAL(38,18)) AS issued_licence_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS category_a_and_1_issued_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS category_2_and_4_issued_volume,
+        CAST(NULL AS DECIMAL(38,18)) AS issued_licence_maximum_value,
+        CAST(NULL AS DECIMAL(38,18)) AS issued_licence_maximum_value_cat_a,
+        CAST(NULL AS DECIMAL(38,18)) AS issued_licence_maximum_value_cat_2_4,
+        CAST(NULL AS STRING) AS issued_licence_client_number,
+        CAST(NULL AS STRING) AS issued_licence_client_name,
+        CAST(NULL AS STRING) AS issued_in_report_period,
+        CAST(NULL AS STRING) AS issued_in_report_period_cat_a,
+        CAST(NULL AS STRING) AS issued_in_report_period_cat_2_4,
+        CAST(NULL AS STRING) AS advertised_in_report_period,
+        CAST(NULL AS STRING) AS fta_file_status,
+        CAST(NULL AS DATE) AS fta_file_status_date,
+        CAST(NULL AS DECIMAL(38,18)) AS bidder_count,
+
+        ADD_MONTHS(
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+            -12
+        ) AS report_start_date,
+
+        ADD_MONTHS(
+            TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+            -12
+        ) AS report_end_date,
+
+        CASE
+            WHEN MONTH(CURRENT_DATE()) >= 4
+            THEN YEAR(CURRENT_DATE())
+            ELSE YEAR(CURRENT_DATE()) - 1
+        END AS fiscal_year
+
+    FROM bcts_staging.the_org_unit ou
+    WHERE ou.org_unit_no IN (
+        1808,
+        1812,
+        1816,
+        1813,
+        1815,
+        1814,
+        1810,
+        1811,
+        1817,
+        1807,
+        1809,
+        1818
+    )
+)
+
+SELECT
+    business_area_region_category,
+    business_area_region,
+    business_area,
+    business_area_code,
+    forest_file_id,
+    x_axis_date,
+    x_axis_fiscal,
+    x_axis_quarter,
+    file_type_code,
+    auction_count_all_time_to_report_period_end,
+    first_auction_date,
+    first_auction_fiscal,
+    first_auction_quarter,
+    first_bcts_category_code,
+    first_auction_volume,
+    first_auction_category_a_and_1_volume,
+    first_auction_category_2_and_4_volume,
+    first_auction_volume_is_in_report_period,
+    first_auction_category_a_and_1_volume_is_in_report_period,
+    first_auction_category_2_and_4_volume_is_in_report_period,
+    last_auction_date,
+    last_auction_fiscal,
+    last_auction_quarter,
+    last_auction_bcts_category_code,
+    last_auction_volume,
+    last_auction_category_a_and_1_volume,
+    last_auction_category_2_and_4_volume,
+    original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+    original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+    last_auction_no_sale_rationale,
+    last_auction_no_sale_volume,
+    last_auction_no_sale_category_a_1_volume,
+    last_auction_no_sale_category_2_4_volume,
+    last_auction_no_sale,
+    last_auction_no_sale_cat_a,
+    last_auction_no_sale_cat_2_4,
+    issued_licence_legal_effective_date,
+    issued_licence_legal_effective_fiscal,
+    issued_licence_legal_effective_quarter,
+    issued_licence_bcts_category_code,
+    issued_licence_volume,
+    category_a_and_1_issued_volume,
+    category_2_and_4_issued_volume,
+    issued_licence_maximum_value,
+    issued_licence_maximum_value_cat_a,
+    issued_licence_maximum_value_cat_2_4,
+    issued_licence_client_number,
+    issued_licence_client_name,
+    issued_in_report_period,
+    issued_in_report_period_cat_a,
+    issued_in_report_period_cat_2_4,
+    advertised_in_report_period,
+    fta_file_status,
+    fta_file_status_date,
+    bidder_count,
+    report_start_date,
+    report_end_date,
+    fiscal_year
+FROM licence_issued_advertised_official;
+
 INSERT INTO bcts_staging.licence_issued_advertised_main_hist
 (
     business_area_region_category,
@@ -1718,6 +2591,206 @@ SELECT
     ) AS report_run_timestamp
 
 FROM lrm_replication.division d;
+
+/* qLicenceIssuedAdvertised_main */
+INSERT INTO bcts_staging.licence_issued_advertised_main_previous_ytd
+(
+    business_area_region_category,
+    business_area_region,
+    business_area,
+    management_unit,
+    district,
+    x_axis_date,
+    x_axis_fiscal,
+    x_axis_quarter,
+    licence,
+    file_type_code,
+    auction_count_all_time_to_report_period_end,
+    first_auction_date,
+    first_auction_fiscal,
+    first_auction_quarter,
+    first_bcts_category_code,
+    first_auction_volume,
+    first_auction_category_a_and_1_volume,
+    first_auction_category_2_and_4_volume,
+    first_auction_volume_is_in_report_period,
+    first_auction_category_a_and_1_volume_is_in_report_period,
+    first_auction_category_2_and_4_volume_is_in_report_period,
+    last_auction_date,
+    last_auction_fiscal,
+    last_auction_quarter,
+    last_auction_bcts_category_code,
+    last_auction_volume,
+    last_auction_category_a_and_1_volume,
+    last_auction_category_2_and_4_volume,
+    original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+    original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+    last_auction_no_sale_rationale,
+    last_auction_no_sale_volume,
+    last_auction_no_sale_category_a_1_volume,
+    last_auction_no_sale_category_2_4_volume,
+    last_auction_no_sale,
+    last_auction_no_sale_cat_a,
+    last_auction_no_sale_cat_2_4,
+    issued_licence_legal_effective_date,
+    issued_licence_legal_effective_fiscal,
+    issued_licence_legal_effective_quarter,
+    issued_licence_bcts_category_code,
+    issued_licence_volume,
+    category_a_and_1_issued_volume,
+    category_2_and_4_issued_volume,
+    issued_licence_maximum_value,
+    issued_licence_maximum_value_cat_a,
+    issued_licence_maximum_value_cat_2_4,
+    issued_licence_client_number,
+    issued_licence_client_name,
+    issued_in_report_period,
+    issued_in_report_period_cat_a,
+    issued_in_report_period_cat_2_4,
+    advertised_in_report_period,
+    total_volume_salvage_all_fire_year_lrm,
+    fta_file_status,
+    fta_file_status_date,
+    bidder_count,
+    report_start_date,
+    report_end_date,
+    fiscal_year,
+    semi_monthly_report_start_date,
+    include_in_semi_monthly_report
+)
+SELECT
+    official.business_area_region_category,
+    official.business_area_region,
+    official.business_area,
+    lrm.management_unit,
+    lrm.district,
+    official.x_axis_date,
+    official.x_axis_fiscal,
+    official.x_axis_quarter,
+    official.forest_file_id AS licence,
+    official.file_type_code,
+    official.auction_count_all_time_to_report_period_end,
+    official.first_auction_date,
+    official.first_auction_fiscal,
+    official.first_auction_quarter,
+    official.first_bcts_category_code,
+    official.first_auction_volume,
+    official.first_auction_category_a_and_1_volume,
+    official.first_auction_category_2_and_4_volume,
+    official.first_auction_volume_is_in_report_period,
+    official.first_auction_category_a_and_1_volume_is_in_report_period,
+    official.first_auction_category_2_and_4_volume_is_in_report_period,
+    official.last_auction_date,
+    official.last_auction_fiscal,
+    official.last_auction_quarter,
+    official.last_auction_bcts_category_code,
+    official.last_auction_volume,
+    official.last_auction_category_a_and_1_volume,
+    official.last_auction_category_2_and_4_volume,
+    official.original_cat_2_and_4_readvertised_cat_a_and_1_volume,
+    official.original_cat_a_and_1_readvertised_cat_2_and_4_volume,
+    official.last_auction_no_sale_rationale,
+    official.last_auction_no_sale_volume,
+    official.last_auction_no_sale_category_a_1_volume,
+    official.last_auction_no_sale_category_2_4_volume,
+    official.last_auction_no_sale,
+    official.last_auction_no_sale_cat_a,
+    official.last_auction_no_sale_cat_2_4,
+    official.issued_licence_legal_effective_date,
+    official.issued_licence_legal_effective_fiscal,
+    official.issued_licence_legal_effective_quarter,
+    official.issued_licence_bcts_category_code,
+    official.issued_licence_volume,
+    official.category_a_and_1_issued_volume,
+    official.category_2_and_4_issued_volume,
+    official.issued_licence_maximum_value,
+    official.issued_licence_maximum_value_cat_a,
+    official.issued_licence_maximum_value_cat_2_4,
+    official.issued_licence_client_number,
+    official.issued_licence_client_name,
+    official.issued_in_report_period,
+    official.issued_in_report_period_cat_a,
+    official.issued_in_report_period_cat_2_4,
+    official.advertised_in_report_period,
+    ROUND(lrm.lrm_total_volume_salvage_all_fire_years)
+        AS total_volume_salvage_all_fire_year_lrm,
+    official.fta_file_status,
+    official.fta_file_status_date,
+    official.bidder_count,
+
+    ADD_MONTHS(
+        TO_DATE('${report_start_date}', 'yyyy-MM-dd'),
+        -12
+    ) AS report_start_date,
+
+    ADD_MONTHS(
+        TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+        -12
+    ) AS report_end_date,
+
+    official.fiscal_year,
+
+    CASE
+        WHEN DAY(
+            ADD_MONTHS(
+                TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                -12
+            )
+        ) = 15
+        THEN DATE_SUB(
+            ADD_MONTHS(
+                TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                -12
+            ),
+            14
+        )
+        ELSE DATE_ADD(
+            TRUNC(
+                ADD_MONTHS(
+                    TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                    -12
+                ),
+                'MONTH'
+            ),
+            15
+        )
+    END AS semi_monthly_report_start_date,
+
+    CASE
+        WHEN official.x_axis_date >=
+            CASE
+                WHEN DAY(
+                    ADD_MONTHS(
+                        TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                        -12
+                    )
+                ) = 15
+                THEN DATE_SUB(
+                    ADD_MONTHS(
+                        TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                        -12
+                    ),
+                    14
+                )
+                ELSE DATE_ADD(
+                    TRUNC(
+                        ADD_MONTHS(
+                            TO_DATE('${report_end_date}', 'yyyy-MM-dd'),
+                            -12
+                        ),
+                        'MONTH'
+                    ),
+                    15
+                )
+            END
+        THEN 'Y'
+        ELSE 'N'
+    END AS include_in_semi_monthly_report
+
+FROM bcts_staging.licence_issued_advertised_official_previous_ytd AS official
+
+LEFT JOIN bcts_staging.v_licence_issued_advertised_lrm AS lrm
+    ON official.forest_file_id = lrm.licence_id;
 
 -- Publish the latest report to reporting area. This will overwrite the existing report in reporting area with the same report_end_date.
     
