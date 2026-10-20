@@ -1476,9 +1476,9 @@ WITH issued AS
             COALESCE(fc.client_name, '')
         ) AS issued_licence_client_name
 
-    FROM bcts_staging.the_bcts_timber_sale ts0
+    FROM bctsadmin_replication.bcts_timber_sale ts0
 
-    INNER JOIN bcts_staging.the_bcts_tenure_bidder tb
+    INNER JOIN bctsadmin_replication.bcts_tenure_bidder tb
         ON ts0.forest_file_id = tb.forest_file_id
         AND ts0.auction_date = tb.auction_date
         AND ts0.no_sale_rationale_code IS NULL
@@ -1501,7 +1501,7 @@ WITH issued AS
             ADD_MONTHS(TO_DATE('${report_start_date}', 'yyyy-MM-dd'), -12)
             AND ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
 
-    INNER JOIN bcts_staging.the_v_client_public fc
+    INNER JOIN mofclient_replication.v_client_public fc
         ON tb.client_number = fc.client_number
 ),
 
@@ -1512,7 +1512,7 @@ all_auctions_to_date AS
         COUNT(ts.auction_date) AS auction_count_all_time_to_report_period_end,
         MIN(ts.auction_date) AS first_auction_date,
         MAX(ts.auction_date) AS last_auction_date
-    FROM bcts_staging.the_bcts_timber_sale ts
+    FROM bctsadmin_replication.bcts_timber_sale ts
     WHERE COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB'
       AND ts.auction_date <=
           ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
@@ -1672,16 +1672,16 @@ advertised AS
             THEN ts.sale_volume
         END AS original_cat_a_and_1_readvertised_cat_2_and_4_volume
 
-    FROM bcts_staging.the_bcts_timber_sale ts
+    FROM bctsadmin_replication.bcts_timber_sale ts
 
-    LEFT JOIN bcts_staging.the_no_sale_rationale_code nsrc
+    LEFT JOIN bctsadmin_replication.no_sale_rationale_code nsrc
         ON ts.no_sale_rationale_code = nsrc.no_sale_rationale_code
 
     INNER JOIN all_auctions_to_date
         ON ts.forest_file_id = all_auctions_to_date.forest_file_id
         AND ts.auction_date = all_auctions_to_date.last_auction_date
 
-    INNER JOIN bcts_staging.the_bcts_timber_sale first_auction
+    INNER JOIN bctsadmin_replication.bcts_timber_sale first_auction
         ON ts.forest_file_id = first_auction.forest_file_id
         AND all_auctions_to_date.first_auction_date =
             first_auction.auction_date
@@ -1691,7 +1691,7 @@ advertised_in_report_period AS
 (
     SELECT DISTINCT
         forest_file_id
-    FROM bcts_staging.the_bcts_timber_sale
+    FROM bctsadmin_replication.bcts_timber_sale
     WHERE auction_date BETWEEN
         ADD_MONTHS(TO_DATE('${report_start_date}', 'yyyy-MM-dd'), -12)
         AND ADD_MONTHS(TO_DATE('${report_end_date}', 'yyyy-MM-dd'), -12)
@@ -1703,7 +1703,7 @@ bidder_count AS
         forest_file_id,
         auction_date,
         COUNT(DISTINCT client_number) AS bidder_count
-    FROM bcts_staging.the_bcts_tenure_bidder
+    FROM bctsadmin_replication.bcts_tenure_bidder
     GROUP BY
         forest_file_id,
         auction_date
@@ -1926,10 +1926,10 @@ licence_issued_advertised_official AS
 
     FROM bcts_staging.fta_prov_forest_use pfu
 
-    INNER JOIN bcts_staging.the_org_unit ou
+    INNER JOIN mofclient_replication.org_unit ou
         ON pfu.bcts_org_unit = ou.org_unit_no
 
-    LEFT JOIN bcts_staging.the_bcts_timber_sale ts
+    LEFT JOIN bctsadmin_replication.bcts_timber_sale ts
         ON pfu.forest_file_id = ts.forest_file_id
 
     LEFT JOIN bcts_staging.fta_tenure_term tt
@@ -2069,7 +2069,7 @@ licence_issued_advertised_official AS
             ELSE YEAR(CURRENT_DATE()) - 1
         END AS fiscal_year
 
-    FROM bcts_staging.the_org_unit ou
+    FROM mofclient_replication.org_unit ou
     WHERE ou.org_unit_no IN (
         1808,
         1812,
