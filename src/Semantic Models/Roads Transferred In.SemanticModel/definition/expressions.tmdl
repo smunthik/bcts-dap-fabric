@@ -1,0 +1,18 @@
+expression server =
+		let
+		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
+		in
+		    Source
+	lineageTag: 12a2c9e1-0e96-492b-84f5-542b9fdff77a
+
+	annotation PBI_ResultType = Text
+
+expression database =
+		let
+		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
+		in
+		    Source
+	lineageTag: 9fbb826e-ae2c-44ec-8af7-57bbb019f71b
+
+	annotation PBI_ResultType = Text
+

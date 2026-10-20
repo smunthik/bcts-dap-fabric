@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Roads Transferred In"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c1ca4e52-5c20-4f64-ac90-b620638d2642"
+  }
+}

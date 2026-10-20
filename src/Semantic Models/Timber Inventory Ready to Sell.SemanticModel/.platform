@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Timber Inventory Ready to Sell"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e87e6281-6a78-4312-88db-358c7d8b52b6"
+  }
+}

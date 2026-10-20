@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "import_licence_issued_ra_apportionment"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "65e0055e-5ee5-409a-b348-be2ea42b245f"
+  }
+}

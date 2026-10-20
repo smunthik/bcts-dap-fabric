@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Roads Transferred In"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f54f7f2d-ddc0-4d00-9332-1dadc041b4c0"
+  }
+}

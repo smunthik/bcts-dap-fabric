@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BCTS Performance Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "70077985-80a0-4569-87ea-c18c5fef65d8"
+  }
+}

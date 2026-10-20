@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Licence Transfer Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5ada3ff1-e358-4169-8438-a74b5a878ea8"
+  }
+}

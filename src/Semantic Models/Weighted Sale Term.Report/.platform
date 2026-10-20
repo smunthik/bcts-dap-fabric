@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Weighted Sale Term"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a3f9d285-ed1d-4c43-aad2-81212471363a"
+  }
+}
