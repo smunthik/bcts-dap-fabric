@@ -2866,8 +2866,7 @@ USING DELTA
 AS
 SELECT *
 FROM bcts_staging.currently_in_market_hist
-WHERE report_run_timestamp =
-(
+WHERE report_run_timestamp = (
     SELECT MAX(report_run_timestamp)
     FROM bcts_staging.currently_in_market_hist
 );
@@ -2898,8 +2897,7 @@ USING DELTA
 AS
 SELECT *
 FROM bcts_staging.licence_issued_advertised_main_hist
-WHERE report_end_date =
-(
+WHERE report_end_date = (
     SELECT MAX(report_end_date)
     FROM bcts_staging.licence_issued_advertised_main_hist
 );
@@ -2921,6 +2919,24 @@ USING DELTA
 AS
 SELECT *
 FROM bcts_staging.licence_issued_advertised_main_hist;
+
+
+DROP TABLE IF EXISTS bcts_reporting.licence_issued_advertised_official_previous_ytd;
+
+CREATE TABLE bcts_reporting.licence_issued_advertised_official_previous_ytd
+USING DELTA
+AS
+SELECT *
+FROM bcts_staging.licence_issued_advertised_official_previous_ytd;
+
+
+DROP TABLE IF EXISTS bcts_reporting.licence_issued_advertised_main_previous_ytd;
+
+CREATE TABLE bcts_reporting.licence_issued_advertised_main_previous_ytd
+USING DELTA
+AS
+SELECT *
+FROM bcts_staging.licence_issued_advertised_main_previous_ytd;
 
 
 DROP TABLE IF EXISTS bcts_staging.currently_in_market_summary;
@@ -2991,8 +3007,7 @@ TBLPROPERTIES (
     'delta.minWriterVersion' = '5'
 )
 AS
-WITH temp AS
-(
+WITH temp AS (
     SELECT
         d.business_area_region_category,
         d.business_area_region,
@@ -3173,8 +3188,7 @@ TBLPROPERTIES (
     'delta.minWriterVersion' = '5'
 )
 AS
-WITH base AS
-(
+WITH base AS (
     SELECT
         st.business_area_region_category,
         st.business_area_region,
@@ -3487,8 +3501,7 @@ TBLPROPERTIES (
     'delta.minWriterVersion' = '5'
 )
 AS
-WITH current_ytd AS
-(
+WITH current_ytd AS (
     SELECT
         business_area_region_category,
         business_area_region,
@@ -3504,8 +3517,7 @@ WITH current_ytd AS
         business_area
 ),
 
-previous_ytd AS
-(
+previous_ytd AS (
     SELECT
         business_area_region_category,
         business_area_region,
@@ -3514,25 +3526,14 @@ previous_ytd AS
             AS `Previous YTD Licence Issued`,
         COALESCE(SUM(category_2_and_4_issued_volume), 0)
             AS `Previous YTD Licence Issued: Value Added`
-    FROM bcts_reporting.licence_issued_advertised_main_hist
-    WHERE report_start_date =
-    (
-        SELECT ADD_MONTHS(MAX(report_start_date), -12)
-        FROM bcts_reporting.licence_issued_advertised_main
-    )
-    AND report_end_date =
-    (
-        SELECT ADD_MONTHS(MAX(report_end_date), -12)
-        FROM bcts_reporting.licence_issued_advertised_main
-    )
+    FROM bcts_reporting.licence_issued_advertised_main_previous_ytd
     GROUP BY
         business_area_region_category,
         business_area_region,
         business_area
 ),
 
-base AS
-(
+base AS (
     SELECT
         current_ytd.business_area_region_category,
         current_ytd.business_area_region,
