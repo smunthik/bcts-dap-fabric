@@ -120,7 +120,7 @@ SELECT DISTINCT
     REPLACE(
         CONCAT(
             CASE
-                WHEN ou.ORG_UNIT_NAME = 'Seaward Timber Sales Office'
+                WHEN ou.ORG_UNIT_NAME = 'Seaward-tlasta Timber Sales Office'
                     THEN 'Seaward/Tlasta'
                 ELSE ou.ORG_UNIT_NAME
             END,

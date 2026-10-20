@@ -149,7 +149,7 @@ per_licence AS (
         REPLACE(
             CONCAT(
                 CASE
-                    WHEN ou.org_unit_name = 'Seaward Timber Sales Office'
+                    WHEN ou.org_unit_name = 'Seaward-tlasta Timber Sales Office'
                         THEN 'Seaward-Tlasta'
                     ELSE ou.org_unit_name
                 END,
