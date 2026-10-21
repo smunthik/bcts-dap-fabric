@@ -23,11 +23,12 @@
 # CELL ********************
 
 from pyspark.sql.types import *
+from pyspark.sql.functions import current_timestamp
 
 # Path to CSV in Lakehouse Files
 csv_path = "Files/data/FY27_sales_targets.csv"
 
-# Schema matching bcts_staging.bcts_sales_targets_hist DDL
+# Schema matching columns present in the CSV
 schema = StructType([
     StructField("business_area_region_category", StringType(), True),
     StructField("business_area_region", StringType(), True),
@@ -46,8 +47,7 @@ schema = StructType([
     StructField("q3_ytd_sales_target_volume_cat_4", DecimalType(38, 18), True),
     StructField("total_fiscal_year_sales_target_volume_cat_4", DecimalType(38, 18), True),
 
-    StructField("fiscal_year", IntegerType(), True),
-    StructField("date_updated", TimestampType(), True)
+    StructField("fiscal_year", IntegerType(), True)
 ])
 
 # Read CSV
@@ -59,6 +59,9 @@ df = (
          .schema(schema)
          .load(csv_path)
 )
+
+# Add current timestamp
+df = df.withColumn("date_updated", current_timestamp())
 
 # Verify schema
 df.printSchema()
