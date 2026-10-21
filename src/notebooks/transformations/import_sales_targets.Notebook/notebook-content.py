@@ -27,14 +27,27 @@ from pyspark.sql.types import *
 # Path to CSV in Lakehouse Files
 csv_path = "Files/data/FY27_sales_targets.csv"
 
+# Schema matching bcts_staging.bcts_sales_targets_hist DDL
 schema = StructType([
-    StructField("fiscal_year", StringType(), True),
-    StructField("licence_issued", DecimalType(18, 2), True),
-    StructField("ra", DecimalType(18, 2), True),
-    StructField("full_apportionment", DecimalType(18, 2), True),
-    StructField("actual_fte_count", DecimalType(18, 2), True),
-    StructField("annual_developed_volume", DecimalType(18, 2), True),
-    StructField("volume_harvested", DecimalType(18, 2), True)
+    StructField("business_area_region_category", StringType(), True),
+    StructField("business_area_region", StringType(), True),
+    StructField("business_area", StringType(), True),
+
+    StructField("q1_ytd_sales_target_volume", DecimalType(38, 18), True),
+    StructField("q2_ytd_sales_target_volume", DecimalType(38, 18), True),
+    StructField("q3_ytd_sales_target_volume", DecimalType(38, 18), True),
+    StructField("total_fiscal_year_sales_target_volume", DecimalType(38, 18), True),
+
+    StructField("rationalized_apportionment", DecimalType(38, 18), True),
+    StructField("full_apportionment", DecimalType(38, 18), True),
+
+    StructField("q1_ytd_sales_target_volume_cat_4", DecimalType(38, 18), True),
+    StructField("q2_ytd_sales_target_volume_cat_4", DecimalType(38, 18), True),
+    StructField("q3_ytd_sales_target_volume_cat_4", DecimalType(38, 18), True),
+    StructField("total_fiscal_year_sales_target_volume_cat_4", DecimalType(38, 18), True),
+
+    StructField("fiscal_year", IntegerType(), True),
+    StructField("date_updated", TimestampType(), True)
 ])
 
 # Read CSV
@@ -47,15 +60,18 @@ df = (
          .load(csv_path)
 )
 
+# Verify schema
+df.printSchema()
+
 # Preview
 display(df)
 
-# Create/overwrite Fabric Delta table
+# Overwrite data in existing Fabric Delta table
 (
     df.write
       .format("delta")
       .mode("overwrite")
-      .saveAsTable("bcts_reporting.bcts_sales_targets_hist")
+      .saveAsTable("bcts_staging.bcts_sales_targets_hist")
 )
 
 # METADATA ********************
