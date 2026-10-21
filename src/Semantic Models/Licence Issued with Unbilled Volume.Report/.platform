@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Licence Issued with Unbilled Volume"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "828a9765-b3ac-4bf0-b466-4568b0a65e31"
+  }
+}
