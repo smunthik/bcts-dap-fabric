@@ -27,7 +27,8 @@ TBLPROPERTIES (
     'delta.columnMapping.mode' = 'name'
 );
 
-CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_lrm
+DROP TABLE IF EXISTS bcts_staging.tsl_summary_lrm;
+CREATE TABLE bcts_staging.tsl_summary_lrm
 (
     licence_id STRING,
     geographic_location STRING,
@@ -55,7 +56,8 @@ SET DEFAULT FROM_UTC_TIMESTAMP(
 );
 
 
-CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_official
+DROP TABLE IF EXISTS bcts_staging.tsl_summary_official;
+CREATE TABLE bcts_staging.tsl_summary_official
 (
     business_area_region_category STRING,
     business_area_region STRING,
@@ -151,10 +153,6 @@ SET DEFAULT FROM_UTC_TIMESTAMP(
 delete from bcts_staging.tsl_summary_main_hist
 where  report_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
-
-delete from bcts_staging.tsl_summary_official;
-
-delete from bcts_staging.tsl_summary_lrm;
 
 -- Populate staging table
 INSERT INTO bcts_staging.tsl_summary_lrm
