@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Licence Issued with Unbilled Volume"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d77a4465-c221-478e-b739-eda0b1ec11e8"
+  }
+}

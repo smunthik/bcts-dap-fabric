@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "dfd4f743899d5d032f72",
+  "displayName": "Unbilled Inventory - Charts",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}
