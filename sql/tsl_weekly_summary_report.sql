@@ -30,9 +30,17 @@ CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_lrm
     geographic_location STRING,
     field_team STRING,
     species STRING,
-    report_run_date DATE DEFAULT CURRENT_DATE()
+    report_run_date DATE DEFAULT CURRENT_DATE(),
+    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
+        CURRENT_TIMESTAMP(),
+        'America/Vancouver'
+    )
 )
-USING DELTA;
+USING DELTA
+TBLPROPERTIES (
+    'delta.feature.allowColumnDefaults' = 'supported'
+);
+
 
 CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_official
 (
@@ -56,38 +64,52 @@ CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_official
     bonus_bid_offer DECIMAL(38,18),
     report_start_date DATE,
     report_end_date DATE,
-    report_run_date DATE DEFAULT CURRENT_DATE()
+    report_run_date DATE DEFAULT CURRENT_DATE(),
+    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
+        CURRENT_TIMESTAMP(),
+        'America/Vancouver'
+    )
 )
-USING DELTA;
+USING DELTA
+TBLPROPERTIES (
+    'delta.feature.allowColumnDefaults' = 'supported'
+);
+
 
 CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_main_hist
 (
-    business_area_region_category text COLLATE pg_catalog."default",
-    business_area_region text COLLATE pg_catalog."default",
-    business_area_code character varying(6) COLLATE pg_catalog."default",
-    business_area text COLLATE pg_catalog."default",
-    licence_number character varying(15) COLLATE pg_catalog."default",
-    geographic_location character varying(4000) COLLATE pg_catalog."default",
-    field_team character varying(150) COLLATE pg_catalog."default",
-    species text COLLATE pg_catalog."default",
-    volume_advertised_m3 numeric,
-    volume_readvertised_m3 numeric,
-    auctioned_bcts_category_code character varying(1) COLLATE pg_catalog."default",
-    total_auction_count bigint,
-    readvertised_auction text COLLATE pg_catalog."default",
-    auction_closing_date timestamp without time zone,
-    number_of_bidders text COLLATE pg_catalog."default",
-    no_bid text COLLATE pg_catalog."default",
-    upset_rate_or_upset_value numeric,
-    bonus_bid_or_bonus_value numeric,
-    total_stumpage_or_total_stumpage_value numeric,
-    no_bid_info text COLLATE pg_catalog."default",
-    report_start_date date,
-    report_end_date date,
-    report_run_date DATE DEFAULT CURRENT_DATE,
-    report_run_timestamp timestamp DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'PST')
+    business_area_region_category STRING,
+    business_area_region STRING,
+    business_area_code STRING,
+    business_area STRING,
+    licence_number STRING,
+    geographic_location STRING,
+    field_team STRING,
+    species STRING,
+    volume_advertised_m3 DECIMAL(38,18),
+    volume_readvertised_m3 DECIMAL(38,18),
+    auctioned_bcts_category_code STRING,
+    total_auction_count BIGINT,
+    readvertised_auction STRING,
+    auction_closing_date TIMESTAMP,
+    number_of_bidders STRING,
+    no_bid STRING,
+    upset_rate_or_upset_value DECIMAL(38,18),
+    bonus_bid_or_bonus_value DECIMAL(38,18),
+    total_stumpage_or_total_stumpage_value DECIMAL(38,18),
+    no_bid_info STRING,
+    report_start_date DATE,
+    report_end_date DATE,
+    report_run_date DATE DEFAULT CURRENT_DATE(),
+    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
+        CURRENT_TIMESTAMP(),
+        'America/Vancouver'
+    )
 )
-USING DELTA;
+USING DELTA
+TBLPROPERTIES (
+    'delta.feature.allowColumnDefaults' = 'supported'
+);
 
 
 -- Report exists check is done on bcts_reporting table 
@@ -716,9 +738,6 @@ LEFT JOIN bctsadmin_replication.bcts_tenure_bidder tb
 
 LEFT JOIN mofclient_replication.v_client_public fc
     ON tb.client_number = fc.client_number
-
-WHERE lrm.report_run_date = CURRENT_DATE()
-
 ORDER BY
     official.last_auction_date DESC;
 
