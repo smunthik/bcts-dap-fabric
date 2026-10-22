@@ -22,7 +22,10 @@ Vendor
 List
 Available` STRING
 )
-USING DELTA;
+USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name'
+);
 
 CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_lrm
 (
@@ -30,15 +33,25 @@ CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_lrm
     geographic_location STRING,
     field_team STRING,
     species STRING,
-    report_run_date DATE DEFAULT CURRENT_DATE(),
-    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
-        CURRENT_TIMESTAMP(),
-        'America/Vancouver'
-    )
+    report_run_date DATE,
+    report_run_timestamp TIMESTAMP
 )
-USING DELTA
-TBLPROPERTIES (
+USING DELTA;
+
+ALTER TABLE bcts_staging.tsl_summary_lrm
+SET TBLPROPERTIES (
     'delta.feature.allowColumnDefaults' = 'supported'
+);
+
+ALTER TABLE bcts_staging.tsl_summary_lrm
+ALTER COLUMN report_run_date
+SET DEFAULT CURRENT_DATE();
+
+ALTER TABLE bcts_staging.tsl_summary_lrm
+ALTER COLUMN report_run_timestamp
+SET DEFAULT FROM_UTC_TIMESTAMP(
+    CURRENT_TIMESTAMP(),
+    'America/Vancouver'
 );
 
 
@@ -64,15 +77,25 @@ CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_official
     bonus_bid_offer DECIMAL(38,18),
     report_start_date DATE,
     report_end_date DATE,
-    report_run_date DATE DEFAULT CURRENT_DATE(),
-    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
-        CURRENT_TIMESTAMP(),
-        'America/Vancouver'
-    )
+    report_run_date DATE,
+    report_run_timestamp TIMESTAMP
 )
-USING DELTA
-TBLPROPERTIES (
+USING DELTA;
+
+ALTER TABLE bcts_staging.tsl_summary_official
+SET TBLPROPERTIES (
     'delta.feature.allowColumnDefaults' = 'supported'
+);
+
+ALTER TABLE bcts_staging.tsl_summary_official
+ALTER COLUMN report_run_date
+SET DEFAULT CURRENT_DATE();
+
+ALTER TABLE bcts_staging.tsl_summary_official
+ALTER COLUMN report_run_timestamp
+SET DEFAULT FROM_UTC_TIMESTAMP(
+    CURRENT_TIMESTAMP(),
+    'America/Vancouver'
 );
 
 
@@ -100,15 +123,26 @@ CREATE TABLE IF NOT EXISTS bcts_staging.tsl_summary_main_hist
     no_bid_info STRING,
     report_start_date DATE,
     report_end_date DATE,
-    report_run_date DATE DEFAULT CURRENT_DATE(),
-    report_run_timestamp TIMESTAMP DEFAULT FROM_UTC_TIMESTAMP(
-        CURRENT_TIMESTAMP(),
-        'America/Vancouver'
-    )
+    client_name STRING,
+    report_run_date DATE,
+    report_run_timestamp TIMESTAMP
 )
-USING DELTA
-TBLPROPERTIES (
+USING DELTA;
+
+ALTER TABLE bcts_staging.tsl_summary_main_hist
+SET TBLPROPERTIES (
     'delta.feature.allowColumnDefaults' = 'supported'
+);
+
+ALTER TABLE bcts_staging.tsl_summary_main_hist
+ALTER COLUMN report_run_date
+SET DEFAULT CURRENT_DATE();
+
+ALTER TABLE bcts_staging.tsl_summary_main_hist
+ALTER COLUMN report_run_timestamp
+SET DEFAULT FROM_UTC_TIMESTAMP(
+    CURRENT_TIMESTAMP(),
+    'America/Vancouver'
 );
 
 
