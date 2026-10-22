@@ -182,7 +182,7 @@ split_species AS
         TRIM(species_detail) AS species_detail
     FROM lrm_replication.sv_sales_schedule ss
     LATERAL VIEW EXPLODE(
-        SPLIT(COALESCE(ss.species_composition, ''), ';')
+        SPLIT(COALESCE(ss.species_composition, ''),  CHR(59))
     ) exploded_species AS species_detail
     WHERE ss.block_volume IS NOT NULL
       AND ss.block_volume > 0
