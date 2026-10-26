@@ -853,9 +853,11 @@ FROM bcts_staging.tsl_summary_main;
 -- ============================================================
 -- 9. CREATE REPORTING VIEW
 -- ============================================================
+DROP TABLE IF EXISTS bcts_reporting.v_tsl_summary;
 
-CREATE OR REPLACE VIEW bcts_reporting.v_tsl_summary AS
-
+CREATE TABLE bcts_reporting.v_tsl_summary
+USING DELTA
+AS
 WITH tsl_summary1 AS
 (
     SELECT
