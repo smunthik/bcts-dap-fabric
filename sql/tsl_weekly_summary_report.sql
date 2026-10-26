@@ -857,6 +857,9 @@ DROP TABLE IF EXISTS bcts_reporting.v_tsl_summary;
 
 CREATE TABLE bcts_reporting.v_tsl_summary
 USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name'
+)
 AS
 WITH tsl_summary1 AS
 (
