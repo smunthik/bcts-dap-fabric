@@ -60,7 +60,7 @@ USING DELTA
 
 # CELL ********************
 
-spark.sql("""DROP TABLE IF EXISTS bcts_metadata.transformation_config""")
+# spark.sql("""DROP TABLE IF EXISTS bcts_metadata.transformation_config""")
 
 spark.sql("""
 CREATE TABLE IF NOT EXISTS bcts_metadata.transformation_config (
@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS bcts_metadata.transformation_config (
   depends_on         STRING,    -- optional: comma-separated report_names (e.g. 'bronze_done,bidder_silver')
   has_start_date     STRING, 
   has_end_date       STRING,
+  frequency          STRING,
   date_updated TIMESTAMP 
 )
 USING DELTA
@@ -87,6 +88,10 @@ USING DELTA
 # META }
 
 # CELL ********************
+
+# spark.sql("""
+# DROP TABLE IF EXISTS bcts_metadata.run_log 
+# """)
 
 spark.sql("""
 CREATE TABLE IF NOT EXISTS bcts_metadata.run_log (
@@ -113,9 +118,37 @@ USING DELTA
 
 # CELL ********************
 
-spark.sql("""
-DROP TABLE IF EXISTS bcts_metadata.run_log 
-""")
+spark.sql(
+"""
+CREATE TABLE IF NOT EXISTS bcts_staging.bcbids_tsl_weekly_report
+(
+    `Status` STRING,
+    `Opportunity ID` STRING,
+    `Opportunity Description` STRING,
+    `Commodities` STRING,
+    `Type` STRING,
+    `Issue Date
+and Time
+(Pacific Time)` STRING,
+    `Closing Date
+and Time
+(Pacific Time)` STRING,
+    `Ends in` STRING,
+    `# of Amendments` STRING,
+    `Last Updated` STRING,
+    `Organization (Issued by)` STRING,
+    `Organization (Issued for)` STRING,
+    `Interested
+Vendor
+List
+Available` STRING
+)
+USING DELTA
+TBLPROPERTIES (
+    'delta.columnMapping.mode' = 'name'
+);
+"""
+)
 
 # METADATA ********************
 

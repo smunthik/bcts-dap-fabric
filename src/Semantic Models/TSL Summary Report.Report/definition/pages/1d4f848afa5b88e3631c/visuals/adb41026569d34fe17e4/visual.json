@@ -1,0 +1,459 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "adb41026569d34fe17e4",
+  "position": {
+    "x": 15.437185929648241,
+    "y": 151.79899497487438,
+    "z": 5000,
+    "height": 554.45226130653271,
+    "width": 1250.4120603015076,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "business_area_region_category"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "business_area_region"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.business_area_region",
+              "nativeQueryRef": "business_area_region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "business_area"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.business_area",
+              "nativeQueryRef": "business_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "business_area_code"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.business_area_code",
+              "nativeQueryRef": "business_area_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "auction_closing_date"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.auction_closing_date",
+              "nativeQueryRef": "auction_closing_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "auctioned_bcts_category_code"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.auctioned_bcts_category_code",
+              "nativeQueryRef": "auctioned_bcts_category_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "bonus_bid_or_bonus_value"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.bonus_bid_or_bonus_value)",
+              "nativeQueryRef": "bonus_bid_or_bonus_value"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "field_team"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.field_team",
+              "nativeQueryRef": "field_team"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "geographic_location"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.geographic_location",
+              "nativeQueryRef": "geographic_location"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "licence_number"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.licence_number",
+              "nativeQueryRef": "licence_number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "no_bid"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.no_bid",
+              "nativeQueryRef": "no_bid"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "no_bid_info"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.no_bid_info",
+              "nativeQueryRef": "no_bid_info"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "number_of_bidders"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.number_of_bidders",
+              "nativeQueryRef": "number_of_bidders"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "readvertised_auction"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.readvertised_auction",
+              "nativeQueryRef": "readvertised_auction"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "report_end_date"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.report_end_date",
+              "nativeQueryRef": "report_end_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "report_run_date"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.report_run_date",
+              "nativeQueryRef": "report_run_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "report_start_date"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.report_start_date",
+              "nativeQueryRef": "report_start_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "species"
+                }
+              },
+              "queryRef": "bcts_reporting tsl_summary_main.species",
+              "nativeQueryRef": "species"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "total_auction_count"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.total_auction_count)",
+              "nativeQueryRef": "total_auction_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "total_stumpage_or_total_stumpage_value"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.total_stumpage_or_total_stumpage_value)",
+              "nativeQueryRef": "total_stumpage_or_total_stumpage_value"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "upset_rate_or_upset_value"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.upset_rate_or_upset_value)",
+              "nativeQueryRef": "upset_rate_or_upset_value"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "volume_advertised_m3"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.volume_advertised_m3)",
+              "nativeQueryRef": "volume_advertised_m3"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting tsl_summary_main"
+                    }
+                  },
+                  "Property": "volume_readvertised_m3"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting tsl_summary_main.volume_readvertised_m3)",
+              "nativeQueryRef": "volume_readvertised_m3"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

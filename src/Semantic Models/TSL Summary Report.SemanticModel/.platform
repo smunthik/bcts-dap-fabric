@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TSL Summary Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "87e66844-70d1-a146-4439-7f0fac5bf4e4"
+  }
+}

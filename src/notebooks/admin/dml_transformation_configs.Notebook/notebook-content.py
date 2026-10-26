@@ -37,6 +37,7 @@ def upsert_transformation_config(
     branch_name,
     has_start_date,
     has_end_date,
+    frequency,
     execution_order=None,
     depends_on=None,
     verbose=False
@@ -59,6 +60,7 @@ def upsert_transformation_config(
             {format_value(branch_name)} AS branch_name,
             {format_value(has_start_date)} AS has_start_date,
             {format_value(has_end_date)} AS has_end_date,
+            {format_value(frequency)} AS frequency,
             {format_value(execution_order)} AS execution_order,
             {format_value(depends_on)} AS depends_on
     """
@@ -77,6 +79,7 @@ def upsert_transformation_config(
         target.branch_name = source.branch_name,
         target.has_start_date = source.has_start_date,
         target.has_end_date = source.has_end_date,
+        target.frequency = source.frequency,
         target.execution_order = source.execution_order,
         target.depends_on = source.depends_on,
         target.date_updated = current_timestamp()
@@ -91,6 +94,7 @@ def upsert_transformation_config(
         branch_name,
         has_start_date,
         has_end_date,
+        frequency,
         execution_order,
         depends_on,
         date_updated
@@ -104,6 +108,7 @@ def upsert_transformation_config(
         source.branch_name,
         source.has_start_date,
         source.has_end_date,
+        source.frequency,
         source.execution_order,
         source.depends_on,
         current_timestamp()
@@ -150,10 +155,11 @@ upsert_transformation_config(
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='yes',
-    has_end_date='yes',  
+    has_end_date='yes',
+    frequency = "MONTHLY",  
     execution_order=1,
     depends_on=None,
-    verbose=False
+    verbose=False,
 )
 
 # METADATA ********************
@@ -180,7 +186,8 @@ upsert_transformation_config(
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='yes',
-    has_end_date='yes',  
+    has_end_date='yes',
+    frequency = "MONTHLY",   
     execution_order=1,
     depends_on=None, 
     verbose=False
@@ -210,7 +217,8 @@ upsert_transformation_config(
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='no',
-    has_end_date='yes',   
+    has_end_date='yes', 
+    frequency = "MONTHLY",   
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -239,7 +247,8 @@ upsert_transformation_config(
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='no',
-    has_end_date='yes',  
+    has_end_date='yes', 
+    frequency = "MONTHLY",  
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -265,6 +274,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='no',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -279,6 +289,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -293,6 +304,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -307,6 +319,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -321,6 +334,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -335,6 +349,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -349,6 +364,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -363,6 +379,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='no',
     has_end_date='no',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -377,6 +394,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
@@ -402,10 +420,38 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
+    frequency = "BI_MONTHLY", 
     execution_order=1,
     depends_on=None,
     verbose=False
 )
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="TSL Weekly Summary Report",
+    sql_path="sql/tsl_weekly_summary_report.sql",
+    enabled_ind="Y",
+    target_table="tsl_summary_main",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='yes',
+    has_end_date='yes', 
+    frequency = "WEEKLY",  
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
 
 # METADATA ********************
 
