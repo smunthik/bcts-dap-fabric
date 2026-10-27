@@ -27,20 +27,78 @@ import calendar
 from pyspark.sql import Row
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType
 
-# --- Compute report dates (or accept from pipeline parameters) ---
-today = date.today()
+
+from datetime import date, timedelta
+import calendar
+
 start_time = datetime.utcnow()
 
-fy_start_year = today.year if today.month >= 4 else today.year - 1
-report_start_date = date(fy_start_year, 4, 1)
+def get_report_interval(frequency):
+    today = date.today()
 
-prev_month_year = today.year if today.month > 1 else today.year - 1
-prev_month = today.month - 1 if today.month > 1 else 12
-last_day = calendar.monthrange(prev_month_year, prev_month)[1]
-report_end_date = date(prev_month_year, prev_month, last_day)
+    # ---------------------------------------------------------
+    # BCTS Performance Report - Bi-monthly
+    # Start: Fiscal year start (April 1)
+    # End:
+    #   - Day >= 16 -> 15th of current month
+    #   - Day < 16  -> Last day of previous month
+    # ---------------------------------------------------------
+    if frequency == "BI_MONTHLY":
 
-start_str = report_start_date.isoformat()
-end_str = report_end_date.isoformat()
+        if today.day >= 16:
+            report_end_date = today.replace(day=15)
+        else:
+            report_end_date = today.replace(day=1) - timedelta(days=1)
+
+        # Determine fiscal year based on the report end date
+        fy_start_year = (
+            report_end_date.year
+            if report_end_date.month >= 4
+            else report_end_date.year - 1
+        )
+
+        report_start_date = date(fy_start_year, 4, 1)
+
+    # ---------------------------------------------------------
+    # TSL Weekly Summary Report - Weekly
+    # Start: Monday of previous week
+    # End: Sunday of previous week
+    # ---------------------------------------------------------
+    elif frequency == "WEEKLY":
+
+        # Monday of the current week
+        current_monday = today - timedelta(days=today.weekday())
+
+        # Previous Monday through Sunday
+        report_start_date = current_monday - timedelta(days=7)
+        report_end_date = current_monday - timedelta(days=1)
+
+    # ---------------------------------------------------------
+    # All other reports - Monthly
+    # Start: Fiscal year start (April 1)
+    # End: Last day of previous month
+    # ---------------------------------------------------------
+    elif frequency == "MONTHLY":
+
+        # Last day of previous month
+        report_end_date = today.replace(day=1) - timedelta(days=1)
+
+        # Fiscal year start based on report end date
+        fy_start_year = (
+            report_end_date.year
+            if report_end_date.month >= 4
+            else report_end_date.year - 1
+        )
+
+        report_start_date = date(fy_start_year, 4, 1)
+
+    else:
+        raise ValueError(f"Unsupported report frequency: {frequency}")
+
+    return report_start_date.isoformat(), report_end_date.isoformat()
+
+    # Return consistent YYYY-MM-DD strings
+    return report_start_date.isoformat(), report_end_date.isoformat()
 
 pipeline_name = "run_transformations"
 
@@ -59,14 +117,19 @@ run_log_schema = StructType([
 
 # --- Read config table ---
 cfg = spark.sql("""
-SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date
+SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date, frequency
 FROM bcts_metadata.transformation_config
 WHERE enabled_ind = 'Y'
 """).collect()
 
 # Enable running one or all transformations. Specify report_name_parameter if only one transformation needs to be run
 if report_name_parameter:
-    cfg = [row for row in cfg if row["report_name"] == report_name_parameter]
+    normalized_parameter = "".join(report_name_parameter.split()).casefold()
+
+    cfg = [
+        row for row in cfg
+        if "".join(row["report_name"].split()).casefold() == normalized_parameter
+    ]
 
 # --- Build DAG activities ---
 activities = []
@@ -86,6 +149,9 @@ for row in cfg:
 
 for row in cfg:
     name = row["report_name"]
+    frequency = row["frequency"]
+    # Get report start and end dates
+    start_str, end_str = get_report_interval(frequency)
     deps = parse_depends(row["depends_on"])
     print(row["sql_path"])
 

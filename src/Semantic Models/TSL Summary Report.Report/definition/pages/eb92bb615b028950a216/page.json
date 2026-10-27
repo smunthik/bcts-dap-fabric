@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "eb92bb615b028950a216",
+  "displayName": "Summary by Business Area Region",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "191L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "0c8232058c40c2d07068",
+      "target": "5a4409d6ebe7b1441d91",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0c8232058c40c2d07068",
+      "target": "53d8431a763260704ea2",
+      "type": "NoFilter"
+    }
+  ]
+}
