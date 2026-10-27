@@ -87,8 +87,8 @@ WITH sold_licence_bid_info AS (
             'HRS'
         )
         AND tt.legal_effective_dt BETWEEN
-            TO_DATE('${start_date}', 'yyyy-MM-dd')
-            AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
 ),
 
 awarded_sale_info AS (
@@ -124,8 +124,8 @@ awarded_sale_info AS (
 
     WHERE UPPER(tb.sale_awarded_ind) = 'Y'
         AND ts1.auction_date BETWEEN
-            TO_DATE('${start_date}', 'yyyy-MM-dd')
-            AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
 ),
 
 per_licence AS (
@@ -275,16 +275,16 @@ per_licence AS (
                     'HRS'
                 )
                 AND tt.legal_effective_dt BETWEEN
-                    TO_DATE('${start_date}', 'yyyy-MM-dd')
-                    AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+                    TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+                    AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
             THEN 'Y'
             ELSE 'N'
         END AS sold_in_report_period,
 
         CASE
             WHEN ts.auction_date BETWEEN
-                TO_DATE('${start_date}', 'yyyy-MM-dd')
-                AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+                TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+                AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
             THEN 'Y'
             ELSE 'N'
         END AS auction_in_report_period,
@@ -344,13 +344,13 @@ per_licence AS (
         ts.no_sale_rationale_code IS NULL
         AND pfu.file_status_st IN ('HI', 'HC', 'LC', 'HX', 'HS', 'HRS')
         AND tt.legal_effective_dt BETWEEN
-            TO_DATE('${start_date}', 'yyyy-MM-dd')
-            AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     )
     OR (
         ts.auction_date BETWEEN
-            TO_DATE('${start_date}', 'yyyy-MM-dd')
-            AND TO_DATE('${end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+            AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     )
 )
 
@@ -374,8 +374,8 @@ SELECT
 
     COUNT(awarded_licence_volume) AS count_awarded_licences,
 
-    TO_DATE('${start_date}', 'yyyy-MM-dd') AS report_start_date,
-    TO_DATE('${end_date}', 'yyyy-MM-dd') AS report_end_date,
+    TO_DATE('${report_start_date}', 'yyyy-MM-dd') AS report_start_date,
+    TO_DATE('${report_end_date}', 'yyyy-MM-dd') AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(

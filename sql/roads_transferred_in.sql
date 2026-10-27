@@ -89,8 +89,8 @@ SELECT DISTINCT
     CAST(RCOM_COMPLETION_DATE AS DATE) AS transfer_date,
     CONST_METHOD_TYPE,
 
-    CAST('{start_date}' AS DATE) AS fiscal_year_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(
@@ -115,8 +115,8 @@ WHERE UPPER(CONST_METHOD_TYPE) = 'TRANSFER IN'
     )
     AND RDST_STEWARD_NAME = 'BCTS'
     AND RCOM_COMPLETION_DATE BETWEEN
-        CAST('{start_date}' AS DATE)
-        AND CAST('{end_date}' AS DATE);
+        CAST('${report_start_date}' AS DATE)
+        AND CAST('${report_end_date}' AS DATE);
 
 -- Publish the latest report to reporting area. This will overwrite the existing report in reporting area with the same report_end_date.
    DROP TABLE IF EXISTS BCTS_STAGING.roads_transferred_in;

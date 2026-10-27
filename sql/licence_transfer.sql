@@ -96,8 +96,8 @@ CC AS (
                 ff0.FOREST_FILE_ID
             FROM BCTS_STAGING.FTA_FOREST_FILE_CLIENT ff0
             WHERE ff0.LICENSEE_START_DATE BETWEEN
-                TO_DATE('{start_date}', 'yyyy-MM-dd')
-                AND TO_DATE('{end_date}', 'yyyy-MM-dd')
+                TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+                AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
         )
     GROUP BY
         ff1.FOREST_FILE_ID
@@ -191,8 +191,8 @@ SELECT DISTINCT
         ORDER BY cl.LICENSEE_START_DATE
     ) AS licensee_order,
 
-    CAST('{start_date}' AS DATE) AS report_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS report_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
         FROM_UTC_TIMESTAMP(

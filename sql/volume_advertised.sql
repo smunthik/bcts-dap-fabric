@@ -418,8 +418,8 @@ bid_info AS (
     FROM
         bctsadmin_replication.bcts_tenure_bidder b
     WHERE
-        b.auction_date BETWEEN TO_DATE('{start_date}', 'yyyy-MM-dd')
-                           AND TO_DATE('{end_date}', 'yyyy-MM-dd')
+        b.auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+                           AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     GROUP BY
         b.forest_file_id,
         b.auction_date
@@ -515,13 +515,13 @@ SELECT DISTINCT
             THEN 'This auction is the last auction for the licence in the report period and is a no sale.'
     END AS last_auction_no_sale,
 
-    CAST('{start_date}' AS DATE) AS report_start_date,
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_start_date}' AS DATE) AS report_start_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     CASE
-        WHEN MONTH(CAST('{end_date}' AS DATE)) >= 4
-            THEN YEAR(CAST('{end_date}' AS DATE))
-        ELSE YEAR(CAST('{end_date}' AS DATE)) - 1
+        WHEN MONTH(CAST('${report_end_date}' AS DATE)) >= 4
+            THEN YEAR(CAST('${report_end_date}' AS DATE))
+        ELSE YEAR(CAST('${report_end_date}' AS DATE)) - 1
     END AS fiscal_year,
 
         TO_DATE(
@@ -563,8 +563,8 @@ FROM
         AND ts.auction_date = bid_info.auction_date
 
 WHERE
-    ts.auction_date BETWEEN TO_DATE('{start_date}', 'yyyy-MM-dd')
-                        AND TO_DATE('{end_date}', 'yyyy-MM-dd')
+    ts.auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+                        AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     AND COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB';
 
 
