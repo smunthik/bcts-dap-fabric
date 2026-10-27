@@ -371,22 +371,20 @@ WITH AU_CNT AS (
     SELECT
         ts.forest_file_id,
         COUNT(ts.auction_date) AS auction_count,
-        MIN(ts.auction_date) AS first_auction_date,
-        MAX(ts.auction_date) AS last_auction_date
-    FROM
-        bctsadmin_replication.bcts_timber_sale ts,
-        (
-            SELECT
-                forest_file_id,
-                auction_date
-            FROM bctsadmin_replication.bcts_timber_sale
-            WHERE
-                COALESCE(no_sale_rationale_code, ' ') <> 'TB'
-                AND auction_date <= TO_DATE('{end_date}', 'yyyy-MM-dd')
-        ) auction_filter
-    WHERE
-        ts.forest_file_id = auction_filter.forest_file_id
-        AND ts.auction_date = auction_filter.auction_date
+        MIN(TO_DATE(ts.auction_date)) AS first_auction_date,
+        MAX(TO_DATE(ts.auction_date)) AS last_auction_date
+    FROM bctsadmin_replication.bcts_timber_sale ts
+    INNER JOIN (
+        SELECT
+            forest_file_id,
+            auction_date
+        FROM bctsadmin_replication.bcts_timber_sale
+        WHERE COALESCE(no_sale_rationale_code, ' ') <> 'TB'
+          AND TO_DATE(auction_date)
+              <= TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+    ) auction_filter
+        ON ts.forest_file_id = auction_filter.forest_file_id
+       AND ts.auction_date = auction_filter.auction_date
     GROUP BY
         ts.forest_file_id
 ),
@@ -394,49 +392,55 @@ WITH AU_CNT AS (
 bid_info AS (
     SELECT
         b.forest_file_id,
-        b.auction_date,
-        COUNT(client_number) AS client_count,
+        TO_DATE(b.auction_date) AS auction_date,
+        COUNT(b.client_number) AS client_count,
         COUNT(
             CASE
-                WHEN UPPER(ineligible_ind) = 'N'
-                    THEN client_number
+                WHEN UPPER(b.ineligible_ind) = 'N'
+                    THEN b.client_number
             END
         ) AS eligible_client_count,
         COUNT(
             CASE
-                WHEN UPPER(ineligible_ind) = 'Y'
-                    THEN client_number
+                WHEN UPPER(b.ineligible_ind) = 'Y'
+                    THEN b.client_number
             END
         ) AS ineligible_client_count,
         COUNT(
             CASE
-                WHEN ineligible_ind IS NULL
-                    THEN client_number
+                WHEN b.ineligible_ind IS NULL
+                    THEN b.client_number
             END
         ) AS client_count_eligibility_indicator_missing,
         MAX(b.sale_awarded_ind) AS awarded_ind
-    FROM
-        bctsadmin_replication.bcts_tenure_bidder b
-    WHERE
-        b.auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
-                           AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
+    FROM bctsadmin_replication.bcts_tenure_bidder b
+    WHERE TO_DATE(b.auction_date)
+          BETWEEN TO_DATE($'{report_start_date}', 'yyyy-MM-dd')
+              AND TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
     GROUP BY
         b.forest_file_id,
-        b.auction_date
+        TO_DATE(b.auction_date)
 )
 
 SELECT DISTINCT
     CASE
-        WHEN ou.org_unit_code IN ('TBA', 'TPL', 'TPG', 'TSK', 'TSN', 'TCC', 'TKA', 'TKO', 'TOC')
+        WHEN ou.org_unit_code IN (
+            'TBA', 'TPL', 'TPG', 'TSK', 'TSN',
+            'TCC', 'TKA', 'TKO', 'TOC'
+        )
             THEN 'Interior'
         WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
             THEN 'Coast'
     END AS business_area_region_category,
 
     CASE
-        WHEN ou.org_unit_code IN ('TBA', 'TPL', 'TPG', 'TSK', 'TSN')
+        WHEN ou.org_unit_code IN (
+            'TBA', 'TPL', 'TPG', 'TSK', 'TSN'
+        )
             THEN 'North Interior'
-        WHEN ou.org_unit_code IN ('TCC', 'TKA', 'TKO', 'TOC')
+        WHEN ou.org_unit_code IN (
+            'TCC', 'TKA', 'TKO', 'TOC'
+        )
             THEN 'South Interior'
         WHEN ou.org_unit_code IN ('TCH', 'TST', 'TSG')
             THEN 'Coast'
@@ -445,7 +449,8 @@ SELECT DISTINCT
     REPLACE(
         CONCAT(
             CASE
-                WHEN ou.org_unit_name = 'SSeaward-tlasta Timber Sales Office'
+                WHEN ou.org_unit_name =
+                     'SSeaward-tlasta Timber Sales Office'
                     THEN 'Seaward-Tlasta'
                 ELSE ou.org_unit_name
             END,
@@ -464,7 +469,7 @@ SELECT DISTINCT
     ts.forest_file_id,
     ts.bcts_category_code,
     c.description AS category,
-    ts.auction_date,
+    TO_DATE(ts.auction_date) AS auction_date,
     ts.sale_volume,
     hs.sale_volume AS fta_volume,
     bid_info.client_count,
@@ -474,7 +479,8 @@ SELECT DISTINCT
     ts.no_sale_rationale_code,
 
     CASE
-        WHEN ts.no_sale_rationale_code IS NULL THEN NULL
+        WHEN ts.no_sale_rationale_code IS NULL
+            THEN NULL
         ELSE CONCAT(
             no_sale.description,
             ' (',
@@ -483,11 +489,25 @@ SELECT DISTINCT
         )
     END AS no_sale_rationale,
 
-    YEAR(ADD_MONTHS(ts.auction_date, 9)) AS auction_date_fiscal,
+    YEAR(
+        ADD_MONTHS(
+            TO_DATE(ts.auction_date),
+            9
+        )
+    ) AS auction_date_fiscal,
 
     CONCAT(
         'Q',
-        CAST(CEIL(MONTH(ADD_MONTHS(ts.auction_date, -3)) / 3.0) AS INT)
+        CAST(
+            CEIL(
+                MONTH(
+                    ADD_MONTHS(
+                        TO_DATE(ts.auction_date),
+                        -3
+                    )
+                ) / 3.0
+            ) AS INT
+        )
     ) AS auction_date_quarter,
 
     te.tenure_term,
@@ -500,73 +520,91 @@ SELECT DISTINCT
     au_cnt.auction_count,
 
     CASE
-        WHEN ts.auction_date = au_cnt.first_auction_date THEN 'Y'
+        WHEN TO_DATE(ts.auction_date) = au_cnt.first_auction_date
+            THEN 'Y'
         ELSE 'N'
     END AS first_auction,
 
     CASE
-        WHEN ts.auction_date = au_cnt.last_auction_date THEN 'Y'
+        WHEN TO_DATE(ts.auction_date) = au_cnt.last_auction_date
+            THEN 'Y'
         ELSE 'N'
     END AS last_auction,
 
     CASE
-        WHEN ts.auction_date = au_cnt.last_auction_date
+        WHEN TO_DATE(ts.auction_date) = au_cnt.last_auction_date
              AND ts.no_sale_rationale_code IS NOT NULL
-            THEN 'This auction is the last auction for the licence in the report period and is a no sale.'
+            THEN
+                'This auction is the last auction for the licence in the report period and is a no sale.'
     END AS last_auction_no_sale,
 
-    CAST('${report_start_date}' AS DATE) AS report_start_date,
-    CAST('${report_end_date}' AS DATE) AS report_end_date,
+    TO_DATE(
+        $'{report_start_date}',
+        'yyyy-MM-dd'
+    ) AS report_start_date,
+
+    TO_DATE(
+        $'{report_end_date}',
+        'yyyy-MM-dd'
+    ) AS report_end_date,
 
     CASE
-        WHEN MONTH(CAST('${report_end_date}' AS DATE)) >= 4
-            THEN YEAR(CAST('${report_end_date}' AS DATE))
-        ELSE YEAR(CAST('${report_end_date}' AS DATE)) - 1
+        WHEN MONTH(
+            TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+        ) >= 4
+            THEN YEAR(
+                TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+            )
+        ELSE YEAR(
+            TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+        ) - 1
     END AS fiscal_year,
 
-        TO_DATE(
-        FROM_UTC_TIMESTAMP(CURRENT_TIMESTAMP(), 'America/Vancouver')
+    TO_DATE(
+        FROM_UTC_TIMESTAMP(
+            CURRENT_TIMESTAMP(),
+            'America/Vancouver'
+        )
     ) AS report_run_date
 
-FROM
-    bctsadmin_replication.bcts_timber_sale ts
+FROM bctsadmin_replication.bcts_timber_sale ts
 
-    LEFT JOIN bcts_staging.fta_harvest_sale hs
-        ON ts.forest_file_id = hs.forest_file_id
+LEFT JOIN bcts_staging.fta_harvest_sale hs
+    ON ts.forest_file_id = hs.forest_file_id
 
-    LEFT JOIN bctsadmin_replication.bcts_category_code c
-        ON ts.bcts_category_code = c.bcts_category_code
+LEFT JOIN bctsadmin_replication.bcts_category_code c
+    ON ts.bcts_category_code = c.bcts_category_code
 
-    INNER JOIN bcts_staging.fta_prov_forest_use pfu
-        ON ts.forest_file_id = pfu.forest_file_id
+INNER JOIN bcts_staging.fta_prov_forest_use pfu
+    ON ts.forest_file_id = pfu.forest_file_id
 
-    INNER JOIN mofclient_replication.org_unit ou
-        ON pfu.bcts_org_unit = ou.org_unit_no
+INNER JOIN mofclient_replication.org_unit ou
+    ON pfu.bcts_org_unit = ou.org_unit_no
 
-    LEFT JOIN bcts_staging.fta_tenure_term te
-        ON ts.forest_file_id = te.forest_file_id
+LEFT JOIN bcts_staging.fta_tenure_term te
+    ON ts.forest_file_id = te.forest_file_id
 
-    LEFT JOIN bctsadmin_replication.no_sale_rationale_code no_sale
-        ON ts.no_sale_rationale_code = no_sale.no_sale_rationale_code
+LEFT JOIN bctsadmin_replication.no_sale_rationale_code no_sale
+    ON ts.no_sale_rationale_code =
+       no_sale.no_sale_rationale_code
 
-    LEFT JOIN bcts_staging.fta_tsa_number_code ta
-        ON pfu.mgmt_unit_id = ta.tsa_number
+LEFT JOIN bcts_staging.fta_tsa_number_code ta
+    ON pfu.mgmt_unit_id = ta.tsa_number
 
-    LEFT JOIN bcts_staging.fta_tfl_number_code tf
-        ON pfu.mgmt_unit_id = tf.tfl_number
+LEFT JOIN bcts_staging.fta_tfl_number_code tf
+    ON pfu.mgmt_unit_id = tf.tfl_number
 
-    LEFT JOIN AU_CNT
-        ON ts.forest_file_id = au_cnt.forest_file_id
+LEFT JOIN AU_CNT au_cnt
+    ON ts.forest_file_id = au_cnt.forest_file_id
 
-    LEFT JOIN bid_info
-        ON ts.forest_file_id = bid_info.forest_file_id
-        AND ts.auction_date = bid_info.auction_date
+LEFT JOIN bid_info
+    ON ts.forest_file_id = bid_info.forest_file_id
+   AND TO_DATE(ts.auction_date) = bid_info.auction_date
 
-WHERE
-    ts.auction_date BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
-                        AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
-    AND COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB';
-
+WHERE TO_DATE(ts.auction_date)
+      BETWEEN TO_DATE($'{report_start_date}', 'yyyy-MM-dd')
+          AND TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+  AND COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB';
 
 INSERT INTO bcts_staging.volume_advertised_main_hist (
     business_area_region_category,
