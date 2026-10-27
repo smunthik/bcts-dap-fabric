@@ -381,7 +381,8 @@ WITH AU_CNT AS (
         FROM bctsadmin_replication.bcts_timber_sale
         WHERE COALESCE(no_sale_rationale_code, ' ') <> 'TB'
           AND TO_DATE(auction_date)
-              <= TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+              <= TO_DATE('${report_end_date}', 'yyyy-MM-dd')
+              AND TO_DATE(auction_date) >= TO_DATE('${report_start_date}', 'yyyy-MM-dd')
     ) auction_filter
         ON ts.forest_file_id = auction_filter.forest_file_id
        AND ts.auction_date = auction_filter.auction_date
@@ -415,8 +416,8 @@ bid_info AS (
         MAX(b.sale_awarded_ind) AS awarded_ind
     FROM bctsadmin_replication.bcts_tenure_bidder b
     WHERE TO_DATE(b.auction_date)
-          BETWEEN TO_DATE($'{report_start_date}', 'yyyy-MM-dd')
-              AND TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+          BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+              AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
     GROUP BY
         b.forest_file_id,
         TO_DATE(b.auction_date)
@@ -539,24 +540,24 @@ SELECT DISTINCT
     END AS last_auction_no_sale,
 
     TO_DATE(
-        $'{report_start_date}',
+        '${report_start_date}',
         'yyyy-MM-dd'
     ) AS report_start_date,
 
     TO_DATE(
-        $'{report_end_date}',
+        '${report_end_date}',
         'yyyy-MM-dd'
     ) AS report_end_date,
 
     CASE
         WHEN MONTH(
-            TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_end_date}', 'yyyy-MM-dd')
         ) >= 4
             THEN YEAR(
-                TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+                TO_DATE('${report_end_date}', 'yyyy-MM-dd')
             )
         ELSE YEAR(
-            TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+            TO_DATE('${report_end_date}', 'yyyy-MM-dd')
         ) - 1
     END AS fiscal_year,
 
@@ -602,8 +603,8 @@ LEFT JOIN bid_info
    AND TO_DATE(ts.auction_date) = bid_info.auction_date
 
 WHERE TO_DATE(ts.auction_date)
-      BETWEEN TO_DATE($'{report_start_date}', 'yyyy-MM-dd')
-          AND TO_DATE($'{report_end_date}', 'yyyy-MM-dd')
+      BETWEEN TO_DATE('${report_start_date}', 'yyyy-MM-dd')
+          AND TO_DATE('${report_end_date}', 'yyyy-MM-dd')
   AND COALESCE(ts.no_sale_rationale_code, ' ') <> 'TB';
 
 INSERT INTO bcts_staging.volume_advertised_main_hist (
