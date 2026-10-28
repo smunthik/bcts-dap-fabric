@@ -374,7 +374,7 @@ upsert_transformation_config(
     report_name="Licence Issued with Unbilled Volume",
     sql_path="sql/licence_issued_with_unbilled_volume.sql",
     enabled_ind="Y",
-    target_table="licence_issued_with_unbilled_volume",
+    target_table="licence_issued_with_unbilled_volume_main",
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='no',
