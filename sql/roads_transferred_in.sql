@@ -137,7 +137,6 @@ WHERE UPPER(CONST_METHOD_TYPE) = 'TRANSFER IN'
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_transferred_in;
     CREATE TABLE BCTS_REPORTING.roads_transferred_in
-    AS SELECT *,
-    report_start_date as fiscal_year_start_date
+    AS SELECT *
     FROM BCTS_STAGING.roads_transferred_in;    
     

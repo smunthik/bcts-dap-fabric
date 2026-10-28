@@ -145,7 +145,6 @@ ORDER BY
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_transferred_out;
     CREATE TABLE BCTS_REPORTING.roads_transferred_out
-    AS SELECT *,
-    report_start_date as fiscal_year_start_date
+    AS SELECT *
     FROM BCTS_STAGING.roads_transferred_out;   
     

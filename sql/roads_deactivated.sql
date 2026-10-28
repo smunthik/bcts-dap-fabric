@@ -203,7 +203,6 @@ GROUP BY
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_deactivated;
     CREATE TABLE BCTS_REPORTING.roads_deactivated
-    AS SELECT *,
-    report_start_date as fiscal_year_start_date
+    AS SELECT *
     FROM BCTS_STAGING.roads_deactivated;    
     
