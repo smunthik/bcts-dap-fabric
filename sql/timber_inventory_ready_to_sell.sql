@@ -220,7 +220,7 @@ WITH A_D AS (
             )
         )
         AND A0.ACTI_STATUS_IND = 'D'
-        AND A0.ACTIVITY_DATE <= CAST('{end_date}' AS DATE)
+        AND A0.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
     ) TEMP
     GROUP BY CUTB_SEQ_NBR
 ),
@@ -254,7 +254,7 @@ DF AS (
                 'DSI',
                 'DESI'
             )
-            AND DA1.ACTIVITY_DATE <= CAST('{end_date}' AS DATE)
+            AND DA1.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
     ) DF_TEMP
     WHERE rn = 1
 ),
@@ -277,7 +277,7 @@ LDF AS (
             'DESI'
         )
         AND A2.ACTI_STATUS_IND = 'D'
-        AND A2.ACTIVITY_DATE <= CAST('{end_date}' AS DATE)
+        AND A2.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
     GROUP BY A2.CUTB_SEQ_NBR
 ),
 
@@ -297,7 +297,7 @@ LRCT AS (
             'DRD'
         )
         AND A4.ACTI_STATUS_IND = 'D'
-        AND A4.ACTIVITY_DATE <= CAST('{end_date}' AS DATE)
+        AND A4.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
     GROUP BY A4.CUTB_SEQ_NBR
 ),
 
@@ -318,7 +318,7 @@ HI AS (
     FROM LRM_REPLICATION.V_LICENCE_ACTIVITY_ALL LA2
     WHERE LA2.ACTIVITY_CLASS = 'CML'
         AND LA2.ACTT_KEY_IND = 'HI'
-        AND LA2.ACTIVITY_DATE <= CAST('{end_date}' AS DATE)
+        AND LA2.ACTIVITY_DATE <= CAST('${report_end_date}' AS DATE)
         AND LA2.ACTI_STATUS_IND = 'D'
 ),
 
@@ -598,7 +598,7 @@ SELECT DISTINCT
         ELSE 0
     END AS BIG_TREED_VOLUME,
 
-    CAST('{end_date}' AS DATE) AS report_end_date,
+    CAST('${report_end_date}' AS DATE) AS report_end_date,
         FROM_UTC_TIMESTAMP(
         CURRENT_TIMESTAMP(),
         'America/Vancouver'
