@@ -54,7 +54,7 @@ def render_sql(sql: str, start_date: str, end_date: str) -> str:
 
 def report_exists(target_schema: str, table_name: str, start_date: str, end_date: str, has_start_date: str, has_end_date: str) -> bool:
     # Check if table exists
-    if not spark.catalog.tableExists(table_name):
+    if not spark.catalog.tableExists(f"{target_schema}.{table_name}"):
         return False  # ✅ Table doesn't exist → force run
 
     if has_start_date == 'no' and has_end_date == 'no':
@@ -88,7 +88,7 @@ def report_exists(target_schema: str, table_name: str, start_date: str, end_date
 
 # Check before running SQL
 if report_exists(target_schema, target_table, start_date, end_date, has_start_date, has_end_date):
-    print(f"Skipping {target_schema.target_table} - already exists for {start_date} → {end_date}")
+    print(f"Skipping {target_schema}.{target_table} - already exists for {start_date} → {end_date}")
 else:
     print(f"Running {target_schema}.{target_table} report for {start_date} and {end_date}...")
     sql_text = load_sql(sql_path, branch_name)
@@ -97,6 +97,10 @@ else:
     # statements execute in the same order as in the file
     try:
         for stmt in [s.strip() for s in final_sql.split(";") if s.strip()]:
+            print(f"Current sql running:\n")
+            print('*'*100)
+            print(stmt)
+            print('*'*100)
             spark.sql(stmt)
         print(f" {target_schema}.{target_table} report for {start_date} and {end_date} completed.")
 

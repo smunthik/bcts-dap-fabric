@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "import_ods_historic_data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6d4fdbea-e211-4c3e-a648-49ea62cc3fb3"
+  }
+}
