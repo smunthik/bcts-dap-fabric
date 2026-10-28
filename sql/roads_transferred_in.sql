@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS bcts_staging.roads_transferred_in_hist (
     length DECIMAL(38,18),
     transfer_date DATE,
     const_method_type STRING,
-    fiscal_year_start_date DATE,
+    report_start_date DATE,
     report_end_date DATE,
     report_run_date DATE,
     report_run_timestamp TIMESTAMP
@@ -25,7 +25,7 @@ USING DELTA;
 -- Report exists check is done on bcts_reporting table 
 -- If report exists in bcts_staging.***_hist table, clear the staging table before inserting new records 
 delete from bcts_staging.roads_transferred_in_hist
-where  fiscal_year_start_date = '${report_start_date}'
+where  report_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
 
 -- Populate staging table
@@ -44,7 +44,7 @@ INSERT INTO bcts_staging.roads_transferred_in_hist (
     length,
     transfer_date,
     const_method_type,
-    fiscal_year_start_date,
+    report_start_date,
     report_end_date,
     report_run_date,
     report_run_timestamp
@@ -89,7 +89,7 @@ SELECT DISTINCT
     CAST(RCOM_COMPLETION_DATE AS DATE) AS transfer_date,
     CONST_METHOD_TYPE,
 
-    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_start_date}' AS DATE) AS report_start_date,
     CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
@@ -121,7 +121,8 @@ WHERE UPPER(CONST_METHOD_TYPE) = 'TRANSFER IN'
 -- Publish the latest report to reporting area. This will overwrite the existing report in reporting area with the same report_end_date.
    DROP TABLE IF EXISTS BCTS_STAGING.roads_transferred_in;
     CREATE TABLE BCTS_STAGING.roads_transferred_in
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_transferred_in_hist
     WHERE report_end_date = (
 	    SELECT MAX(report_end_date)
@@ -130,11 +131,13 @@ WHERE UPPER(CONST_METHOD_TYPE) = 'TRANSFER IN'
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_transferred_in_hist;
     CREATE TABLE BCTS_REPORTING.roads_transferred_in_hist
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_transferred_in_hist;
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_transferred_in;
     CREATE TABLE BCTS_REPORTING.roads_transferred_in
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_transferred_in;    
     

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS bcts_staging.roads_deactivated_hist (
     deac_end_date TIMESTAMP,
     deac_level_type STRING,
     deac_method_type STRING,
-    fiscal_year_start_date DATE,
+    report_start_date DATE,
     report_end_date DATE,
     report_run_date DATE,
     report_run_timestamp TIMESTAMP
@@ -27,7 +27,7 @@ USING DELTA;
 -- Report exists check is done on bcts_reporting table 
 -- If report exists in bcts_staging.***_hist table, clear the staging table before inserting new records 
 delete from bcts_staging.roads_deactivated_hist
-where  fiscal_year_start_date = '${report_start_date}'
+where  report_start_date = '${report_start_date}'
 and report_end_date = '${report_end_date}';
 
 -- Populate staging table
@@ -48,7 +48,7 @@ INSERT INTO bcts_staging.roads_deactivated_hist (
     deac_end_date,
     deac_level_type,
     deac_method_type,
-    fiscal_year_start_date,
+    report_start_date,
     report_end_date,
     report_run_date,
     report_run_timestamp
@@ -95,7 +95,7 @@ SELECT
     DEAC_LEVEL_TYPE,
     DEAC_METHOD_TYPE,
 
-    CAST('${report_start_date}' AS DATE) AS fiscal_year_start_date,
+    CAST('${report_start_date}' AS DATE) AS report_start_date,
     CAST('${report_end_date}' AS DATE) AS report_end_date,
 
     TO_DATE(
@@ -187,7 +187,8 @@ GROUP BY
 -- Publish the latest report to reporting area. This will overwrite the existing report in reporting area with the same report_end_date.
     DROP TABLE IF EXISTS BCTS_STAGING.roads_deactivated;
     CREATE TABLE BCTS_STAGING.roads_deactivated
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_deactivated_hist
     WHERE report_end_date = (
 	    SELECT MAX(report_end_date)
@@ -196,11 +197,13 @@ GROUP BY
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_deactivated_hist;
     CREATE TABLE BCTS_REPORTING.roads_deactivated_hist
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_deactivated_hist;
 
     DROP TABLE IF EXISTS BCTS_REPORTING.roads_deactivated;
     CREATE TABLE BCTS_REPORTING.roads_deactivated
-    AS SELECT * 
+    AS SELECT *,
+    report_start_date as fiscal_year_start_date
     FROM BCTS_STAGING.roads_deactivated;    
     
