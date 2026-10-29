@@ -46,7 +46,7 @@ for table in tables:
     print(f"Deleting data from {table_name}...")
 
     spark.sql(f"""
-        DELETE FROM {table_name}
+    DROP TABLE {table_name}
     """)
 
     print(f"✓ Deleted all rows from {table_name}")
