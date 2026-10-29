@@ -22,37 +22,6 @@
 
 # CELL ********************
 
-tables = [
-    "licence_issued_with_unbilled_volume_main",
-    "timber_inventory_development_in_progress",
-    "timber_inventory_ready_to_sell",
-    "licence_issued_advertised_main",
-    "timber_inventory_ready_to_develop",
-    "annual_development_ready",
-    "annual_developed_volume",
-    "tsl_summary_main",
-    "roads_transferred_out",
-    "roads_transferred_in",
-    "volume_advertised_main",
-    "weighted_sale_term",
-    "roads_constructed",
-    "roads_deactivated",
-    "licence_transfer"
-]
-
-for table in tables:
-    table_name = f"bcts_reporting.{table}"
-
-    print(f"Deleting data from {table_name}...")
-
-    spark.sql(f"""
-    DROP TABLE {table_name}
-    """)
-
-    print(f"✓ Deleted all rows from {table_name}")
-
-print("✓ All tables cleared successfully.")
-
 
 # METADATA ********************
 
