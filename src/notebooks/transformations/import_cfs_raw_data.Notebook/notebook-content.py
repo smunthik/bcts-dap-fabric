@@ -20,6 +20,10 @@
 # META   }
 # META }
 
+# MARKDOWN ********************
+
+# ### Import raw data to Lakehouse
+
 # CELL ********************
 
 from pyspark.sql.types import *
@@ -97,6 +101,10 @@ display(df)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# ### Clean the data and replace the fiscal year rows in the _hist table
 
 # CELL ********************
 
@@ -410,6 +418,10 @@ display(
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# ### Clean the _hist data and generate transaction summary
+
 # CELL ********************
 
 from pyspark.sql import functions as F
@@ -478,21 +490,46 @@ cfs_df = (
     )
 )
 
-
 # ============================================================
 # 4. Derive CFS_UBI from Project
 #
-# IMPORTANT:
-# Replace this expression with the exact logic from the Access
-# function getUBI_by_Project().
-#
-# Temporary assumption:
-# The UBI is the final five characters of Project.
+# Replicates the Access getUBI_by_Project() function:
+#   1. Take characters 3 and 4 from Project
+#   2. Append Project from character 5 onward
+#   3. Replace "I" with "1" from character 5 onward
+#   4. Replace "O" with "0" in the resulting CFS_UBI
 # ============================================================
 
-cfs_df = cfs_df.withColumn(
-    "cfs_ubi",
-    F.col("project_last_5")
+cfs_df = (
+    cfs_df
+    .withColumn(
+        "cfs_ubi",
+        F.regexp_replace(
+            F.concat(
+                # Mid(stProject, 3, 2)
+                F.substring(
+                    F.col("project"),
+                    3,
+                    2
+                ),
+
+                # Replace(stProject, "I", "1", 5)
+                F.regexp_replace(
+                    F.substring(
+                        F.col("project"),
+                        5,
+                        1000
+                    ),
+                    "I",
+                    "1"
+                )
+            ),
+
+            # Replace(..., "O", "0")
+            "O",
+            "0"
+        )
+    )
 )
 
 # ============================================================
