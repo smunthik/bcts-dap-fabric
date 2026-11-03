@@ -394,8 +394,7 @@ FROM FINAL;
 
 DROP TABLE IF EXISTS BCTS_STAGING.roads_planned_deactivation;
 CREATE TABLE BCTS_STAGING.roads_planned_deactivation
-AS SELECT *,
-report_start_date as fiscal_year_start_date 
+AS SELECT *
 FROM BCTS_STAGING.roads_planned_deactivation_hist
 WHERE report_end_date = (
     SELECT MAX(report_end_date)
@@ -404,8 +403,7 @@ WHERE report_end_date = (
 
 DROP TABLE IF EXISTS BCTS_REPORTING.roads_planned_deactivation_hist;
 CREATE TABLE BCTS_REPORTING.roads_planned_deactivation_hist
-AS SELECT *,
-report_start_date as fiscal_year_start_date 
+AS SELECT *
 FROM BCTS_STAGING.roads_planned_deactivation_hist;
 
 DROP TABLE IF EXISTS BCTS_REPORTING.roads_planned_deactivation;
