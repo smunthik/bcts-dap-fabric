@@ -58,13 +58,12 @@ def report_exists(target_schema: str, table_name: str, start_date: str, end_date
         return False  # ✅ Table doesn't exist → force run
 
     if has_start_date == 'no' and has_end_date == 'no':
-        where_clause = """
-            YEAR(report_date) = YEAR(CAST('${end_date}' AS DATE))
-            AND MONTH(report_date) = MONTH(CAST('${end_date}' AS DATE))
+        where_clause = f"""
+            report_date >= CAST('{end_date}' AS DATE)
         """
     elif has_start_date == 'no':
         where_clause = f"""
-            report_end_date = DATE '{start_date}'
+            report_end_date = DATE '{end_date}'
         """
     else:
         where_clause = f"""

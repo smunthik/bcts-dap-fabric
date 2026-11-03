@@ -156,7 +156,7 @@ upsert_transformation_config(
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes',
-    frequency = "MONTHLY",  
+    frequency = "BI_MONTHLY",  
     execution_order=1,
     depends_on=None,
     verbose=False,
