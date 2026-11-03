@@ -940,22 +940,22 @@ tsl_summary AS
         SUM
         (
             CASE
-                WHEN auctioned_bcts_category_code = '4'
+                WHEN auctioned_bcts_category_code in ('4', '5', 'V')
                  AND no_bid_info <> 'Y'
                     THEN total_volume
                 ELSE 0
             END
-        ) AS `Volume of Value Added (Category 4) Auctioned`,
+        ) AS `Volume of Value Added Auctioned`,
 
         COUNT
         (
             CASE
-                WHEN auctioned_bcts_category_code = '4'
+                WHEN auctioned_bcts_category_code in ('4', '5', 'V')
                  AND no_bid_info <> 'Y'
                     THEN licence_number
                 ELSE NULL
             END
-        ) AS `Number of Value Added (Category 4) Licence Auctioned`
+        ) AS `Number of Value Added Auctioned`
 
     FROM tsl_summary1
 
@@ -977,8 +977,8 @@ SELECT
     `Number of Licence Issued`,
     `Volume Not Awarded`,
     `Number of Licence Not Awarded`,
-    `Volume of Value Added (Category 4) Auctioned`,
-    `Number of Value Added (Category 4) Licence Auctioned`,
+    `Volume of Value Added Auctioned`,
+    `Number of Value Added Auctioned`,
 
     CASE
         WHEN business_area_region = 'North Interior' THEN 1
