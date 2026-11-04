@@ -108,14 +108,8 @@ table 'bcts_reporting bcts_performance_report_licence_issued_details'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_bcts_performance_report_licence_issued_details = Source{[
-				        Schema="bcts_reporting",
-				        Item="bcts_performance_report_licence_issued_details"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_bcts_performance_report_licence_issued_details = Source{[Schema="bcts_reporting", Item="bcts_performance_report_licence_issued_details"]}[Data]
 				in
 				    bcts_reporting_bcts_performance_report_licence_issued_details
 

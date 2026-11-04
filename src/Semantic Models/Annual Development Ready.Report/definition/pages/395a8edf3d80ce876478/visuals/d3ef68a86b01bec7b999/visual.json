@@ -1,0 +1,479 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "d3ef68a86b01bec7b999",
+  "position": {
+    "x": 9.99290276792051,
+    "y": 359.74449964513838,
+    "z": 4000,
+    "height": 344.30092264017031,
+    "width": 850.305180979418,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bcts_staging dim_business_area_management_unit"
+                        }
+                      },
+                      "Hierarchy": "business_area_region_category Hierarchy"
+                    }
+                  },
+                  "Level": "business_area_region_category"
+                }
+              },
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category1",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bcts_staging dim_business_area_management_unit"
+                        }
+                      },
+                      "Hierarchy": "business_area_region_category Hierarchy"
+                    }
+                  },
+                  "Level": "business_area_region"
+                }
+              },
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region1",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bcts_staging dim_business_area_management_unit"
+                        }
+                      },
+                      "Hierarchy": "business_area_region_category Hierarchy"
+                    }
+                  },
+                  "Level": "business_area"
+                }
+              },
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area1",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "bcts_reporting annual_development_ready"
+                        }
+                      },
+                      "Property": "cruise_volume"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(bcts_reporting annual_development_ready.cruise_volume)",
+              "nativeQueryRef": "Sum of cruise_volume"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "ribbonBands": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#013366'"
+                    }
+                  }
+                }
+              }
+            },
+            "fillTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#234075'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "bcts_reporting annual_developed_volume"
+                          }
+                        },
+                        "Property": "block_state"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'ADV'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E3A82B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "bcts_reporting annual_developed_volume"
+                          }
+                        },
+                        "Property": "block_state"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'PP'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#008080'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "bcts_reporting annual_developed_volume"
+                          }
+                        },
+                        "Property": "block_state"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'WIP'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Business Area'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cruise Volume (m³)'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Annual Development Ready: Total Estimated Volume by Business Area'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "78b0860341213bb25239",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_reporting annual_development_ready"
+                  }
+                },
+                "Property": "cruise_volume"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "75e81fb196a80ab5801a",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area_region_category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7f865c3dba8814448c08",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area_region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2a56d7eaa30873d9622b",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

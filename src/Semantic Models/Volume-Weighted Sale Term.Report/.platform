@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Volume-Weighted Sale Term"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d238f1c4-ee09-4d15-a515-fad7c38c7178"
+  }
+}

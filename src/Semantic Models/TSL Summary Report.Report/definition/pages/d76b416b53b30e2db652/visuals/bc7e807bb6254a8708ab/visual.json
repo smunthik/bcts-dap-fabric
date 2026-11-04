@@ -22,7 +22,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting v_tsl_summary"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -31,7 +31,7 @@
                   "Level": "business_area_region_category"
                 }
               },
-              "queryRef": "bcts_reporting v_tsl_summary.business_area_region_category Hierarchy.business_area_region_category",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category",
               "active": true
             },
@@ -42,7 +42,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting v_tsl_summary"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -51,7 +51,7 @@
                   "Level": "business_area_region"
                 }
               },
-              "queryRef": "bcts_reporting v_tsl_summary.business_area_region_category Hierarchy.business_area_region",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area_region",
               "active": true
             },
@@ -62,7 +62,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting v_tsl_summary"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -71,7 +71,7 @@
                   "Level": "business_area"
                 }
               },
-              "queryRef": "bcts_reporting v_tsl_summary.business_area_region_category Hierarchy.business_area",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area",
               "active": true
             }
@@ -109,15 +109,15 @@
                           "Entity": "bcts_reporting v_tsl_summary"
                         }
                       },
-                      "Property": "Number of Value Added (Category 4) Licence Auctioned"
+                      "Property": "Number of Value Added Auctioned"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "CountNonNull(bcts_reporting v_tsl_summary.Number of Value Added (Category 4) Licence Auctioned)",
-              "nativeQueryRef": "Number of Value Added (Category 4) Licence Auctioned",
-              "displayName": "Number of Value Added (Category 4) Licence Auctioned"
+              "queryRef": "Sum(bcts_reporting v_tsl_summary.Number of Value Added Auctioned)",
+              "nativeQueryRef": "Number of Value Added Auctioned",
+              "displayName": "Number of Value Added Auctioned"
             },
             {
               "field": {
@@ -229,31 +229,6 @@
           },
           "selector": {
             "metadata": "CountNonNull(bcts_reporting v_tsl_summary.Number of Licence Issued)"
-          }
-        },
-        {
-          "properties": {
-            "fillTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "15D"
-                }
-              }
-            },
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#5B2C6F'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "CountNonNull(bcts_reporting v_tsl_summary.Number of Value Added (Category 4) Licence Auctioned)"
           }
         },
         {

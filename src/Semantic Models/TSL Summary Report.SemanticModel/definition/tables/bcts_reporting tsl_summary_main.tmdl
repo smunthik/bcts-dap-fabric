@@ -283,6 +283,46 @@ table 'bcts_reporting tsl_summary_main'
 
 		annotation SummarizationSetBy = Automatic
 
+	column BusinessAreaSort =
+			
+			SWITCH(
+			    [business_area],
+			    "Babine (TBA)", 1,
+			    "Omineca (TPG-TSN)", 2,
+			    "Peace-Liard (TPL)", 3,
+			    "Skeena (TSK)", 4,
+			    "Cariboo-Chilcotin (TCC)", 5,
+			    "Kamloops (TKA)", 6,
+			    "Kootenay (TKO)", 7,
+			    "Okanagan-Columbia (TOC)", 8,
+			    "Chinook (TCH)", 9,
+			    "Seaward-tlasta (TST)", 10,
+			    "Strait of Georgia (TSG)", 11,
+			    99
+			)
+		formatString: 0
+		lineageTag: 5a40ac25-2e1b-42c2-991a-cf7703bacbac
+		summarizeBy: sum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_sort =
+			
+			SWITCH(
+			    [business_area_region],
+			    "North Interior", 1,
+			    "South Interior", 2,
+			    "Coast", 3,
+			    99
+			)
+		formatString: 0
+		lineageTag: 136f8a17-a19b-403a-815b-36e8dc6051de
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	hierarchy 'business_area_region_category Hierarchy'
 		lineageTag: 5caac078-ab6f-4518-810d-2d0003e90d3c
 
@@ -302,14 +342,8 @@ table 'bcts_reporting tsl_summary_main'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_tsl_summary_main = Source{[
-				        Schema="bcts_reporting",
-				        Item="tsl_summary_main"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_tsl_summary_main = Source{[Schema="bcts_reporting", Item="tsl_summary_main"]}[Data]
 				in
 				    bcts_reporting_tsl_summary_main
 

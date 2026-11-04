@@ -78,3 +78,15 @@ relationship 2e568ce5-c580-4043-8a29-3cbc0e054dcc
 	fromColumn: 'bcts_reporting volume_advertised_main_hist'.report_run_timestamp
 	toColumn: LocalDateTable_fe3179ed-695e-4105-97c0-580ce22370b0.Date
 
+relationship 449101d3-f7e1-90d0-61a5-7560a32f66a2
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_reporting volume_advertised_main_hist'.business_area
+	toColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+
+relationship f3239721-ea2e-c2cc-c0a5-07e2ec7fb3d5
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_reporting volume_advertised_main'.business_area
+	toColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+

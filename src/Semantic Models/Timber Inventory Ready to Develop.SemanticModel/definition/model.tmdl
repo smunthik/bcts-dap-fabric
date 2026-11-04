@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["bcts_reporting timber_inventory_ready_to_develop","bcts_reporting timber_inventory_ready_to_develop_hist","server","database"]
+annotation PBI_QueryOrder = ["bcts_reporting timber_inventory_ready_to_develop","bcts_reporting timber_inventory_ready_to_develop_hist","bcts_staging dim_business_area_management_unit","server","database"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -63,6 +63,7 @@ ref table LocalDateTable_6d373894-6b62-4f99-91b5-6e0e309ffcb8
 ref table LocalDateTable_8b779610-38a3-4c0a-9f5b-4f96c9ec94c7
 ref table LocalDateTable_a9f8acc3-e785-4b97-a842-46138a60cdb4
 ref table LocalDateTable_772630b0-c058-4df9-a33a-ce9fbe565fd5
+ref table 'bcts_staging dim_business_area_management_unit'
 
 ref cultureInfo en-CA
 

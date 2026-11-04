@@ -281,16 +281,10 @@ table 'bcts_reporting licence_transfer'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    Data = Source{[
-				        Schema="bcts_reporting",
-				        Item="licence_transfer"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_licence_transfer = Source{[Schema="bcts_reporting", Item="licence_transfer"]}[Data]
 				in
-				    Data
+				    bcts_reporting_licence_transfer
 
 	annotation PBI_ResultType = Table
 

@@ -295,14 +295,8 @@ table 'bcts_reporting tsl_summary_main_hist'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_tsl_summary_main_hist = Source{[
-				        Schema="bcts_reporting",
-				        Item="tsl_summary_main_hist"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_tsl_summary_main_hist = Source{[Schema="bcts_reporting", Item="tsl_summary_main_hist"]}[Data]
 				in
 				    bcts_reporting_tsl_summary_main_hist
 

@@ -208,14 +208,14 @@ table 'bcts_reporting roads_constructed_hist'
 	column report_start_date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 6661acd8-7f1c-4a71-8107-aa8e6d20e987
+		lineageTag: 9e27a5b4-7bd3-441e-8640-817b6db4c055
 		summarizeBy: none
 		sourceColumn: report_start_date
 
 		variation Variation
 			isDefault
-			relationship: 7fc1ef5b-ef34-445d-b4d8-2d57bcfb526e
-			defaultHierarchy: LocalDateTable_b21ffb92-6cb6-4dfa-8df7-7fa420705ba9.'Date Hierarchy'
+			relationship: 86deec39-a098-4dda-828d-2063061485eb
+			defaultHierarchy: LocalDateTable_e804b77b-13ec-4fcd-92b5-ad8ad8643d3d.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

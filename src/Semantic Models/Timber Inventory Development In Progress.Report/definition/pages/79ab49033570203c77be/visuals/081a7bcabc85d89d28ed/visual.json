@@ -1,0 +1,1616 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "081a7bcabc85d89d28ed",
+  "position": {
+    "x": 14.14364640883978,
+    "y": 147.32965009208104,
+    "z": 4000,
+    "height": 572.817679558011,
+    "width": 1250.5340699815838,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "business_area_region_category"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "business_area_region"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.business_area_region",
+              "nativeQueryRef": "business_area_region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "business_area"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.business_area",
+              "nativeQueryRef": "business_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "business_area_code"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.business_area_code",
+              "nativeQueryRef": "business_area_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "licence_id"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.licence_id",
+              "nativeQueryRef": "licence_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "block_id"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.block_id",
+              "nativeQueryRef": "block_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ubi"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ubi",
+              "nativeQueryRef": "ubi"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "deferred_at_report_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.deferred_at_report_date",
+              "nativeQueryRef": "deferred_at_report_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "inventory_category"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.inventory_category",
+              "nativeQueryRef": "inventory_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "spatial_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.spatial_flag",
+              "nativeQueryRef": "spatial_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "rc_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.rc_date",
+              "nativeQueryRef": "rc_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "rc_fiscal"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_ready_to_sell.rc_fiscal)",
+              "nativeQueryRef": "rc_fiscal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dr_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.dr_date",
+              "nativeQueryRef": "dr_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dr_fiscal"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_ready_to_sell.dr_fiscal)",
+              "nativeQueryRef": "dr_fiscal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvs_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.dvs_date",
+              "nativeQueryRef": "dvs_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvc_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.dvc_date",
+              "nativeQueryRef": "dvc_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvc_fiscal"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_ready_to_sell.dvc_fiscal)",
+              "nativeQueryRef": "dvc_fiscal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "auc_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.auc_status",
+              "nativeQueryRef": "auc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_change_of_op_plan"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_change_of_op_plan",
+              "nativeQueryRef": "def_change_of_op_plan"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_first_nations"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_first_nations",
+              "nativeQueryRef": "def_first_nations"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_loss_of_access"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_loss_of_access",
+              "nativeQueryRef": "def_loss_of_access"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_other"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_other",
+              "nativeQueryRef": "def_other"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_planning_constraint"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_planning_constraint",
+              "nativeQueryRef": "def_planning_constraint"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_returned_to_bcts"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_returned_to_bcts",
+              "nativeQueryRef": "def_returned_to_bcts"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_stale_dated_fieldwork"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_stale_dated_fieldwork",
+              "nativeQueryRef": "def_stale_dated_fieldwork"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_stakeholder_issue"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_stakeholder_issue",
+              "nativeQueryRef": "def_stakeholder_issue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_environmental_stewardship_initiative"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_environmental_stewardship_initiative",
+              "nativeQueryRef": "def_environmental_stewardship_initiative"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_reactivated"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.def_reactivated",
+              "nativeQueryRef": "def_reactivated"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "old_growth_strategy"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.old_growth_strategy",
+              "nativeQueryRef": "old_growth_strategy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_forest_health"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_forest_health",
+              "nativeQueryRef": "ogs_reactivated_forest_health"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_fn_proceed"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_fn_proceed",
+              "nativeQueryRef": "ogs_reactivated_fn_proceed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_field_verified"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_field_verified",
+              "nativeQueryRef": "ogs_reactivated_field_verified"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_minor"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_minor",
+              "nativeQueryRef": "ogs_reactivated_minor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_road"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_road",
+              "nativeQueryRef": "ogs_reactivated_road"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_re_engineered"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_ready_to_sell.ogs_reactivated_re_engineered",
+              "nativeQueryRef": "ogs_reactivated_re_engineered"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "cutb_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_ready_to_sell.cutb_seq_nbr)",
+              "nativeQueryRef": "cutb_seq_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ancient"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ancient",
+              "nativeQueryRef": "ancient"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ancient_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.ancient_volume)",
+              "nativeQueryRef": "ancient_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "auc_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.auc_date",
+              "nativeQueryRef": "auc_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "big_treed"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.big_treed",
+              "nativeQueryRef": "big_treed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "big_treed_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.big_treed_volume)",
+              "nativeQueryRef": "big_treed_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "block_nbr"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.block_nbr",
+              "nativeQueryRef": "block_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "count_of_blocks"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.count_of_blocks)",
+              "nativeQueryRef": "count_of_blocks"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "cruise_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.cruise_volume)",
+              "nativeQueryRef": "cruise_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "cutb_block_state"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.cutb_block_state",
+              "nativeQueryRef": "cutb_block_state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "days_in_dip"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.days_in_dip)",
+              "nativeQueryRef": "days_in_dip"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "days_in_dip_category"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.days_in_dip_category",
+              "nativeQueryRef": "days_in_dip_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_change_of_op_plan_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_change_of_op_plan_status",
+              "nativeQueryRef": "def_change_of_op_plan_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_environmental_stewardship_initiative_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_environmental_stewardship_initiative_status",
+              "nativeQueryRef": "def_environmental_stewardship_initiative_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_first_nations_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_first_nations_status",
+              "nativeQueryRef": "def_first_nations_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_loss_of_access_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_loss_of_access_status",
+              "nativeQueryRef": "def_loss_of_access_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_other_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_other_status",
+              "nativeQueryRef": "def_other_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_planning_constraint_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_planning_constraint_status",
+              "nativeQueryRef": "def_planning_constraint_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_reactivated_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_reactivated_status",
+              "nativeQueryRef": "def_reactivated_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_stakeholder_issue_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_stakeholder_issue_status",
+              "nativeQueryRef": "def_stakeholder_issue_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_returned_to_bcts_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_returned_to_bcts_status",
+              "nativeQueryRef": "def_returned_to_bcts_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "def_stale_dated_fieldwork_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.def_stale_dated_fieldwork_status",
+              "nativeQueryRef": "def_stale_dated_fieldwork_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dr_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dr_flag",
+              "nativeQueryRef": "dr_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dr_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dr_status",
+              "nativeQueryRef": "dr_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dsc_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dsc_date",
+              "nativeQueryRef": "dsc_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dsc_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dsc_flag",
+              "nativeQueryRef": "dsc_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dsc_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dsc_status",
+              "nativeQueryRef": "dsc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvc_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dvc_flag",
+              "nativeQueryRef": "dvc_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvc_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dvc_status",
+              "nativeQueryRef": "dvc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvs_fiscal"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.dvs_fiscal)",
+              "nativeQueryRef": "dvs_fiscal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvs_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dvs_flag",
+              "nativeQueryRef": "dvs_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "dvs_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.dvs_status",
+              "nativeQueryRef": "dvs_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "fg_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.fg_date",
+              "nativeQueryRef": "fg_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "fg_met_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.fg_met_status",
+              "nativeQueryRef": "fg_met_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "fieldteam"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.fieldteam",
+              "nativeQueryRef": "fieldteam"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hi_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hi_date",
+              "nativeQueryRef": "hi_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hi_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hi_status",
+              "nativeQueryRef": "hi_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hvc_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hvc_date",
+              "nativeQueryRef": "hvc_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hvc_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hvc_status",
+              "nativeQueryRef": "hvc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hvs_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hvs_date",
+              "nativeQueryRef": "hvs_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "hvs_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.hvs_status",
+              "nativeQueryRef": "hvs_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "licn_licence_state"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.licn_licence_state",
+              "nativeQueryRef": "licn_licence_state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "licn_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.licn_seq_nbr)",
+              "nativeQueryRef": "licn_seq_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "manu_id"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.manu_id",
+              "nativeQueryRef": "manu_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "mark_mark_id"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.mark_mark_id",
+              "nativeQueryRef": "mark_mark_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "mark_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.mark_seq_nbr)",
+              "nativeQueryRef": "mark_seq_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "merch_area"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.merch_area)",
+              "nativeQueryRef": "merch_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_field_verified_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_field_verified_status",
+              "nativeQueryRef": "ogs_reactivated_field_verified_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_fn_proceed_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_fn_proceed_status",
+              "nativeQueryRef": "ogs_reactivated_fn_proceed_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_forest_health_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_forest_health_status",
+              "nativeQueryRef": "ogs_reactivated_forest_health_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_minor_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_minor_status",
+              "nativeQueryRef": "ogs_reactivated_minor_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_re_engineered_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_re_engineered_status",
+              "nativeQueryRef": "ogs_reactivated_re_engineered_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "ogs_reactivated_road_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.ogs_reactivated_road_status",
+              "nativeQueryRef": "ogs_reactivated_road_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "old_growth_strategy_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.old_growth_strategy_status",
+              "nativeQueryRef": "old_growth_strategy_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "perm_permit_id"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.perm_permit_id",
+              "nativeQueryRef": "perm_permit_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "rc_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.rc_flag",
+              "nativeQueryRef": "rc_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "rc_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.rc_status",
+              "nativeQueryRef": "rc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "remnant_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.remnant_volume)",
+              "nativeQueryRef": "remnant_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "report_run_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.report_run_date",
+              "nativeQueryRef": "report_run_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "rw_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.rw_volume)",
+              "nativeQueryRef": "rw_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_2021_fire"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_2021_fire",
+              "nativeQueryRef": "salvage_2021_fire"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_2022_fire"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_2022_fire",
+              "nativeQueryRef": "salvage_2022_fire"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_2023_fire"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_2023_fire",
+              "nativeQueryRef": "salvage_2023_fire"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_2024_fire"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_2024_fire",
+              "nativeQueryRef": "salvage_2024_fire"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_2025_fire"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_2025_fire",
+              "nativeQueryRef": "salvage_2025_fire"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_any_fire_year"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_any_fire_year",
+              "nativeQueryRef": "salvage_any_fire_year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "salvage_fire_years"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.salvage_fire_years",
+              "nativeQueryRef": "salvage_fire_years"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "sub_operating_area"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.sub_operating_area",
+              "nativeQueryRef": "sub_operating_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "tenure_type"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.tenure_type",
+              "nativeQueryRef": "tenure_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "woff_date"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.woff_date",
+              "nativeQueryRef": "woff_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "woff_fiscal"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting timber_inventory_development_in_progress.woff_fiscal)",
+              "nativeQueryRef": "woff_fiscal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "woff_status"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.woff_status",
+              "nativeQueryRef": "woff_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "xxx_zzz_flag"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.xxx_zzz_flag",
+              "nativeQueryRef": "xxx_zzz_flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting timber_inventory_development_in_progress"
+                    }
+                  },
+                  "Property": "remnant"
+                }
+              },
+              "queryRef": "bcts_reporting timber_inventory_development_in_progress.remnant",
+              "nativeQueryRef": "remnant"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

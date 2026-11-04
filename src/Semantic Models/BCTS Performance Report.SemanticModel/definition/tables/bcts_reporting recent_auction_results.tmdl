@@ -167,14 +167,8 @@ table 'bcts_reporting recent_auction_results'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_recent_auction_results = Source{[
-				        Schema="bcts_reporting",
-				        Item="recent_auction_results"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_recent_auction_results = Source{[Schema="bcts_reporting", Item="recent_auction_results"]}[Data]
 				in
 				    bcts_reporting_recent_auction_results
 

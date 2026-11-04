@@ -23,6 +23,10 @@
 # CELL ********************
 
 from pyspark.sql.functions import col
+spark.conf.set(
+    "spark.sql.parquet.datetimeRebaseModeInWrite",
+    "CORRECTED"
+)
 
 # ============================================================
 # Generic Historical CSV Loader -> Existing Fabric Delta Table
@@ -31,24 +35,23 @@ from pyspark.sql.functions import col
 # -----------------------------
 # Configuration
 # -----------------------------
-
 config = {
-    "bcts_staging.annual_developed_volume_hist" : "Files/data/annual_developed_volume_hist.csv",
-    "bcts_staging.annual_development_ready_hist" : "Files/data/annual_development_ready_hist.csv",
-    "bcts_staging.licence_issued_advertised_main_hist" : "Files/data/licence_issued_advertised_main_hist.csv",
-    "bcts_staging.currently_in_market_hist" : "Files/data/currently_in_market_hist.csv",
-    "bcts_staging.licence_issued_with_unbilled_volume_hist" : "Files/data/licence_issued_with_unbilled_volume_hist.csv",
-    "bcts_staging.licence_transfer_hist" : "Files/data/licence_transfer_hist.csv",
-    "bcts_staging.roads_constructed_hist" : "Files/data/roads_constructed_hist.csv",
-    "bcts_staging.roads_deactivated_hist" : "Files/data/roads_deactivated_hist.csv",
-    "bcts_staging.roads_transferred_in_hist" : "Files/data/roads_transferred_in_hist.csv",
-    "bcts_staging.roads_transferred_out_hist" : "Files/data/roads_transferred_out_hist.csv",
-    "bcts_staging.timber_inventory_development_in_progress_hist" : "Files/data/timber_inventory_development_in_progress_hist.csv",
-    "bcts_staging.timber_inventory_ready_to_develop_hist" : "Files/data/timber_inventory_ready_to_develop_hist.csv",
-    "bcts_staging.timber_inventory_ready_to_sell_hist" : "Files/data/timber_inventory_ready_to_sell_hist.csv",
-    "bcts_staging.tsl_summary_main_hist" : "Files/data/tsl_summary_main_hist.csv",
-    "bcts_staging.volume_advertised_main_hist" : "Files/data/volume_advertised_main_hist.csv"
-    # "bcts_staging.weighted_sale_term_hist" : "Files/data/weighted_sale_term_hist.csv",
+    # "bcts_staging.roads_planned_deactivation_hist" : "Files/data/roads_planned_for_deactivation_hist.csv"
+    # "bcts_staging.annual_developed_volume_hist" : "Files/data/annual_developed_volume_hist.csv",
+    # "bcts_staging.annual_development_ready_hist" : "Files/data/annual_development_ready_hist.csv",
+    # "bcts_staging.licence_issued_advertised_main_hist" : "Files/data/licence_issued_advertised_main_hist.csv",
+    # "bcts_staging.currently_in_market_hist" : "Files/data/currently_in_market_hist.csv",
+    # "bcts_staging.licence_issued_with_unbilled_volume_hist" : "Files/data/licence_issued_with_unbilled_volume_hist.csv",
+    # "bcts_staging.licence_transfer_hist" : "Files/data/licence_transfer_hist.csv",
+    # "bcts_staging.roads_constructed_hist" : "Files/data/roads_constructed_hist.csv",
+    # "bcts_staging.roads_deactivated_hist" : "Files/data/roads_deactivated_hist.csv",
+    # "bcts_staging.roads_transferred_in_hist" : "Files/data/roads_transferred_in_hist.csv",
+    # "bcts_staging.roads_transferred_out_hist" : "Files/data/roads_transferred_out_hist.csv",
+    # "bcts_staging.timber_inventory_development_in_progress_hist" : "Files/data/timber_inventory_development_in_progress_hist.csv",
+    # "bcts_staging.timber_inventory_ready_to_develop_hist" : "Files/data/timber_inventory_ready_to_develop_hist.csv",
+    # "bcts_staging.timber_inventory_ready_to_sell_hist" : "Files/data/timber_inventory_ready_to_sell_hist.csv",
+    # "bcts_staging.tsl_summary_main_hist" : "Files/data/tsl_summary_main_hist.csv",
+    # "bcts_staging.volume_advertised_main_hist" : "Files/data/volume_advertised_main_hist.csv"
 
 }
 

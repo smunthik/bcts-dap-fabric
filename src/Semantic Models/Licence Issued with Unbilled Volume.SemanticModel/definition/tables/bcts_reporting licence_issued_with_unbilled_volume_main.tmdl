@@ -558,16 +558,10 @@ table 'bcts_reporting licence_issued_with_unbilled_volume_main'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    Data = Source{[
-				        Schema="bcts_reporting",
-				        Item="licence_issued_with_unbilled_volume_main"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_licence_issued_with_unbilled_volume_main = Source{[Schema="bcts_reporting", Item="licence_issued_with_unbilled_volume_main"]}[Data]
 				in
-				    Data
+				    bcts_reporting_licence_issued_with_unbilled_volume_main
 
 	annotation PBI_ResultType = Table
 

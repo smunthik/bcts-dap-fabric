@@ -1,0 +1,182 @@
+table 'bcts_staging dim_business_area_management_unit'
+	lineageTag: 0aa3e04e-5700-4027-98f4-8418a519cba0
+
+	measure 'ADV Table Title' =
+			
+			VAR MU =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[management_unit])
+			
+			VAR BA =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_reporting_unit])
+			
+			VAR Region =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region])
+			
+			VAR RegionCategory =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region_category])
+			
+			RETURN
+			"Annual Developed Volume (ADV): Actual ADV YTD  and Annual Target ADV - "
+			&
+			SWITCH(
+			    TRUE(),
+			    NOT ISBLANK(MU), MU,
+			    NOT ISBLANK(BA), BA,
+			    NOT ISBLANK(Region), Region,
+			    NOT ISBLANK(RegionCategory), RegionCategory,
+			    "Province-wide"
+			)
+		lineageTag: 771f6ddd-c948-439e-9cf4-5bc6bb6a4767
+
+	measure 'ADV Target Title' =
+			
+			VAR MU =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[management_unit])
+			
+			VAR BA =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_reporting_unit])
+			
+			VAR Region =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region])
+			
+			VAR RegionCategory =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region_category])
+			
+			RETURN
+			"Annual Developed Volume (ADV): Current YTD ADV vs Annual Target - "
+			&
+			SWITCH(
+			    TRUE(),
+			    NOT ISBLANK(MU), MU,
+			    NOT ISBLANK(BA), BA,
+			    NOT ISBLANK(Region), Region,
+			    NOT ISBLANK(RegionCategory), RegionCategory,
+			    "Province-wide"
+			)
+		lineageTag: a500db10-9d3b-40e1-8bed-63a53502e5db
+
+	measure 'ADV Trend Title' =
+			
+			VAR MU =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[management_unit])
+			
+			VAR BA =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_reporting_unit])
+			
+			VAR Region =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region])
+			
+			VAR RegionCategory =
+			    SELECTEDVALUE('bcts_staging dim_business_area_management_unit'[business_area_region_category])
+			
+			RETURN
+			"Annual Developed Volume (ADV): Current vs Previous Fiscal YTD ADV - "
+			&
+			SWITCH(
+			    TRUE(),
+			    NOT ISBLANK(MU), MU,
+			    NOT ISBLANK(BA), BA,
+			    NOT ISBLANK(Region), Region,
+			    NOT ISBLANK(RegionCategory), RegionCategory,
+			    "Province-wide"
+			)
+		lineageTag: 7a1a12d8-e2d3-4d61-8638-867d8a9c6814
+
+	column business_area_region_category
+		dataType: string
+		lineageTag: ca5cb001-3a33-4e34-bbfd-a87c4c8d1ee0
+		summarizeBy: none
+		sourceColumn: business_area_region_category
+		sortByColumn: business_area_region_cat_sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region
+		dataType: string
+		lineageTag: 3916ce36-249f-453c-909e-a7764fc39f20
+		summarizeBy: none
+		sourceColumn: business_area_region
+		sortByColumn: business_area_region_sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area
+		dataType: string
+		lineageTag: fbfa17e7-f46b-4ef8-bba1-61aedd5ab3a8
+		summarizeBy: none
+		sourceColumn: business_area
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_reporting_unit
+		dataType: string
+		lineageTag: 9b25802e-63d6-42fc-b9d3-a9c568d44a8a
+		summarizeBy: none
+		sourceColumn: business_area_reporting_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column management_unit
+		dataType: string
+		lineageTag: b82e814c-9b37-4545-b756-68eb89930423
+		summarizeBy: none
+		sourceColumn: management_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bfd7dc7-88b9-4218-9516-633dd4f6a1e3
+		summarizeBy: sum
+		sourceColumn: business_area_region_sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_cat_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 45198485-32c0-4907-a5e0-497a18ad3b8e
+		summarizeBy: sum
+		sourceColumn: business_area_region_cat_sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'business_area_region_category Hierarchy'
+		lineageTag: 9614279b-779a-4798-a001-8b6ee87567cb
+
+		level business_area_region_category
+			lineageTag: 36bf8553-cbc6-48f2-8367-e532cd58e4fe
+			column: business_area_region_category
+
+		level business_area_region
+			lineageTag: f936a28e-cc0c-465c-ad1f-ddc20e1871b1
+			column: business_area_region
+
+		level business_area
+			lineageTag: 3995c89a-3967-4146-b121-1c5f91774cc9
+			column: business_area
+
+		level business_area_reporting_unit
+			lineageTag: 353a0119-2d88-4d07-b161-2644ad58646d
+			column: business_area_reporting_unit
+
+		level management_unit
+			lineageTag: 86f6cfb1-c772-4488-81a8-729eaac60277
+			column: management_unit
+
+	partition 'bcts_staging dim_business_area_management_unit' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(server, database),
+				    bcts_staging_dim_business_area_management_unit = Source{[Schema="bcts_staging", Item="dim_business_area_management_unit"]}[Data]
+				in
+				    bcts_staging_dim_business_area_management_unit
+
+	annotation PBI_ResultType = Table
+

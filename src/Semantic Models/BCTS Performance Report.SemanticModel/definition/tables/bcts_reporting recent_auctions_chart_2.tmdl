@@ -58,14 +58,8 @@ table 'bcts_reporting recent_auctions_chart_2'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_recent_auctions_chart_2 = Source{[
-				        Schema="bcts_reporting",
-				        Item="recent_auctions_chart_2"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_recent_auctions_chart_2 = Source{[Schema="bcts_reporting", Item="recent_auctions_chart_2"]}[Data]
 				in
 				    bcts_reporting_recent_auctions_chart_2
 

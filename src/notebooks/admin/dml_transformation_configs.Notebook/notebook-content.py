@@ -440,13 +440,40 @@ branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["
 upsert_transformation_config(
     report_name="TSL Weekly Summary Report",
     sql_path="sql/tsl_weekly_summary_report.sql",
-    enabled_ind="Y",
+    enabled_ind="N",
     target_table="tsl_summary_main",
     target_schema="bcts_reporting",
     branch_name=branch_name,
     has_start_date='yes',
     has_end_date='yes', 
     frequency = "WEEKLY",  
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="Roads Planned for Deactivation",
+    sql_path="sql/roads_planned_for_deactivation.sql",
+    enabled_ind="Y",
+    target_table="roads_planned_deactivation",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='yes', 
+    frequency = "MONTHLY",  
     execution_order=1,
     depends_on=None,
     verbose=False

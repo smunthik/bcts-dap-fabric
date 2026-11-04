@@ -383,9 +383,19 @@ table 'bcts_reporting annual_developed_volume'
 
 		annotation SummarizationSetBy = Automatic
 
+	column management_unit =
+			
+			TRIM('bcts_reporting annual_developed_volume'[business_area])
+			    & "-"
+			    & TRIM('bcts_reporting annual_developed_volume'[manu_id])
+		lineageTag: 1a84d328-30bf-43ab-8da7-a02ad511d1f8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	column field_team
 		dataType: string
-		lineageTag: 0ca1ba40-e1ac-428c-81c8-a5192ccb4b6c
+		lineageTag: 108f13fd-3e1e-4720-8fce-1703444f0dd4
 		summarizeBy: none
 		sourceColumn: field_team
 
@@ -393,7 +403,7 @@ table 'bcts_reporting annual_developed_volume'
 
 	column file_type
 		dataType: string
-		lineageTag: bf23e38b-262b-4bbc-8224-6b4ee9d43171
+		lineageTag: fc18a9dc-8e51-4aee-a31e-da61dd3a7f66
 		summarizeBy: none
 		sourceColumn: file_type
 
@@ -402,14 +412,14 @@ table 'bcts_reporting annual_developed_volume'
 	column report_start_date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 4ef5ee89-7d8b-4f55-b2e4-8b47a061a159
+		lineageTag: df049f90-011d-4f82-a898-d90a94567645
 		summarizeBy: none
 		sourceColumn: report_start_date
 
 		variation Variation
 			isDefault
-			relationship: a4d8aa21-4532-4be3-9f23-68ddb7aa9ecd
-			defaultHierarchy: LocalDateTable_59f41186-f22c-4a25-9a2c-2489ddfbb8d5.'Date Hierarchy'
+			relationship: 370dfeeb-e33f-49d1-9bcf-1e46f81e9c00
+			defaultHierarchy: LocalDateTable_de5c3885-f75c-498b-925f-d06829b0e83a.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -434,16 +444,10 @@ table 'bcts_reporting annual_developed_volume'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    annual_developed_volume = Source{[
-				        Schema="bcts_reporting",
-				        Item="annual_developed_volume"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_annual_developed_volume = Source{[Schema="bcts_reporting", Item="annual_developed_volume"]}[Data]
 				in
-				    annual_developed_volume
+				    bcts_reporting_annual_developed_volume
 
 	annotation PBI_ResultType = Table
 

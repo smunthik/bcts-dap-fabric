@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "e1a1f3e79a3dddba6625",
+  "displayName": "By Development Complete Fiscal Table",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

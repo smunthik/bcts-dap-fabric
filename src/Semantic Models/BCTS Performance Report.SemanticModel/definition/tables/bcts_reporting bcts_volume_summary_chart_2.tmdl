@@ -35,14 +35,8 @@ table 'bcts_reporting bcts_volume_summary_chart_2'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_bcts_volume_summary_chart_2 = Source{[
-				        Schema="bcts_reporting",
-				        Item="bcts_volume_summary_chart_2"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_bcts_volume_summary_chart_2 = Source{[Schema="bcts_reporting", Item="bcts_volume_summary_chart_2"]}[Data]
 				in
 				    bcts_reporting_bcts_volume_summary_chart_2
 

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "3a9b049e27e6bb0b3113",
+  "displayName": "DIP Inventory by Days in DIP",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

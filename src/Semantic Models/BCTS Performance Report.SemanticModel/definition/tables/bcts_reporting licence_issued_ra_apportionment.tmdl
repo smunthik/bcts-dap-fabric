@@ -187,14 +187,8 @@ table 'bcts_reporting licence_issued_ra_apportionment'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_licence_issued_ra_apportionment = Source{[
-				        Schema="bcts_reporting",
-				        Item="licence_issued_ra_apportionment"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_licence_issued_ra_apportionment = Source{[Schema="bcts_reporting", Item="licence_issued_ra_apportionment"]}[Data]
 				in
 				    bcts_reporting_licence_issued_ra_apportionment
 

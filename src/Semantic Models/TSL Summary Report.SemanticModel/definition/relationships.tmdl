@@ -52,3 +52,20 @@ relationship 4c33f807-365f-4e50-9c3d-27a56a77af2e
 	fromColumn: 'bcts_reporting tsl_summary_main'.report_run_timestamp
 	toColumn: LocalDateTable_50fc9e1f-f450-4755-bec8-1874b105d1df.Date
 
+relationship 781f6f5e-54ec-ac9c-73cd-e33bcb438e51
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting v_tsl_summary'.business_area
+
+relationship 9f8abddf-eb0e-c8e6-7ce3-5f2b7ed6ffd8
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting tsl_summary_main'.business_area
+
+relationship 3a35da92-4310-3560-ba4b-aa4d3a94175e
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting tsl_summary_main_hist'.business_area
+

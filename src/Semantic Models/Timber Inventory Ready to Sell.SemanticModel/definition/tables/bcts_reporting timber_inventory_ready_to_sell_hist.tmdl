@@ -786,7 +786,7 @@ table 'bcts_reporting timber_inventory_ready_to_sell_hist'
 
 	column salvage_2025_fire
 		dataType: string
-		lineageTag: 2bd9c139-8ccf-4e34-8c18-a41590d47c87
+		lineageTag: 8cc52d9e-3862-40e0-8d1f-0b4e09be201a
 		summarizeBy: none
 		sourceColumn: salvage_2025_fire
 
@@ -796,14 +796,8 @@ table 'bcts_reporting timber_inventory_ready_to_sell_hist'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_timber_inventory_ready_to_sell_hist = Source{[
-				        Schema="bcts_reporting",
-				        Item="timber_inventory_ready_to_sell_hist"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_timber_inventory_ready_to_sell_hist = Source{[Schema="bcts_reporting", Item="timber_inventory_ready_to_sell_hist"]}[Data]
 				in
 				    bcts_reporting_timber_inventory_ready_to_sell_hist
 

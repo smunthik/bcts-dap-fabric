@@ -1,14 +1,18 @@
-expression server = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
-	lineageTag: 5f0ea79c-5072-4f2c-91da-0a4a27ab52d2
-
-	annotation PBI_NavigationStepName = Navigation
+expression server =
+		let
+		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type any]
+		in
+		    Source
+	lineageTag: 60b1489b-88ef-4ae6-8a05-86c0aca683e1
 
 	annotation PBI_ResultType = Text
 
-expression database = " bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
-	lineageTag: 98d80acd-b54d-4e52-aaa9-b44fb7831dbc
-
-	annotation PBI_NavigationStepName = Navigation
+expression database =
+		let
+		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
+		in
+		    Source
+	lineageTag: 77c40897-bd43-4303-bbd2-49a5d4546c32
 
 	annotation PBI_ResultType = Text
 

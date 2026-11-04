@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "c4aba1ce6e9b4130058a",
   "position": {
     "x": 701.00934579439252,
@@ -41,16 +41,16 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
                     }
                   },
-                  "Level": "Business Area"
+                  "Level": "business_area_region_category"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region_category",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category",
               "active": true
             },
@@ -61,7 +61,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -70,7 +70,7 @@
                   "Level": "business_area_region"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area_region",
               "active": true
             },
@@ -81,7 +81,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -90,7 +90,7 @@
                   "Level": "business_area"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area",
               "nativeQueryRef": "business_area_region_category Hierarchy business_area",
               "active": true
             }
@@ -131,28 +131,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "HierarchyLevel": {
-                "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "bcts_reporting roads_constructed"
-                      }
-                    },
-                    "Hierarchy": "business_area_region_category Hierarchy"
-                  }
-                },
-                "Level": "Business Area"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "expansionStates": [
@@ -163,15 +141,14 @@
         "levels": [
           {
             "queryRefs": [
-              "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region_category"
+              "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category"
             ],
-            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bcts_reporting roads_constructed"
+                      "Entity": "bcts_staging dim_business_area_management_unit"
                     }
                   },
                   "Property": "business_area_region_category"
@@ -182,89 +159,19 @@
           },
           {
             "queryRefs": [
-              "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "bcts_reporting roads_constructed"
-                    }
-                  },
-                  "Property": "business_area_region"
-                }
-              }
+              "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region"
             ],
             "isPinned": true
           },
           {
             "queryRefs": [
-              "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area"
+              "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area"
             ],
             "isCollapsed": true,
             "isPinned": true
           }
         ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'Coast'"
-                  }
-                }
-              ],
-              "isToggled": true,
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'Coast'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            },
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'Interior'"
-                  }
-                }
-              ],
-              "isToggled": true,
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'North Interior'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                },
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'South Interior'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            }
-          ]
-        }
+        "root": {}
       }
     ],
     "objects": {

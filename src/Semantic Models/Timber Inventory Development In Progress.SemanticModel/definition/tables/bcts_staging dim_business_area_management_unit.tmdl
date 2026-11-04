@@ -1,0 +1,90 @@
+table 'bcts_staging dim_business_area_management_unit'
+	lineageTag: 05cee86f-9c2d-4444-98ca-d8c9d4c96767
+
+	column business_area_region_category
+		dataType: string
+		lineageTag: a0f9c00f-afdd-4bcf-96e6-ef31e649a49e
+		summarizeBy: none
+		sourceColumn: business_area_region_category
+		sortByColumn: business_area_region_cat_sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region
+		dataType: string
+		lineageTag: e5b71276-e8c5-437d-9668-f5c199b43cdd
+		summarizeBy: none
+		sourceColumn: business_area_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area
+		dataType: string
+		lineageTag: 279cff3f-4017-4fe2-b262-c7bcb77399db
+		summarizeBy: none
+		sourceColumn: business_area
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_reporting_unit
+		dataType: string
+		lineageTag: 20b353aa-3d12-42dc-9e29-d188553d0ef3
+		summarizeBy: none
+		sourceColumn: business_area_reporting_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column management_unit
+		dataType: string
+		lineageTag: 34dc7ba7-cfb1-4360-a801-500ea8bb6a6f
+		summarizeBy: none
+		sourceColumn: management_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: a600285d-12db-43f4-a556-144bf5917216
+		summarizeBy: sum
+		sourceColumn: business_area_region_sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_cat_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 9305c2d1-b2ed-49a8-b882-45c66c0c8d76
+		summarizeBy: sum
+		sourceColumn: business_area_region_cat_sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'business_area_region_category Hierarchy'
+		lineageTag: 3695f4fc-3e9c-45d1-ad7a-64d1d17180e1
+
+		level business_area_region_category
+			lineageTag: a38e99b2-a679-484a-a51f-b3f211b03cb0
+			column: business_area_region_category
+
+		level business_area_region
+			lineageTag: 1e81c44b-35e5-40fe-8224-563c17c80267
+			column: business_area_region
+
+		level business_area
+			lineageTag: da631d0a-19c9-4bc8-a78a-65e2d96d1233
+			column: business_area
+
+	partition 'bcts_staging dim_business_area_management_unit' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(server, database),
+				    bcts_staging_dim_business_area_management_unit = Source{[Schema="bcts_staging", Item="dim_business_area_management_unit"]}[Data]
+				in
+				    bcts_staging_dim_business_area_management_unit
+
+	annotation PBI_ResultType = Table
+

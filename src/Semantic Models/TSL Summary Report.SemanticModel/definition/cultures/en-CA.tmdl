@@ -429,38 +429,6 @@ cultureInfo en-CA
 			        }
 			      ]
 			    },
-			    "bcts_reporting_v_tsl_summary.volume_of_value_added_category_4_auctioned": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "bcts_reporting v_tsl_summary",
-			          "ConceptualProperty": "Volume of Value Added (Category 4) Auctioned"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "volume of value added (category 4) auctioned": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "bcts_reporting_v_tsl_summary.number_of_value_added_category_4_licence_auctioned": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "bcts_reporting v_tsl_summary",
-			          "ConceptualProperty": "Number of Value Added (Category 4) Licence Auctioned"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "number of value added (category 4) licence auctioned": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "bcts_reporting_v_tsl_summary.number_of_licence_issued": {
 			      "Definition": {
 			        "Binding": {
@@ -14316,9 +14284,2349 @@ cultureInfo en-CA
 			          }
 			        }
 			      ]
+			    },
+			    "bcts_reporting_v_tsl_summary.volume_of_value_added_auctioned": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting v_tsl_summary",
+			          "ConceptualProperty": "Volume of Value Added Auctioned"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "volume of value added auctioned": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "capacity of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "size of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "bulk of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "tome of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.494
+			          }
+			        },
+			        {
+			          "book of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "work of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "edition of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.469
+			          }
+			        },
+			        {
+			          "part of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.455
+			          }
+			        },
+			        {
+			          "section of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.455
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_reporting_tsl_summary_main.business_area_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting tsl_summary_main",
+			          "ConceptualProperty": "BusinessAreaSort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "BusinessAreaSort": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "area sort": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "biz area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "industry area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "commerce area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "corporation area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "employer area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "enterprise area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "establishment area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business locale sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business locality sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_reporting_tsl_summary_main.business_area_region_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting tsl_summary_main",
+			          "ConceptualProperty": "business_area_region_sort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_sort": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "region sort": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region sort": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area location sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.686
+			          }
+			        },
+			        {
+			          "area location sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.677
+			          }
+			        },
+			        {
+			          "location sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.667
+			          }
+			        },
+			        {
+			          "biz area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "industry area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "commerce area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "corporation area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "employer area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "enterprise area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "establishment area region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "bcts_staging dim_business_area_management_unit": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_region_category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_category": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "region category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "area region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area region class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "area region class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "area region group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_region"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "region": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.846
+			          }
+			        },
+			        {
+			          "area location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.833
+			          }
+			        },
+			        {
+			          "business area province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area section": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area zone": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area continent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "area": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business region": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business locale": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business neighbourhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "locale": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "neighbourhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "business district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "business continent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "business field": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_reporting_unit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_reporting_unit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "business area reporting unit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_reporting_unit": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "reporting unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area reporting unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "business area reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "business area reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "area reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area reporting group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.management_unit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "management_unit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "management unit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "management_unit": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "management module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "management element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "management entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "management group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "management component": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "management constituent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "management item": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_sort_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_region_sort_order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region sort order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_sort_order": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "region sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area location sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.693
+			          }
+			        },
+			        {
+			          "area location sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.686
+			          }
+			        },
+			        {
+			          "location sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.677
+			          }
+			        },
+			        {
+			          "biz area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "industry area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "commerce area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "corporation area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "employer area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "enterprise area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "establishment area region sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_cat_sort_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_region_cat_sort_order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region cat sort order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_cat_sort_order": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "cat sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "region cat sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region cat sort order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area location cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.693
+			          }
+			        },
+			        {
+			          "location cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.686
+			          }
+			        },
+			        {
+			          "region region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "locale region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "locality region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "neighbourhood region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "area province cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "province cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "district region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "continent region cat sort order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "ConceptualProperty": "business_area_sort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_sort": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "area sort": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "biz area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "industry area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "commerce area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "corporation area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "employer area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "enterprise area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "establishment area sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business region sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business locale sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "business locality sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "Hierarchy": "business_area_region_category Hierarchy"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business_area_region_category hierarchy": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_category ladder": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "business_area_region_category grading": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "business_area_region_category order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "business_area_region_category pyramid": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "Hierarchy": "business_area_region_category Hierarchy",
+			          "HierarchyLevel": "business_area_region_category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region_category": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "region category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region category": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "area region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "region classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area region class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "business area region kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        },
+			        {
+			          "area region class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "area region group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "Hierarchy": "business_area_region_category Hierarchy",
+			          "HierarchyLevel": "business_area_region"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area region": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_region": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "region": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area region": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.846
+			          }
+			        },
+			        {
+			          "area location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.833
+			          }
+			        },
+			        {
+			          "business area province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area section": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area zone": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "business area continent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "Hierarchy": "business_area_region_category Hierarchy",
+			          "HierarchyLevel": "business_area"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "area": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business region": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business locale": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business neighbourhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "locale": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "neighbourhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "business district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "business continent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "business field": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_staging dim_business_area_management_unit",
+			          "Hierarchy": "business_area_region_category Hierarchy",
+			          "HierarchyLevel": "business_area_reporting_unit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "business area reporting unit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "business_area_reporting_unit": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "reporting unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "area reporting unit": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "business area reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "business area reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "business area reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "area reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "area reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "reporting module": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "reporting element": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "reporting entity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "business area reporting group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_reporting_v_tsl_summary.number_of_value_added_auctioned": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting v_tsl_summary",
+			          "ConceptualProperty": "Number of Value Added Auctioned"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "number of value added auctioned": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "quantity of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.8
+			          }
+			        },
+			        {
+			          "amount of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.776
+			          }
+			        },
+			        {
+			          "count of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.776
+			          }
+			        },
+			        {
+			          "no of value added auctioned": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.757
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area_region_category_has_bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area_region": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_region_categories_have_business_area_regions"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_regions_have_business_area_region_categories"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_regions_are_in_business_area_region_categories2"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_has_business_area_reporting_unit": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_region_category_hierarchies_have_business_area_reporting_units"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_has_business_area": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_region_category_hierarchies_have_business_areas"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_has_business_area_region": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_region_category_hierarchies_have_business_area_regions"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_has_business_area_region_category": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_region_category_hierarchies_have_business_area_region_categories"
+			        }
+			      ]
+			    },
 			    "bcts_reporting_tsl_summary_main_report_run_timestamp_date_hierarchy_has_bcts_reporting_tsl_summary_main_report_run_timestamp_day": {
 			      "Binding": {
 			        "ConceptualEntity": "bcts_reporting tsl_summary_main"
@@ -15404,7 +17712,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_categories_have_business_area_regions"
+			          "ID": "business_area_region_categories_have_business_area_regions1"
 			        },
 			        {
 			          "Attribute": {
@@ -15417,7 +17725,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_regions_have_business_area_region_categories"
+			          "ID": "business_area_regions_have_business_area_region_categories1"
 			        },
 			        {
 			          "Preposition": {
@@ -15470,7 +17778,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_areas"
+			          "ID": "business_area_region_category_hierarchies_have_business_areas1"
 			        }
 			      ]
 			    },
@@ -15503,7 +17811,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_area_regions"
+			          "ID": "business_area_region_category_hierarchies_have_business_area_regions1"
 			        }
 			      ]
 			    },
@@ -15536,7 +17844,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_area_region_categories"
+			          "ID": "business_area_region_category_hierarchies_have_business_area_region_categories1"
 			        }
 			      ]
 			    },
@@ -16295,7 +18603,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_categories_have_business_area_regions1"
+			          "ID": "business_area_region_categories_have_business_area_regions2"
 			        },
 			        {
 			          "Attribute": {
@@ -16308,7 +18616,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_regions_have_business_area_region_categories1"
+			          "ID": "business_area_regions_have_business_area_region_categories2"
 			        },
 			        {
 			          "Preposition": {
@@ -16361,7 +18669,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_areas1"
+			          "ID": "business_area_region_category_hierarchies_have_business_areas2"
 			        }
 			      ]
 			    },
@@ -16394,7 +18702,7 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_area_regions1"
+			          "ID": "business_area_region_category_hierarchies_have_business_area_regions2"
 			        }
 			      ]
 			    },
@@ -16427,11 +18735,374 @@ cultureInfo en-CA
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "business_area_region_category_hierarchies_have_business_area_region_categories1"
+			          "ID": "business_area_region_category_hierarchies_have_business_area_region_categories2"
 			        }
 			      ]
 			    },
-			    "bcts_reporting_tsl_summary_main_has_bcts_reporting_v_tsl_summary": {
+			    "bcts_staging_dim_business_area_management_unit_has_bcts_reporting_tsl_summary_main_hist": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_reporting_tsl_summary_main_hist": {
+			          "Target": {
+			            "Entity": "bcts_reporting_tsl_summary_main_hist"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_reporting_tsl_summary_main_hist"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_bcts_reporting_tsl_summary_main_hists"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_bcts_reporting_tsl_summary_main": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_reporting_tsl_summary_main": {
+			          "Target": {
+			            "Entity": "bcts_reporting_tsl_summary_main"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_reporting_tsl_summary_main"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_bcts_reporting_tsl_summary_mains"
+			        }
+			      ]
+			    },
+			    "bcts_reporting_v_tsl_summary_has_number_of_value_added_auctioned": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_reporting v_tsl_summary"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_reporting_v_tsl_summary": {
+			          "Target": {
+			            "Entity": "bcts_reporting_v_tsl_summary"
+			          }
+			        },
+			        "bcts_reporting_v_tsl_summary.number_of_value_added_auctioned": {
+			          "Target": {
+			            "Entity": "bcts_reporting_v_tsl_summary.number_of_value_added_auctioned"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_reporting_v_tsl_summary"
+			            },
+			            "Object": {
+			              "Role": "bcts_reporting_v_tsl_summary.number_of_value_added_auctioned"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_reporting_v_tsl_summaries_have_number_of_value_added_auctioned"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_region_category_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_region_category_hierarchies"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_sort": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_sort": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_sort"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_sort"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_sorts"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_region_cat_sort_order": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_cat_sort_order": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_cat_sort_order"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_cat_sort_order"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_region_cat_sort_orders"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_region_sort_order": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_sort_order": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_sort_order"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_sort_order"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_region_sort_orders"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_management_unit": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.management_unit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.management_unit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_management_units"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_areas"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_region": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_regions"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_has_business_area_region_category": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_have_business_area_region_categories"
+			        }
+			      ]
+			    },
+			    "bcts_reporting_tsl_summary_main_has_business_area_region_sort": {
 			      "Binding": {
 			        "ConceptualEntity": "bcts_reporting tsl_summary_main"
 			      },
@@ -16442,9 +19113,9 @@ cultureInfo en-CA
 			            "Entity": "bcts_reporting_tsl_summary_main"
 			          }
 			        },
-			        "bcts_reporting_v_tsl_summary": {
+			        "bcts_reporting_tsl_summary_main.business_area_region_sort": {
 			          "Target": {
-			            "Entity": "bcts_reporting_v_tsl_summary"
+			            "Entity": "bcts_reporting_tsl_summary_main.business_area_region_sort"
 			          }
 			        }
 			      },
@@ -16455,25 +19126,78 @@ cultureInfo en-CA
 			              "Role": "bcts_reporting_tsl_summary_main"
 			            },
 			            "Object": {
-			              "Role": "bcts_reporting_v_tsl_summary"
+			              "Role": "bcts_reporting_tsl_summary_main.business_area_region_sort"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "bcts_reporting_tsl_summary_mains_have_bcts_reporting_v_tsl_summaries"
+			          "ID": "bcts_reporting_tsl_summary_mains_have_business_area_region_sorts"
+			        }
+			      ]
+			    },
+			    "bcts_reporting_tsl_summary_main_has_business_area_sort": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_reporting tsl_summary_main"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_reporting_tsl_summary_main": {
+			          "Target": {
+			            "Entity": "bcts_reporting_tsl_summary_main"
+			          }
 			        },
+			        "bcts_reporting_tsl_summary_main.business_area_sort": {
+			          "Target": {
+			            "Entity": "bcts_reporting_tsl_summary_main.business_area_sort"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_reporting_tsl_summary_main"
+			            },
+			            "Object": {
+			              "Role": "bcts_reporting_tsl_summary_main.business_area_sort"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_reporting_tsl_summary_mains_have_business_area_sorts"
+			        }
+			      ]
+			    },
+			    "bcts_reporting_v_tsl_summary_has_volume_of_value_added_auctioned": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_reporting v_tsl_summary"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_reporting_v_tsl_summary": {
+			          "Target": {
+			            "Entity": "bcts_reporting_v_tsl_summary"
+			          }
+			        },
+			        "bcts_reporting_v_tsl_summary.volume_of_value_added_auctioned": {
+			          "Target": {
+			            "Entity": "bcts_reporting_v_tsl_summary.volume_of_value_added_auctioned"
+			          }
+			        }
+			      },
+			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
 			              "Role": "bcts_reporting_v_tsl_summary"
 			            },
 			            "Object": {
-			              "Role": "bcts_reporting_tsl_summary_main"
+			              "Role": "bcts_reporting_v_tsl_summary.volume_of_value_added_auctioned"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "bcts_reporting_v_tsl_summaries_have_bcts_reporting_tsl_summary_mains"
+			          "ID": "bcts_reporting_v_tsl_summaries_have_volume_of_value_added_auctioned"
 			        }
 			      ]
 			    },
@@ -18490,72 +21214,6 @@ cultureInfo en-CA
 			        }
 			      ]
 			    },
-			    "bcts_reporting_v_tsl_summary_has_number_of_value_added_category_4_licence_auctioned": {
-			      "Binding": {
-			        "ConceptualEntity": "bcts_reporting v_tsl_summary"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "bcts_reporting_v_tsl_summary": {
-			          "Target": {
-			            "Entity": "bcts_reporting_v_tsl_summary"
-			          }
-			        },
-			        "bcts_reporting_v_tsl_summary.number_of_value_added_category_4_licence_auctioned": {
-			          "Target": {
-			            "Entity": "bcts_reporting_v_tsl_summary.number_of_value_added_category_4_licence_auctioned"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "bcts_reporting_v_tsl_summary"
-			            },
-			            "Object": {
-			              "Role": "bcts_reporting_v_tsl_summary.number_of_value_added_category_4_licence_auctioned"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "bcts_reporting_v_tsl_summaries_have_number_of_value_added_category_4_licence_auctioned"
-			        }
-			      ]
-			    },
-			    "bcts_reporting_v_tsl_summary_has_volume_of_value_added_category_4_auctioned": {
-			      "Binding": {
-			        "ConceptualEntity": "bcts_reporting v_tsl_summary"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "bcts_reporting_v_tsl_summary": {
-			          "Target": {
-			            "Entity": "bcts_reporting_v_tsl_summary"
-			          }
-			        },
-			        "bcts_reporting_v_tsl_summary.volume_of_value_added_category_4_auctioned": {
-			          "Target": {
-			            "Entity": "bcts_reporting_v_tsl_summary.volume_of_value_added_category_4_auctioned"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "bcts_reporting_v_tsl_summary"
-			            },
-			            "Object": {
-			              "Role": "bcts_reporting_v_tsl_summary.volume_of_value_added_category_4_auctioned"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "bcts_reporting_v_tsl_summaries_have_volume_of_value_added_category_4_auctioned"
-			        }
-			      ]
-			    },
 			    "bcts_reporting_v_tsl_summary_has_number_of_licence_not_awarded": {
 			      "Binding": {
 			        "ConceptualEntity": "bcts_reporting v_tsl_summary"
@@ -18784,6 +21442,321 @@ cultureInfo en-CA
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "bcts_reporting_v_tsl_summaries_have_business_area_regions"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region_category_hierarchy_business_area_reporting_unit": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_area_reporting_units"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region_category_hierarchy_business_area": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_areas"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region_category_hierarchy_business_area_region": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_area_regions"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region_category_hierarchy_business_area_region_category": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_area_region_categories"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_areas1"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_area_regions1"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_in_business_area_region_category": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bcts_staging_dim_business_area_management_units_are_in_business_area_region_categories1"
 			        }
 			      ]
 			    },
@@ -19975,6 +22948,138 @@ cultureInfo en-CA
 			          "State": "Generated",
 			          "Weight": 0.9,
 			          "ID": "bcts_reporting_tsl_summary_mains_are_closed_on_auction_closing_dates"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area_region_has_bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_regions_have_business_areas2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_areas_have_business_area_regions2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_areas_are_in_business_area_regions2"
+			        }
+			      ]
+			    },
+			    "bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area_has_bcts_staging_dim_business_area_management_unit_business_area_region_category_hierarchy_business_area_reporting_unit": {
+			      "Binding": {
+			        "ConceptualEntity": "bcts_staging dim_business_area_management_unit"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			          }
+			        },
+			        "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit": {
+			          "Target": {
+			            "Entity": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_areas_have_business_area_reporting_units"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			            },
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_reporting_units_have_business_areas"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area_reporting_unit"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "bcts_staging_dim_business_area_management_unit.business_area_region_category_hierarchy.business_area"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "business_area_reporting_units_are_in_business_areas"
 			        }
 			      ]
 			    }
