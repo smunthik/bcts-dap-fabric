@@ -173,7 +173,7 @@ for row in cfg:
     activities.append({
         "name": name,
         "path": "run_sql_file",   # child notebook
-        "timeoutPerCellInSeconds": 900,
+        "timeoutPerCellInSeconds": 43200,
         "args": {
             "sql_path": row["sql_path"],
             "start_date": start_str,

@@ -112,6 +112,7 @@ from pyspark.sql import functions as F
 from pyspark.sql.types import DecimalType
 from delta.tables import DeltaTable
 
+
 raw_table = "bcts_staging.financial_transactions_raw"
 hist_table = "bcts_staging.financial_transactions_hist"
 
@@ -236,9 +237,11 @@ transformed_df = (
 
 
 # ============================================================
-# 6. Convert period from YY-Mon to Mon-YY
+# 6. Standardize period_name
 #
-# 27-Aug -> Aug-27
+# Raw period_name is assumed to be Mon-YY
+# Example:
+# Aug-27 -> Aug-27
 # ============================================================
 
 transformed_df = (
@@ -248,24 +251,28 @@ transformed_df = (
         F.trim(F.col("period_name_raw"))
     )
     .withColumn(
-        "fiscal_year",
-        F.split(F.col("period_name_raw"), "-").getItem(1)
-    )
-    .withColumn(
         "period_month",
         F.initcap(
             F.split(F.col("period_name_raw"), "-").getItem(0)
         )
     )
     .withColumn(
+        "period_year",
+        F.split(F.col("period_name_raw"), "-").getItem(1)
+    )
+    .withColumn(
         "period_name",
         F.concat_ws(
             "-",
             F.col("period_month"),
-            F.col("fiscal_year")
+            F.col("period_year")
         )
     )
-    .drop("period_name_raw", "period_month")
+    .drop(
+        "period_name_raw",
+        "period_month",
+        "period_year"
+    )
 )
 
 
@@ -283,12 +290,17 @@ transformed_df = (
         "encumbrance_amount",
         F.col("encumbrance_amount").cast(DecimalType(18, 2))
     )
-    .withColumn("date_updated", F.current_date())
+    .withColumn(
+        "date_updated",
+        F.current_date()
+    )
 )
 
 
 # ============================================================
 # 8. Arrange final history columns
+#
+# fiscal_year removed because it does not exist in _hist
 # ============================================================
 
 transformed_df = transformed_df.select(
@@ -304,20 +316,21 @@ transformed_df = transformed_df.select(
     "encumbrance_amount",
     "encumbrance_type",
     "batch_name",
-    "fiscal_year",
     "date_updated"
 )
 
 
 # ============================================================
-# 9. Validate fiscal year before modifying history
+# 9. Validate period_name before modifying history
 # ============================================================
 
 invalid_period_count = (
     transformed_df
     .filter(
-        ~F.col("fiscal_year").rlike(r"^\d{2}$")
-        | F.col("period_name").isNull()
+        F.col("period_name").isNull()
+        | ~F.col("period_name").rlike(
+            r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$"
+        )
     )
     .count()
 )
@@ -325,29 +338,33 @@ invalid_period_count = (
 if invalid_period_count > 0:
     raise ValueError(
         f"Transformation stopped: {invalid_period_count} row(s) "
-        "have an invalid period. Expected YY-Mon, such as 27-Aug."
+        "have an invalid period_name. Expected Mon-YY, such as Aug-27."
     )
 
-incoming_fiscal_years = [
-    row["fiscal_year"]
+
+# Get all periods contained in the incoming file
+
+incoming_periods = [
+    row["period_name"]
     for row in (
         transformed_df
-        .select("fiscal_year")
+        .select("period_name")
         .distinct()
-        .orderBy("fiscal_year")
+        .orderBy("period_name")
         .collect()
     )
 ]
 
-if not incoming_fiscal_years:
+if not incoming_periods:
     raise ValueError(
         "No eligible transaction rows remain after applying "
         "the Access Project filter."
     )
 
+
 print(
-    "Incoming fiscal year(s): "
-    + ", ".join(incoming_fiscal_years)
+    "Incoming period(s): "
+    + ", ".join(incoming_periods)
 )
 
 print(
@@ -358,6 +375,9 @@ print(
 
 # ============================================================
 # 10. Create or refresh history
+#
+# Delete existing records for incoming period_name values,
+# then append the newly loaded records.
 # ============================================================
 
 if not spark.catalog.tableExists(hist_table):
@@ -377,7 +397,7 @@ else:
     hist_delta = DeltaTable.forName(spark, hist_table)
 
     hist_delta.delete(
-        F.col("fiscal_year").isin(incoming_fiscal_years)
+        F.col("period_name").isin(incoming_periods)
     )
 
     (
@@ -388,8 +408,8 @@ else:
     )
 
     print(
-        f"Replaced fiscal-year data in {hist_table}: "
-        + ", ".join(incoming_fiscal_years)
+        f"Replaced period data in {hist_table}: "
+        + ", ".join(incoming_periods)
     )
 
 
@@ -397,19 +417,24 @@ else:
 # 11. Validate loaded history
 # ============================================================
 
-display(
-    spark.table(hist_table)
-    .groupBy("fiscal_year", "period_name")
-    .agg(
-        F.count("*").alias("row_count"),
-        F.sum("actual_amount").alias("total_actual_amount"),
-        F.sum("encumbrance_amount").alias(
-            "total_encumbrance_amount"
-        ),
-        F.max("date_updated").alias("date_updated")
-    )
-    .orderBy("fiscal_year", "period_name")
-)
+display(transformed_df.limit(10))
+
+# display(
+#     spark.table(hist_table)
+#     .filter(
+#         F.col("period_name").isin(incoming_periods)
+#     )
+#     .groupBy("period_name")
+#     .agg(
+#         F.count("*").alias("row_count"),
+#         F.sum("actual_amount").alias("total_actual_amount"),
+#         F.sum("encumbrance_amount").alias(
+#             "total_encumbrance_amount"
+#         ),
+#         F.max("date_updated").alias("date_updated")
+#     )
+#     .orderBy("period_name")
+# )
 
 # METADATA ********************
 
@@ -759,6 +784,49 @@ display(summary_df)
 )
 
 print(f"Successfully refreshed {target_table}")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+for col in summary_df.columns:
+    print(f"{col},", end="")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+
+
+table_name = "bcts_staging.financial_transactions_summary"
+
+df = spark.table(table_name)
+
+columns = []
+
+for field in df.schema.fields:
+    nullable = "" if field.nullable else " NOT NULL"
+    columns.append(
+        f"    `{field.name}` {field.dataType.simpleString()}{nullable}"
+    )
+
+ddl = \
+f"""CREATE TABLE {table_name} (
+{',\n'.join(columns)}
+)
+USING DELTA"""
+
+print(ddl)
 
 # METADATA ********************
 

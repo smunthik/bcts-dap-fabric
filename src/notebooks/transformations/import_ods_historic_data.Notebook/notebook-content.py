@@ -27,7 +27,6 @@ spark.conf.set(
     "spark.sql.parquet.datetimeRebaseModeInWrite",
     "CORRECTED"
 )
-
 # ============================================================
 # Generic Historical CSV Loader -> Existing Fabric Delta Table
 # ============================================================
@@ -36,6 +35,7 @@ spark.conf.set(
 # Configuration
 # -----------------------------
 config = {
+    "bcts_staging.financial_transactions_hist" : "Files/data/CFS_Data.csv"
     # "bcts_staging.roads_planned_deactivation_hist" : "Files/data/roads_planned_for_deactivation_hist.csv"
     # "bcts_staging.annual_developed_volume_hist" : "Files/data/annual_developed_volume_hist.csv",
     # "bcts_staging.annual_development_ready_hist" : "Files/data/annual_development_ready_hist.csv",
@@ -78,6 +78,11 @@ for target_table, csv_path in config.items():
             .option("quote", '"')
             .load(csv_path)
     )
+
+    # Normalize column names
+    # df = df.toDF(
+    # *[col.strip().lower().replace(" ", "_") for col in df.columns]
+    # )
 
     row_count = df.count()
 
