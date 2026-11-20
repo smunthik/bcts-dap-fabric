@@ -1,9 +1,9 @@
 expression server =
 		let
-		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
+		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type any]
 		in
 		    Source
-	lineageTag: 2840d0c7-479c-4671-a048-6e0e75f39b78
+	lineageTag: a8877161-83f9-4c19-95d3-bbee24800250
 
 	annotation PBI_ResultType = Text
 
@@ -12,7 +12,7 @@ expression database =
 		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: 1b2de1b1-d690-4657-9dae-3c79fae392ed
+	lineageTag: 32e186a6-7991-49d3-b8b4-ab865f38926c
 
 	annotation PBI_ResultType = Text
 

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4626632d442ee9290196",
   "position": {
-    "x": 20.541624874623871,
-    "y": 209.2678034102307,
+    "x": 38.095320492716318,
+    "y": 208.19535618112405,
     "z": 9000,
-    "height": 101.42427281845536,
-    "width": 229.80942828485456,
+    "height": 99.3616680032077,
+    "width": 156.84362469927828,
     "tabOrder": 8000
   },
   "visual": {
@@ -448,6 +448,25 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "43d3357e11ef827bbb31",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_reporting roads_constructed"
+                  }
+                },
+                "Property": "length"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

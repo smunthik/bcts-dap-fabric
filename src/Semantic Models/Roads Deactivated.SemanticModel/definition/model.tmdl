@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["bcts_reporting roads_deactivated","bcts_reporting roads_deactivated_hist","server","database"]
+annotation PBI_QueryOrder = ["bcts_reporting roads_deactivated","bcts_reporting roads_deactivated_hist","bcts_staging dim_business_area_management_unit","server","database"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -25,6 +25,9 @@ ref table LocalDateTable_5a41c502-8ce9-444d-a045-b621fe38abc9
 ref table LocalDateTable_c3d853b5-180b-460b-8fd2-8bffea259495
 ref table LocalDateTable_25059e10-25eb-43e3-a32d-6b22de7616d8
 ref table LocalDateTable_fdef89a6-e512-4d1d-b285-2949e9c31387
+ref table 'bcts_staging dim_business_area_management_unit'
+ref table LocalDateTable_d86616a1-0810-43d2-866f-4a6cbe87c391
+ref table LocalDateTable_00c42c1b-77a4-49b2-950b-5913952348e8
 
 ref cultureInfo en-CA
 

@@ -48,13 +48,19 @@ relationship bc40b0e6-13c7-4dcc-9e9c-c51d33911a56
 	fromColumn: 'bcts_reporting roads_constructed_hist'.report_run_timestamp
 	toColumn: LocalDateTable_620114ab-dd00-43ce-a76c-c2026cf95124.Date
 
-relationship 54c19222-2b5c-4d23-85c2-9143575f6570
+relationship c07c5093-a164-9ada-b5f6-dfa36e092f14
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting roads_constructed'.business_area
+
+relationship 6d628399-f07b-47f5-856d-99977ca81961
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'bcts_reporting roads_constructed'.report_start_date
-	toColumn: LocalDateTable_fc99484f-46a6-406b-85be-fe5c6bc5afa6.Date
+	toColumn: LocalDateTable_464d6868-7898-4699-b59f-2e7a06d9f4b9.Date
 
-relationship 7fc1ef5b-ef34-445d-b4d8-2d57bcfb526e
+relationship 86deec39-a098-4dda-828d-2063061485eb
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'bcts_reporting roads_constructed_hist'.report_start_date
-	toColumn: LocalDateTable_b21ffb92-6cb6-4dfa-8df7-7fa420705ba9.Date
+	toColumn: LocalDateTable_e804b77b-13ec-4fcd-92b5-ad8ad8643d3d.Date
 

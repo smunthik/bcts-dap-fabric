@@ -1173,16 +1173,10 @@ table 'bcts_reporting timber_inventory_development_in_progress_hist'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    annual_developed_volume = Source{[
-				        Schema="bcts_reporting",
-				        Item="timber_inventory_development_in_progress_hist"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_timber_inventory_development_in_progress_hist = Source{[Schema="bcts_reporting", Item="timber_inventory_development_in_progress_hist"]}[Data]
 				in
-				    annual_developed_volume
+				    bcts_reporting_timber_inventory_development_in_progress_hist
 
 	annotation PBI_NavigationStepName = Navigation
 

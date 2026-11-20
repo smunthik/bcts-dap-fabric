@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "d3ef68a86b01bec7b999",
   "position": {
     "x": 8,
@@ -22,17 +22,17 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_staging dim_business_area"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
-                      "Hierarchy": "Business Area Hierarchy"
+                      "Hierarchy": "business_area_region_category Hierarchy"
                     }
                   },
-                  "Level": "Business Area"
+                  "Level": "business_area_region_category"
                 }
               },
-              "queryRef": "bcts_staging dim_business_area.Business Area Hierarchy.Business Area",
-              "nativeQueryRef": "Business Area Hierarchy Business Area",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category",
               "active": true
             },
             {
@@ -42,17 +42,17 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_staging dim_business_area"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
-                      "Hierarchy": "Business Area Hierarchy"
+                      "Hierarchy": "business_area_region_category Hierarchy"
                     }
                   },
                   "Level": "business_area_region"
                 }
               },
-              "queryRef": "bcts_staging dim_business_area.Business Area Hierarchy.business_area_region",
-              "nativeQueryRef": "Business Area Hierarchy business_area_region",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region",
               "active": true
             },
             {
@@ -62,38 +62,18 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_staging dim_business_area"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
-                      "Hierarchy": "Business Area Hierarchy"
+                      "Hierarchy": "business_area_region_category Hierarchy"
                     }
                   },
                   "Level": "business_area"
                 }
               },
-              "queryRef": "bcts_staging dim_business_area.Business Area Hierarchy.business_area",
-              "nativeQueryRef": "Business Area Hierarchy business_area",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "bcts_staging dim_business_area"
-                        }
-                      },
-                      "Hierarchy": "Business Area Hierarchy"
-                    }
-                  },
-                  "Level": "business_area_reporting_unit"
-                }
-              },
-              "queryRef": "bcts_staging dim_business_area.Business Area Hierarchy.business_area_reporting_unit",
-              "nativeQueryRef": "Business Area Hierarchy business_area_reporting_unit",
-              "active": false
             }
           ]
         },
@@ -131,64 +111,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "HierarchyLevel": {
-                "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "bcts_staging dim_business_area"
-                      }
-                    },
-                    "Hierarchy": "Business Area Hierarchy"
-                  }
-                },
-                "Level": "Business Area"
-              }
-            },
-            "direction": "Ascending"
-          },
-          {
-            "field": {
-              "HierarchyLevel": {
-                "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "bcts_staging dim_business_area"
-                      }
-                    },
-                    "Hierarchy": "Business Area Hierarchy"
-                  }
-                },
-                "Level": "business_area_region"
-              }
-            },
-            "direction": "Ascending"
-          },
-          {
-            "field": {
-              "HierarchyLevel": {
-                "Expression": {
-                  "Hierarchy": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "bcts_staging dim_business_area"
-                      }
-                    },
-                    "Hierarchy": "Business Area Hierarchy"
-                  }
-                },
-                "Level": "business_area"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -674,94 +596,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "af0116a0fdc3f29cacec",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "bcts_staging dim_business_area"
-                  }
-                },
-                "Hierarchy": "Business Area Hierarchy"
-              }
-            },
-            "Level": "Business Area"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b8839bd9bfe1cc4b34bc",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "bcts_staging dim_business_area"
-                  }
-                },
-                "Hierarchy": "Business Area Hierarchy"
-              }
-            },
-            "Level": "business_area_region"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "fb018005c7ea9b4e3f26",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "bcts_staging dim_business_area"
-                  }
-                },
-                "Hierarchy": "Business Area Hierarchy"
-              }
-            },
-            "Level": "business_area"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "50b9994ded7a55053498",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "bcts_reporting annual_developed_volume_hist"
-              }
-            },
-            "Property": "CurrentFY_CruiseVolume"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1c4f4459481d4c91d088",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "ADV_Targets"
-              }
-            },
-            "Property": "ADV Target"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -3,16 +3,16 @@ expression server =
 		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: 62d16fef-0a7a-4f97-bb13-1fb2e3ef0d29
+	lineageTag: 79e70f14-92d7-4f71-a5c0-417ee020f2d7
 
 	annotation PBI_ResultType = Text
 
 expression database =
 		let
-		    Source = " bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
+		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: dbdb39d1-f374-4cbd-a02d-b881c93d4179
+	lineageTag: b951113f-2832-489d-94a6-a12a0158c6f8
 
 	annotation PBI_ResultType = Text
 

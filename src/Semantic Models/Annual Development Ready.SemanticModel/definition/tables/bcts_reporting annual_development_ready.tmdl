@@ -317,14 +317,14 @@ table 'bcts_reporting annual_development_ready'
 	column report_start_date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 4596b0e7-2c7f-4e4c-a9f0-e9a4da8ef916
+		lineageTag: d4e627a8-1e18-4590-bc7e-fdd14e32647e
 		summarizeBy: none
 		sourceColumn: report_start_date
 
 		variation Variation
 			isDefault
-			relationship: 83dd503a-3082-45e2-b5af-2b3af582d105
-			defaultHierarchy: LocalDateTable_88ee9a05-b6f8-41b0-a246-65a44c2f0037.'Date Hierarchy'
+			relationship: d129b8bf-8502-4437-b05e-20559ac57fe7
+			defaultHierarchy: LocalDateTable_66b22beb-bcb3-4f77-9e2d-f3665b59a356.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -349,16 +349,10 @@ table 'bcts_reporting annual_development_ready'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    annual_development_ready = Source{[
-				        Schema="bcts_reporting",
-				        Item="annual_development_ready"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_annual_development_ready = Source{[Schema="bcts_reporting", Item="annual_development_ready"]}[Data]
 				in
-				    annual_development_ready
+				    bcts_reporting_annual_development_ready
 
 	annotation PBI_NavigationStepName = Navigation
 

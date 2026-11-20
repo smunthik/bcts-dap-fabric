@@ -1,0 +1,348 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6528dd8206d1ba396910",
+  "position": {
+    "x": 10.650529500756431,
+    "y": 152.01210287443268,
+    "z": 4000,
+    "height": 551.891074130106,
+    "width": 1258.6989409984872,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "business_area_region_category"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "business_area_region"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.business_area_region",
+              "nativeQueryRef": "business_area_region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "business_area"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.business_area",
+              "nativeQueryRef": "business_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "business_area_code"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.business_area_code",
+              "nativeQueryRef": "business_area_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "road_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting roads_transferred_out.road_seq_nbr)",
+              "nativeQueryRef": "road_seq_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "uri"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.uri",
+              "nativeQueryRef": "uri"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "road_road_name"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.road_road_name",
+              "nativeQueryRef": "road_road_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "rcls_accounting_type"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.rcls_accounting_type",
+              "nativeQueryRef": "rcls_accounting_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "poc"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting roads_transferred_out.poc)",
+              "nativeQueryRef": "poc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "pot"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting roads_transferred_out.pot)",
+              "nativeQueryRef": "pot"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "length"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting roads_transferred_out.length)",
+              "nativeQueryRef": "length"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "transfer_date"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.transfer_date",
+              "nativeQueryRef": "transfer_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "deac_method_type"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.deac_method_type",
+              "nativeQueryRef": "deac_method_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "deac_level_type"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.deac_level_type",
+              "nativeQueryRef": "deac_level_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting roads_transferred_out"
+                    }
+                  },
+                  "Property": "rdst_steward_name"
+                }
+              },
+              "queryRef": "bcts_reporting roads_transferred_out.rdst_steward_name",
+              "nativeQueryRef": "rdst_steward_name"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Roads Transferred Out '"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "19D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

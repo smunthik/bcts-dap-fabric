@@ -48,3 +48,19 @@ relationship 9e42eae7-400e-48a6-8fed-b088982b9ca8
 	fromColumn: 'bcts_reporting roads_deactivated_hist'.report_run_timestamp
 	toColumn: LocalDateTable_fdef89a6-e512-4d1d-b285-2949e9c31387.Date
 
+relationship b33c6f8f-00b8-9dd2-4236-faad4a68c17d
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting roads_deactivated'.business_area
+
+relationship eb9c2dc5-60be-4e48-8f6d-97424dc3f8fd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting roads_deactivated'.report_start_date
+	toColumn: LocalDateTable_d86616a1-0810-43d2-866f-4a6cbe87c391.Date
+
+relationship d5996797-ecd6-439c-a875-dfb183a423a2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting roads_deactivated_hist'.report_start_date
+	toColumn: LocalDateTable_00c42c1b-77a4-49b2-950b-5913952348e8.Date
+

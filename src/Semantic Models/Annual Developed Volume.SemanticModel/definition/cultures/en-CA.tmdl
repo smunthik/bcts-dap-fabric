@@ -4885,6 +4885,48 @@ cultureInfo en-CA
 			          }
 			        }
 			      ]
+			    },
+			    "bcts_reporting_annual_developed_volume_hist.current_ytd_adv_monthly_snapshot": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting annual_developed_volume_hist",
+			          "ConceptualProperty": "Current YTD ADV Monthly Snapshot"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current YTD ADV": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bcts_reporting_annual_developed_volume_hist.previous_ytd_adv_monthly_snapshot": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bcts_reporting annual_developed_volume_hist",
+			          "ConceptualProperty": "Previous YTD ADV Monthly Snapshot"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Previous YTD ADV": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

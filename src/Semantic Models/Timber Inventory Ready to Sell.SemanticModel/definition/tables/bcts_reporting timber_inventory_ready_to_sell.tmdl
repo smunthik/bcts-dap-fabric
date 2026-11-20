@@ -955,14 +955,8 @@ table 'bcts_reporting timber_inventory_ready_to_sell'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_timber_inventory_ready_to_sell = Source{[
-				        Schema="bcts_reporting",
-				        Item="timber_inventory_ready_to_sell"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_timber_inventory_ready_to_sell = Source{[Schema="bcts_reporting", Item="timber_inventory_ready_to_sell"]}[Data]
 				in
 				    bcts_reporting_timber_inventory_ready_to_sell
 

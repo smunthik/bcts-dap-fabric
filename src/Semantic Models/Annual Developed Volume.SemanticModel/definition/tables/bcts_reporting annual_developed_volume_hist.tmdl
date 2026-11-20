@@ -5,7 +5,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 			
 			VAR CurrentFiscalStart =
 			    CALCULATE(
-			        MAX('bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]),
+			        MAX('bcts_reporting annual_developed_volume_hist'[report_start_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist')
 			    )
 			
@@ -13,14 +13,14 @@ table 'bcts_reporting annual_developed_volume_hist'
 			    CALCULATE(
 			        MAX('bcts_reporting annual_developed_volume_hist'[report_end_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist'),
-			        'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
 			            = CurrentFiscalStart
 			    )
 			
 			VAR Result =
 			    CALCULATE(
 			        SUM('bcts_reporting annual_developed_volume_hist'[cruise_volume]),
-			        'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
 			            = CurrentFiscalStart,
 			        'bcts_reporting annual_developed_volume_hist'[report_end_date]
 			            = LatestReportEndCurrentFY
@@ -37,7 +37,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 			
 			VAR CurrentFiscalStart =
 			    CALCULATE(
-			        MAX('bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]),
+			        MAX('bcts_reporting annual_developed_volume_hist'[report_start_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist')
 			    )
 			
@@ -48,14 +48,14 @@ table 'bcts_reporting annual_developed_volume_hist'
 			    CALCULATE(
 			        MAX('bcts_reporting annual_developed_volume_hist'[report_end_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist'),
-			        'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
 			            = PreviousFiscalStart
 			    )
 			
 			RETURN
 			CALCULATE(
 			    SUM('bcts_reporting annual_developed_volume_hist'[cruise_volume]),
-			    'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date] = PreviousFiscalStart,
+			    'bcts_reporting annual_developed_volume_hist'[report_start_date] = PreviousFiscalStart,
 			    'bcts_reporting annual_developed_volume_hist'[report_end_date] = LatestReportEndPrevFY
 			)
 		lineageTag: 02e93e11-1b78-4851-8973-f68ad6b232c5
@@ -90,7 +90,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 
 	measure 'Increase Since Last Report' =
 			
-			VAR Curr = [Latest Cruise Volume]
+			VAR Curr = [CurrentFY_CruiseVolume]
 			VAR Prev = [Previous Month Cruise Volume]
 			
 			RETURN
@@ -113,7 +113,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 			
 			VAR CurrentFiscalStart =
 			    CALCULATE(
-			        MAX('bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]),
+			        MAX('bcts_reporting annual_developed_volume_hist'[report_start_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist')
 			    )
 			
@@ -121,7 +121,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 			    CALCULATE(
 			        MAX('bcts_reporting annual_developed_volume_hist'[report_end_date]),
 			        ALL('bcts_reporting annual_developed_volume_hist'),
-			        'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
 			            = CurrentFiscalStart
 			    )
 			
@@ -134,12 +134,73 @@ table 'bcts_reporting annual_developed_volume_hist'
 			RETURN
 			CALCULATE(
 			    SUM('bcts_reporting annual_developed_volume_hist'[cruise_volume]),
-			    'bcts_reporting annual_developed_volume_hist'[fiscal_year_start_date]
+			    'bcts_reporting annual_developed_volume_hist'[report_start_date]
 			        = PreviousFiscalStart,
 			    'bcts_reporting annual_developed_volume_hist'[report_end_date]
 			        = PrevYearReportEnd
 			)
 		lineageTag: 6c14178a-6d45-4719-a106-d8a0cd018405
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current YTD ADV Monthly Snapshot' =
+			
+			VAR LatestFiscalStart =
+			    CALCULATE (
+			        MAX ( 'bcts_reporting annual_developed_volume_hist'[report_start_date] ),
+			        ALL ( 'bcts_reporting annual_developed_volume_hist' )
+			    )
+			
+			VAR SnapshotDateInCurrentMonth =
+			    CALCULATE (
+			        MAX ( 'bcts_reporting annual_developed_volume_hist'[report_end_date] ),
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
+			            = LatestFiscalStart
+			    )
+			
+			RETURN
+			CALCULATE (
+			    SUM ( 'bcts_reporting annual_developed_volume_hist'[cruise_volume] ),
+			    'bcts_reporting annual_developed_volume_hist'[report_start_date]
+			        = LatestFiscalStart,
+			    'bcts_reporting annual_developed_volume_hist'[report_end_date]
+			        = SnapshotDateInCurrentMonth
+			)
+		lineageTag: b08495de-5fda-4eff-aec6-391fdaee756f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous YTD ADV Monthly Snapshot' =
+			
+			VAR LatestFiscalStart =
+			    CALCULATE (
+			        MAX ( 'bcts_reporting annual_developed_volume_hist'[report_start_date] ),
+			        ALL ( 'bcts_reporting annual_developed_volume_hist' )
+			    )
+			
+			VAR PreviousFiscalStart =
+			    EDATE ( LatestFiscalStart, -12 )
+			
+			VAR SnapshotDateInCurrentMonth =
+			    CALCULATE (
+			        MAX ( 'bcts_reporting annual_developed_volume_hist'[report_end_date] ),
+			        'bcts_reporting annual_developed_volume_hist'[report_start_date]
+			            = LatestFiscalStart
+			    )
+			
+			VAR PreviousYearSnapshotDate =
+			    EDATE ( SnapshotDateInCurrentMonth, -12 )
+			
+			RETURN
+			CALCULATE (
+			    SUM ( 'bcts_reporting annual_developed_volume_hist'[cruise_volume] ),
+			    ALL ( 'bcts_reporting dim_date' ),
+			    'bcts_reporting annual_developed_volume_hist'[report_start_date]
+			        = PreviousFiscalStart,
+			    'bcts_reporting annual_developed_volume_hist'[report_end_date]
+			        = PreviousYearSnapshotDate
+			)
+		lineageTag: f34f5651-17be-48fe-80e9-b373fe729f20
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -416,11 +477,6 @@ table 'bcts_reporting annual_developed_volume_hist'
 		summarizeBy: none
 		sourceColumn: report_end_date
 
-		variation Variation
-			isDefault
-			relationship: c4d7a235-27e5-4580-9e1f-ff4cf0ef1974
-			defaultHierarchy: LocalDateTable_bdab1fb6-b24f-4893-ba4f-2fd4a302464e.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -454,9 +510,19 @@ table 'bcts_reporting annual_developed_volume_hist'
 
 		annotation SummarizationSetBy = Automatic
 
+	column management_unit =
+			
+			TRIM('bcts_reporting annual_developed_volume_hist'[business_area])
+			    & "-"
+			    & TRIM('bcts_reporting annual_developed_volume_hist'[manu_id])
+		lineageTag: 47c1232f-ccb3-4223-bf63-48fc478581e8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	column field_team
 		dataType: string
-		lineageTag: 14816a13-a5c4-4c18-bbce-26d02f4f9dd4
+		lineageTag: 9470486c-12c5-4d46-8ce9-0445591714b1
 		summarizeBy: none
 		sourceColumn: field_team
 
@@ -464,7 +530,7 @@ table 'bcts_reporting annual_developed_volume_hist'
 
 	column file_type
 		dataType: string
-		lineageTag: a544f73d-f0a5-4828-976c-9c271b62bfd1
+		lineageTag: ce7d4e05-45d1-4ed5-a467-1a942425ce04
 		summarizeBy: none
 		sourceColumn: file_type
 
@@ -473,14 +539,14 @@ table 'bcts_reporting annual_developed_volume_hist'
 	column report_start_date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 9f5a9368-aa50-44a5-8aee-c2c838817cc8
+		lineageTag: 7ecae4ce-ae5c-4af2-ab4f-bc2c2a554d31
 		summarizeBy: none
 		sourceColumn: report_start_date
 
 		variation Variation
 			isDefault
-			relationship: cfffca01-f9b9-4263-bd47-00fe37553da8
-			defaultHierarchy: LocalDateTable_3adc83a6-4fc2-4413-bca1-d1000f2db571.'Date Hierarchy'
+			relationship: 41b78871-0f52-4ba1-96dc-bac8ae0bd6a2
+			defaultHierarchy: LocalDateTable_f6611f5b-ca7e-441b-8ebe-8af0fe5ecb81.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -505,18 +571,10 @@ table 'bcts_reporting annual_developed_volume_hist'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_annual_developed_volume_hist = Source{[
-				        Schema="bcts_reporting",
-				        Item="annual_developed_volume_hist"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_annual_developed_volume_hist = Source{[Schema="bcts_reporting", Item="annual_developed_volume_hist"]}[Data]
 				in
 				    bcts_reporting_annual_developed_volume_hist
-
-	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
 

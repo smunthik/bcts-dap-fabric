@@ -242,3 +242,9 @@ relationship 0dd21f26-8766-495d-8b4d-6fd00e7a7c43
 	fromColumn: 'bcts_reporting timber_inventory_ready_to_develop_hist'.report_run_timestamp
 	toColumn: LocalDateTable_772630b0-c058-4df9-a33a-ce9fbe565fd5.Date
 
+relationship 37a8691a-622b-06fa-3783-33afcbe99c54
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting timber_inventory_ready_to_develop'.business_area
+

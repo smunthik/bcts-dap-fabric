@@ -48,3 +48,19 @@ relationship 8a11c5d2-76fb-4d30-a9c0-d0b70f40c13b
 	fromColumn: 'bcts_reporting roads_transferred_in_hist'.report_run_timestamp
 	toColumn: LocalDateTable_2e874f9d-3cdc-45e1-ba40-86b9e0ac6ba0.Date
 
+relationship 73cb6bb8-3545-ee6f-fd49-3cafd3de44eb
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting roads_transferred_in'.business_area
+
+relationship 22785f99-7265-46b4-84b3-d060513d47f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting roads_transferred_in'.report_start_date
+	toColumn: LocalDateTable_62a8e3ba-b09b-42fc-ba6d-6aaa42075624.Date
+
+relationship 1d506c55-1bc4-4208-90c0-43e907b6380e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting roads_transferred_in_hist'.report_start_date
+	toColumn: LocalDateTable_6943cbcd-b8af-4a43-8751-8e84c0f2191f.Date
+

@@ -1,0 +1,121 @@
+table 'bcts_staging dim_business_area_management_unit'
+	lineageTag: bd51a5b7-8ce9-4947-a0c0-42f04fa5372b
+
+	column business_area_region_category
+		dataType: string
+		lineageTag: c95e2f9c-7280-4eda-9585-7051eae1933f
+		summarizeBy: none
+		sourceColumn: business_area_region_category
+		sortByColumn: business_area_region_cat_sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region
+		dataType: string
+		lineageTag: 5234a613-f351-459c-a8a9-b720cadcf8c4
+		summarizeBy: none
+		sourceColumn: business_area_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area
+		dataType: string
+		lineageTag: 6af30503-3b0e-468d-ba37-787e2bbbda6a
+		summarizeBy: none
+		sourceColumn: business_area
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_reporting_unit
+		dataType: string
+		lineageTag: 915f291c-b26d-45ed-92fd-fe020dbbf9b1
+		summarizeBy: none
+		sourceColumn: business_area_reporting_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column management_unit
+		dataType: string
+		lineageTag: 38c3ed6c-dc5d-41bd-96ed-83dbeb01c830
+		summarizeBy: none
+		sourceColumn: management_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: a50b350d-2a15-4584-94cd-6e5772663af1
+		summarizeBy: sum
+		sourceColumn: business_area_region_sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_region_cat_sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: c0e4b1a8-ef0a-466e-8b30-683c18f003c7
+		summarizeBy: sum
+		sourceColumn: business_area_region_cat_sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_area_sort =
+			
+			SWITCH(
+			    [business_area],
+			    "Babine (TBA)", 1,
+			    "Omineca (TPG-TSN)", 2,
+			    "Peace-Liard (TPL)", 3,
+			    "Skeena (TSK)", 4,
+			    "Cariboo-Chilcotin (TCC)", 5,
+			    "Kamloops (TKA)", 6,
+			    "Kootenay (TKO)", 7,
+			    "Okanagan-Columbia (TOC)", 8,
+			    "Chinook (TCH)", 9,
+			    "Seaward-tlasta (TST)", 10,
+			    "Strait of Georgia (TSG)", 11,
+			    99
+			)
+		formatString: 0
+		lineageTag: 2a2aa41d-6d9e-43b0-a809-d59cb6315910
+		summarizeBy: sum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'business_area_region_category Hierarchy'
+		lineageTag: f0c1fa6b-7c9c-486d-8422-420f09ec808c
+
+		level business_area_region_category
+			lineageTag: 78077b5c-4f8a-411f-9aa5-75bd8e11294a
+			column: business_area_region_category
+
+		level business_area_region
+			lineageTag: 456e4810-181c-4e23-aa3c-a95c6a4bd3c2
+			column: business_area_region
+
+		level business_area
+			lineageTag: 8ebbaffc-0400-41de-8bfe-e298b74c37fd
+			column: business_area
+
+		level business_area_reporting_unit
+			lineageTag: 4cbe17ab-9114-4713-8341-952fcf7379c5
+			column: business_area_reporting_unit
+
+	partition 'bcts_staging dim_business_area_management_unit' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(server, database),
+				    bcts_staging_dim_business_area_management_unit = Source{[Schema="bcts_staging", Item="dim_business_area_management_unit"]}[Data]
+				in
+				    bcts_staging_dim_business_area_management_unit
+
+	annotation PBI_ResultType = Table
+

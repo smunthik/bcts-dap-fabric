@@ -1,0 +1,467 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6528dd8206d1ba396910",
+  "position": {
+    "x": 10.650529500756431,
+    "y": 152.01210287443268,
+    "z": 4000,
+    "height": 551.891074130106,
+    "width": 1258.6989409984872,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "business_area_region_category"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "business_area_region"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.business_area_region",
+              "nativeQueryRef": "business_area_region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "business_area"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.business_area",
+              "nativeQueryRef": "business_area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "business_area_code"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.business_area_code",
+              "nativeQueryRef": "business_area_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "field_team"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.field_team",
+              "nativeQueryRef": "field_team"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "manu_id"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.manu_id",
+              "nativeQueryRef": "manu_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "licence"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.licence",
+              "nativeQueryRef": "licence"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "tenure"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.tenure",
+              "nativeQueryRef": "tenure"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "perm"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.perm",
+              "nativeQueryRef": "perm"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "mark"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.mark",
+              "nativeQueryRef": "mark"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "block_id"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.block_id",
+              "nativeQueryRef": "block_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "ubi"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.ubi",
+              "nativeQueryRef": "ubi"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "block_state"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.block_state",
+              "nativeQueryRef": "block_state"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "cruise_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting annual_development_ready.cruise_volume)",
+              "nativeQueryRef": "cruise_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "rw_volume"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting annual_development_ready.rw_volume)",
+              "nativeQueryRef": "rw_volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "dr_done"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.dr_done",
+              "nativeQueryRef": "dr_done"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "rc_status"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.rc_status",
+              "nativeQueryRef": "rc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "rc_status_date"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.rc_status_date",
+              "nativeQueryRef": "rc_status_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "dvs_status"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.dvs_status",
+              "nativeQueryRef": "dvs_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "dvs_status_date"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.dvs_status_date",
+              "nativeQueryRef": "dvs_status_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "dvc_status"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.dvc_status",
+              "nativeQueryRef": "dvc_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "dvc_status_date"
+                }
+              },
+              "queryRef": "bcts_reporting annual_development_ready.dvc_status_date",
+              "nativeQueryRef": "dvc_status_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "licn_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting annual_development_ready.licn_seq_nbr)",
+              "nativeQueryRef": "licn_seq_nbr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_reporting annual_development_ready"
+                    }
+                  },
+                  "Property": "cutb_seq_nbr"
+                }
+              },
+              "queryRef": "Sum(bcts_reporting annual_development_ready.cutb_seq_nbr)",
+              "nativeQueryRef": "cutb_seq_nbr"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

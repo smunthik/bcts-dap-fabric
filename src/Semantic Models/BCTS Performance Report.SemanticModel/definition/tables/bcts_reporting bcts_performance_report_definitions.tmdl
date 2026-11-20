@@ -32,14 +32,8 @@ table 'bcts_reporting bcts_performance_report_definitions'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_bcts_performance_report_definitions = Source{[
-				        Schema="bcts_reporting",
-				        Item="bcts_performance_report_definitions"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_bcts_performance_report_definitions = Source{[Schema="bcts_reporting", Item="bcts_performance_report_definitions"]}[Data]
 				in
 				    bcts_reporting_bcts_performance_report_definitions
 

@@ -508,16 +508,10 @@ table 'bcts_reporting volume_advertised_main_hist'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    Data = Source{[
-				        Schema="bcts_reporting",
-				        Item="volume_advertised_main_hist"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_volume_advertised_main_hist = Source{[Schema="bcts_reporting", Item="volume_advertised_main_hist"]}[Data]
 				in
-				    Data
+				    bcts_reporting_volume_advertised_main_hist
 
 	annotation PBI_ResultType = Table
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "d3ef68a86b01bec7b999",
   "position": {
     "x": 10.743405275779375,
@@ -22,17 +22,17 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
                     }
                   },
-                  "Level": "Business Area"
+                  "Level": "business_area_region_category"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region_category",
-              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region_category",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region_category1",
               "active": true
             },
             {
@@ -42,7 +42,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -51,8 +51,8 @@
                   "Level": "business_area_region"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area_region",
-              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area_region",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area_region1",
               "active": true
             },
             {
@@ -62,7 +62,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "bcts_reporting roads_constructed"
+                          "Entity": "bcts_staging dim_business_area_management_unit"
                         }
                       },
                       "Hierarchy": "business_area_region_category Hierarchy"
@@ -71,8 +71,8 @@
                   "Level": "business_area"
                 }
               },
-              "queryRef": "bcts_reporting roads_constructed.business_area_region_category Hierarchy.business_area",
-              "nativeQueryRef": "business_area_region_category Hierarchy business_area",
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region_category Hierarchy.business_area",
+              "nativeQueryRef": "business_area_region_category Hierarchy business_area1",
               "active": true
             }
           ]
@@ -660,5 +660,99 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "253fed58c8bedeeb091b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_reporting roads_constructed"
+                  }
+                },
+                "Property": "length"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f761d22d872260d27d55",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "bcts_reporting roads_constructed"
+              }
+            },
+            "Property": "rcls_accounting_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5c819a32a502bc084f23",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area_region_category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5e61bccc363f8b9007c4",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area_region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f682d4d9c257e652bd16",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bcts_staging dim_business_area_management_unit"
+                  }
+                },
+                "Hierarchy": "business_area_region_category Hierarchy"
+              }
+            },
+            "Level": "business_area"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

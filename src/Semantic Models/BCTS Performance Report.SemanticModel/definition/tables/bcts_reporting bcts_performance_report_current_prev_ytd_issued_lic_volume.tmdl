@@ -156,14 +156,8 @@ table 'bcts_reporting bcts_performance_report_current_prev_ytd_issued_lic_volume
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_bcts_performance_report_current_prev_ytd_issued_lic_volume = Source{[
-				        Schema="bcts_reporting",
-				        Item="bcts_performance_report_current_prev_ytd_issued_lic_volume"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_bcts_performance_report_current_prev_ytd_issued_lic_volume = Source{[Schema="bcts_reporting", Item="bcts_performance_report_current_prev_ytd_issued_lic_volume"]}[Data]
 				in
 				    bcts_reporting_bcts_performance_report_current_prev_ytd_issued_lic_volume
 

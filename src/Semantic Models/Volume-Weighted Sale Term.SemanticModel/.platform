@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Volume-Weighted Sale Term"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "517e1b08-c503-4256-94c3-28c31c7e008e"
+  }
+}

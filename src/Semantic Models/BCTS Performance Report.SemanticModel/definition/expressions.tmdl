@@ -3,7 +3,7 @@ expression server =
 		    Source = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: b924257f-c162-4ad3-b5b5-97f986ccbc84
+	lineageTag: 8055914e-a0e4-4e71-9580-3d2e7c3977c0
 
 	annotation PBI_ResultType = Text
 
@@ -12,7 +12,7 @@ expression database =
 		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: f569d91c-0abc-44c5-8a10-0f7af92253f5
+	lineageTag: d301d8c8-77fb-403b-addc-d3cbbd08bc55
 
 	annotation PBI_ResultType = Text
 

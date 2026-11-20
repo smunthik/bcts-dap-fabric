@@ -245,6 +245,22 @@ table 'bcts_reporting roads_deactivated'
 
 		annotation SummarizationSetBy = Automatic
 
+	column report_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2cb709ce-f9f8-4220-a3eb-1f9186148c58
+		summarizeBy: none
+		sourceColumn: report_start_date
+
+		variation Variation
+			isDefault
+			relationship: eb9c2dc5-60be-4e48-8f6d-97424dc3f8fd
+			defaultHierarchy: LocalDateTable_d86616a1-0810-43d2-866f-4a6cbe87c391.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	hierarchy 'business_area_region_category Hierarchy'
 		lineageTag: 81e16888-6312-4dee-8b53-52cb7a309fc7
 
@@ -264,16 +280,10 @@ table 'bcts_reporting roads_deactivated'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    Data = Source{[
-				        Schema="bcts_reporting",
-				        Item="roads_deactivated"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_roads_deactivated = Source{[Schema="bcts_reporting", Item="roads_deactivated"]}[Data]
 				in
-				    Data
+				    bcts_reporting_roads_deactivated
 
 	annotation PBI_NavigationStepName = Navigation
 

@@ -1,5 +1,5 @@
-expression server = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
-	lineageTag: b5cd3b47-a1ec-4969-b280-2f018b6e6dfc
+expression server = "abjnw3ynhwfevmbw2nuf4nm23q-lgfxs6tl473evh737ifcswkrtq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type any]
+	lineageTag: e33567e4-756f-41fe-9f38-43fd68890840
 
 	annotation PBI_ResultType = Text
 
@@ -8,7 +8,7 @@ expression database =
 		    Source = "bcts_lakehouse" meta [IsParameterQuery = true, IsParameterQueryRequired = false, Type = type text]
 		in
 		    Source
-	lineageTag: 4e396cea-9912-42e5-9ea7-ee209b2f339b
+	lineageTag: c2ddfaf7-4c12-4333-864f-c8b52df5bb8e
 
 	annotation PBI_ResultType = Text
 

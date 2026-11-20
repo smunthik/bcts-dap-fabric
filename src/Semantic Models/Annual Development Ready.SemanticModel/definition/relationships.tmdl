@@ -62,13 +62,19 @@ relationship 7fd38153-530f-4138-b132-2912dd97dff9
 	fromColumn: 'bcts_reporting annual_development_ready_hist'.report_run_timestamp
 	toColumn: LocalDateTable_271eda92-e0cf-4aaa-982e-0453ca6af36e.Date
 
-relationship 83dd503a-3082-45e2-b5af-2b3af582d105
+relationship dad2de44-dce0-cef3-6c46-3c0b88171809
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
+	toColumn: 'bcts_reporting annual_development_ready'.business_area
+
+relationship d129b8bf-8502-4437-b05e-20559ac57fe7
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'bcts_reporting annual_development_ready'.report_start_date
-	toColumn: LocalDateTable_88ee9a05-b6f8-41b0-a246-65a44c2f0037.Date
+	toColumn: LocalDateTable_66b22beb-bcb3-4f77-9e2d-f3665b59a356.Date
 
-relationship 63f2c0e9-52e1-463d-a271-059d46781cc7
+relationship b36db66c-19ef-40f3-ba1a-a26fc7f19fce
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'bcts_reporting annual_development_ready_hist'.report_start_date
-	toColumn: LocalDateTable_7c76ac8c-16c8-468c-b776-efccf205fc88.Date
+	toColumn: LocalDateTable_2d0fb5f4-b995-49f1-8164-cce30fe42479.Date
 

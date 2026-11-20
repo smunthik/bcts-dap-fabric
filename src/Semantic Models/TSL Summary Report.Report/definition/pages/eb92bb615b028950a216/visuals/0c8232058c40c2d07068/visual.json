@@ -190,16 +190,15 @@
                           "Entity": "bcts_reporting v_tsl_summary"
                         }
                       },
-                      "Property": "Volume of Value Added (Category 4) Auctioned"
+                      "Property": "Volume of Value Added Auctioned"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "CountNonNull(bcts_reporting v_tsl_summary.Volume of Value Added (Category 4) Auctioned)",
-              "nativeQueryRef": "Volume of Value Added (Category 4) Auctioned (m³)",
-              "displayName": "Volume of Value Added (Category 4) Auctioned (m³)",
-              "format": "#,0"
+              "queryRef": "Sum(bcts_reporting v_tsl_summary.Volume of Value Added Auctioned)",
+              "nativeQueryRef": "Volume of Value Added Auctioned",
+              "displayName": "Volume of Value Added Auctioned"
             },
             {
               "field": {
@@ -211,16 +210,15 @@
                           "Entity": "bcts_reporting v_tsl_summary"
                         }
                       },
-                      "Property": "Number of Value Added (Category 4) Licence Auctioned"
+                      "Property": "Number of Value Added Auctioned"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "CountNonNull(bcts_reporting v_tsl_summary.Number of Value Added (Category 4) Licence Auctioned)",
-              "nativeQueryRef": "Number of Value Added (Category 4) Licence Auctioned",
-              "displayName": "Number of Value Added (Category 4) Licence Auctioned",
-              "format": "#,0"
+              "queryRef": "Sum(bcts_reporting v_tsl_summary.Number of Value Added Auctioned)",
+              "nativeQueryRef": "Number of Value Added Auctioned",
+              "displayName": "Number of Value Added Auctioned"
             }
           ]
         }

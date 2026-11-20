@@ -83,19 +83,11 @@ table 'bcts_staging dim_business_area'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    Data = Source{[
-				        Schema="bcts_staging",
-				        Item="dim_business_area"
-				    ]}[Data],
+				    Source = Sql.Database(server, database),
+				    bcts_staging_dim_business_area = Source{[Schema="bcts_staging", Item="dim_business_area"]}[Data],
 				    #"Renamed Columns" = Table.RenameColumns(
-				        Data,
-				        {
-				            {"business_area_region_category", "Business Area"}
-				        }
+				        bcts_staging_dim_business_area,
+				        {{"business_area_region_category", "Business Area"}}
 				    ),
 				    #"Removed Columns" = Table.RemoveColumns(
 				        #"Renamed Columns",

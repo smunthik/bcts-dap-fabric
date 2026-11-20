@@ -116,11 +116,19 @@ run_log_schema = StructType([
 ])
 
 # --- Read config table ---
-cfg = spark.sql("""
-SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date, frequency
-FROM bcts_metadata.transformation_config
-WHERE enabled_ind = 'Y'
-""").collect()
+if report_name_parameter is None:
+    cfg = spark.sql("""
+    SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date, frequency
+    FROM bcts_metadata.transformation_config
+    WHERE enabled_ind = 'Y'
+    """).collect()
+else:
+    cfg = spark.sql(f"""
+    SELECT report_name, sql_path, enabled_ind, target_table, target_schema, branch_name, execution_order, depends_on, has_start_date, has_end_date, frequency
+    FROM bcts_metadata.transformation_config
+    WHERE report_name = '{report_name_parameter}'
+    """).collect()
+
 
 # Enable running one or all transformations. Specify report_name_parameter if only one transformation needs to be run
 if report_name_parameter:
@@ -152,6 +160,10 @@ for row in cfg:
     frequency = row["frequency"]
     # Get report start and end dates
     start_str, end_str = get_report_interval(frequency)
+    # Hard code fixed start dates
+    if name == "Weighted Sale Term":
+        report_start_date = date(2015, 4, 1)
+        start_str = report_start_date.isoformat()
     deps = parse_depends(row["depends_on"])
     print(row["sql_path"])
 
@@ -161,7 +173,7 @@ for row in cfg:
     activities.append({
         "name": name,
         "path": "run_sql_file",   # child notebook
-        "timeoutPerCellInSeconds": 900,
+        "timeoutPerCellInSeconds": 43200,
         "args": {
             "sql_path": row["sql_path"],
             "start_date": start_str,

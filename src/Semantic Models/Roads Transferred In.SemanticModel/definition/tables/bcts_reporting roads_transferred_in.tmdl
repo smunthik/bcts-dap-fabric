@@ -261,6 +261,22 @@ table 'bcts_reporting roads_transferred_in'
 
 		annotation SummarizationSetBy = Automatic
 
+	column report_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31a8b3e2-0316-4a4c-938d-e21face16ff4
+		summarizeBy: none
+		sourceColumn: report_start_date
+
+		variation Variation
+			isDefault
+			relationship: 22785f99-7265-46b4-84b3-d060513d47f4
+			defaultHierarchy: LocalDateTable_62a8e3ba-b09b-42fc-ba6d-6aaa42075624.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	hierarchy 'business_area_region_category Hierarchy'
 		lineageTag: fecfd106-0028-4f98-8574-0525f226428f
 
@@ -280,14 +296,8 @@ table 'bcts_reporting roads_transferred_in'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(
-				        server,
-				        database
-				    ),
-				    bcts_reporting_roads_transferred_in = Source{[
-				        Schema="bcts_reporting",
-				        Item="roads_transferred_in"
-				    ]}[Data]
+				    Source = Sql.Database(server, database),
+				    bcts_reporting_roads_transferred_in = Source{[Schema="bcts_reporting", Item="roads_transferred_in"]}[Data]
 				in
 				    bcts_reporting_roads_transferred_in
 

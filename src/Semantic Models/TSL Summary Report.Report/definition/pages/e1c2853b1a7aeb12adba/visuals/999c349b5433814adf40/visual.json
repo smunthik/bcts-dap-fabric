@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "999c349b5433814adf40",
   "position": {
     "x": 15.437185929648241,
@@ -20,30 +20,42 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bcts_reporting tsl_summary_main"
+                      "Entity": "bcts_staging dim_business_area_management_unit"
                     }
                   },
                   "Property": "business_area_region"
                 }
               },
-              "queryRef": "bcts_reporting tsl_summary_main.business_area_region",
-              "nativeQueryRef": "Region",
-              "displayName": "Region"
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_region",
+              "nativeQueryRef": "business_area_region"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bcts_reporting tsl_summary_main"
+                      "Entity": "bcts_staging dim_business_area_management_unit"
+                    }
+                  },
+                  "Property": "business_area_reporting_unit"
+                }
+              },
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area_reporting_unit",
+              "nativeQueryRef": "business_area_reporting_unit"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bcts_staging dim_business_area_management_unit"
                     }
                   },
                   "Property": "business_area"
                 }
               },
-              "queryRef": "bcts_reporting tsl_summary_main.business_area",
-              "nativeQueryRef": "Business Area",
-              "displayName": "Business Area"
+              "queryRef": "bcts_staging dim_business_area_management_unit.business_area",
+              "nativeQueryRef": "business_area"
             },
             {
               "field": {
@@ -257,23 +269,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "bcts_reporting tsl_summary_main"
-                  }
-                },
-                "Property": "business_area_region"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -423,20 +418,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "98.10607362579866D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "bcts_reporting tsl_summary_main.business_area"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "32.69940217327584D"
                 }
               }
@@ -458,20 +439,6 @@
           },
           "selector": {
             "metadata": "bcts_reporting tsl_summary_main.auctioned_bcts_category_code"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "104.20499565700096D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "bcts_reporting tsl_summary_main.business_area_region"
           }
         },
         {
@@ -704,20 +671,6 @@
         }
       ],
       "columnFormatting": [
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Auto'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "bcts_reporting tsl_summary_main.business_area_region"
-          }
-        },
         {
           "properties": {
             "alignment": {
