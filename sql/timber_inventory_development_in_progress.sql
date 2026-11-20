@@ -108,6 +108,45 @@ CREATE TABLE IF NOT EXISTS bcts_staging.timber_inventory_development_in_progress
     ancient_volume DECIMAL(18,6),
     remnant_volume DECIMAL(18,6),
     big_treed_volume DECIMAL(18,6),
+    cfs_ubi STRING,
+    first_date DATE,
+    last_date DATE,
+    total_amount DECIMAL(28,2),
+    first_layout_date DATE,
+    first_layout_amount DECIMAL(28,2),
+    last_layout_date DATE,
+    last_layout_amount DECIMAL(28,2),
+    layout_amount_no_7017_7018 DECIMAL(28,2),
+    layout_amount_7017 DECIMAL(28,2),
+    layout_amount_7018 DECIMAL(28,2),
+    layout_amount DECIMAL(28,2),
+    planning_amount DECIMAL(28,2),
+    silviculture_amount DECIMAL(28,2),
+    service_line_42420 DECIMAL(28,2),
+    service_line_42421 DECIMAL(28,2),
+    service_line_42430 DECIMAL(28,2),
+    service_line_42467 DECIMAL(28,2),
+    service_line_42468 DECIMAL(28,2),
+    service_line_42469 DECIMAL(28,2),
+    service_line_42470 DECIMAL(28,2),
+    service_line_42471 DECIMAL(28,2),
+    service_line_42472 DECIMAL(28,2),
+    service_line_42501 DECIMAL(28,2),
+    service_line_42503 DECIMAL(28,2),
+    service_line_42504 DECIMAL(28,2),
+    service_line_42506 DECIMAL(28,2),
+    service_line_42507 DECIMAL(28,2),
+    service_line_42520 DECIMAL(28,2),
+    service_line_42521 DECIMAL(28,2),
+    service_line_42524 DECIMAL(28,2),
+    service_line_42550 DECIMAL(28,2),
+    service_line_42552 DECIMAL(28,2),
+    service_line_42553 DECIMAL(28,2),
+    service_line_42554 DECIMAL(28,2),
+    service_line_42556 DECIMAL(28,2),
+    service_line_42558 DECIMAL(28,2),
+    service_line_42559 DECIMAL(28,2),
+    service_line_42579 DECIMAL(28,2),
     report_end_date DATE,
     report_run_date DATE,
     report_run_timestamp TIMESTAMP
@@ -122,7 +161,7 @@ where report_end_date = '${report_end_date}';
 
 -- Populate staging table for development in progress history
 INSERT INTO bcts_staging.timber_inventory_development_in_progress_hist(
-    business_area_region_category, business_area_region, business_area, business_area_code, fieldteam, manu_id, licence_id, tenure_type, perm_permit_id, mark_mark_id, block_id, ubi, block_nbr, sub_operating_area, licn_licence_state, cutb_block_state, deferred_at_report_date, inventory_category, inventory_category_new, merch_area, cruise_volume, rw_volume, rc_status, rc_date, rc_fiscal, dr_status, dr_date, dr_fiscal, dvs_status, dvs_date, dvs_fiscal, dsc_status, dsc_date, dvc_status, dvc_date, dvc_fiscal, days_in_dip, days_in_dip_category, woff_status, woff_date, woff_fiscal, auc_status, auc_date, hi_status, hi_date, hvs_status, hvs_date, hvc_status, hvc_date, fg_met_status, fg_date, def_change_of_op_plan_status, def_change_of_op_plan, def_first_nations_status, def_first_nations, def_loss_of_access_status, def_loss_of_access, def_other_status, def_other, def_planning_constraint_status, def_planning_constraint, def_returned_to_bcts_status, def_returned_to_bcts, def_stale_dated_fieldwork_status, def_stale_dated_fieldwork, def_stakeholder_issue_status, def_stakeholder_issue, def_environmental_stewardship_initiative_status, def_environmental_stewardship_initiative, def_reactivated_status, def_reactivated, old_growth_strategy_status, old_growth_strategy, ogs_reactivated_forest_health_status, ogs_reactivated_forest_health, ogs_reactivated_fn_proceed_status, ogs_reactivated_fn_proceed, ogs_reactivated_field_verified_status, ogs_reactivated_field_verified, ogs_reactivated_minor_status, ogs_reactivated_minor, ogs_reactivated_road_status, ogs_reactivated_road, ogs_reactivated_re_engineered_status, ogs_reactivated_re_engineered, xxx_zzz_flag, spatial_flag, rc_flag, dr_flag, dvs_flag, dsc_flag, dvc_flag, count_of_blocks, salvage_any_fire_year, salvage_fire_years, salvage_2021_fire, salvage_2022_fire, salvage_2023_fire, salvage_2024_fire, salvage_2025_fire, licn_seq_nbr, mark_seq_nbr, cutb_seq_nbr, ancient, remnant, big_treed, ancient_volume, remnant_volume, big_treed_volume, report_end_date, report_run_date, report_run_timestamp  
+    business_area_region_category, business_area_region, business_area, business_area_code, fieldteam, manu_id, licence_id, tenure_type, perm_permit_id, mark_mark_id, block_id, ubi, block_nbr, sub_operating_area, licn_licence_state, cutb_block_state, deferred_at_report_date, inventory_category, inventory_category_new, merch_area, cruise_volume, rw_volume, rc_status, rc_date, rc_fiscal, dr_status, dr_date, dr_fiscal, dvs_status, dvs_date, dvs_fiscal, dsc_status, dsc_date, dvc_status, dvc_date, dvc_fiscal, days_in_dip, days_in_dip_category, woff_status, woff_date, woff_fiscal, auc_status, auc_date, hi_status, hi_date, hvs_status, hvs_date, hvc_status, hvc_date, fg_met_status, fg_date, def_change_of_op_plan_status, def_change_of_op_plan, def_first_nations_status, def_first_nations, def_loss_of_access_status, def_loss_of_access, def_other_status, def_other, def_planning_constraint_status, def_planning_constraint, def_returned_to_bcts_status, def_returned_to_bcts, def_stale_dated_fieldwork_status, def_stale_dated_fieldwork, def_stakeholder_issue_status, def_stakeholder_issue, def_environmental_stewardship_initiative_status, def_environmental_stewardship_initiative, def_reactivated_status, def_reactivated, old_growth_strategy_status, old_growth_strategy, ogs_reactivated_forest_health_status, ogs_reactivated_forest_health, ogs_reactivated_fn_proceed_status, ogs_reactivated_fn_proceed, ogs_reactivated_field_verified_status, ogs_reactivated_field_verified, ogs_reactivated_minor_status, ogs_reactivated_minor, ogs_reactivated_road_status, ogs_reactivated_road, ogs_reactivated_re_engineered_status, ogs_reactivated_re_engineered, xxx_zzz_flag, spatial_flag, rc_flag, dr_flag, dvs_flag, dsc_flag, dvc_flag, count_of_blocks, salvage_any_fire_year, salvage_fire_years, salvage_2021_fire, salvage_2022_fire, salvage_2023_fire, salvage_2024_fire, salvage_2025_fire, licn_seq_nbr, mark_seq_nbr, cutb_seq_nbr, ancient, remnant, big_treed, ancient_volume, remnant_volume, big_treed_volume, cfs_ubi,first_date,last_date,total_amount,first_layout_date,first_layout_amount,last_layout_date,last_layout_amount,layout_amount_no_7017_7018,layout_amount_7017,layout_amount_7018,layout_amount,planning_amount,silviculture_amount,service_line_42420,service_line_42421,service_line_42430,service_line_42467,service_line_42468,service_line_42469,service_line_42470,service_line_42471,service_line_42472,service_line_42501,service_line_42503,service_line_42504,service_line_42506,service_line_42507,service_line_42520,service_line_42521,service_line_42524,service_line_42550,service_line_42552,service_line_42553,service_line_42554,service_line_42556,service_line_42558,service_line_42559,service_line_42579,report_end_date, report_run_date, report_run_timestamp  
 )
 /* Block Activity (ACTB) */
 WITH ACTB AS
@@ -729,7 +768,45 @@ SELECT DISTINCT
         WHEN OGC.big_treed = 'Y' THEN BLAL.BLAL_CRUISE_M3_VOL
         ELSE 0
     END AS BIG_TREED_VOLUME,
-
+    cs.cfs_ubi,
+    cs.first_date,
+    cs.last_date,
+    cs.total_amount,
+    cs.first_layout_date,
+    cs.first_layout_amount,
+    cs.last_layout_date,
+    cs.last_layout_amount,
+    cs.layout_amount_no_7017_7018,
+    cs.layout_amount_7017,
+    cs.layout_amount_7018,
+    cs.layout_amount,
+    cs.planning_amount,
+    cs.silviculture_amount,
+    cs.service_line_42420,
+    cs.service_line_42421,
+    cs.service_line_42430,
+    cs.service_line_42467,
+    cs.service_line_42468,
+    cs.service_line_42469,
+    cs.service_line_42470,
+    cs.service_line_42471,
+    cs.service_line_42472,
+    cs.service_line_42501,
+    cs.service_line_42503,
+    cs.service_line_42504,
+    cs.service_line_42506,
+    cs.service_line_42507,
+    cs.service_line_42520,
+    cs.service_line_42521,
+    cs.service_line_42524,
+    cs.service_line_42550,
+    cs.service_line_42552,
+    cs.service_line_42553,
+    cs.service_line_42554,
+    cs.service_line_42556,
+    cs.service_line_42558,
+    cs.service_line_42559,
+    cs.service_line_42579,
     DATE '${report_end_date}' AS report_end_date,
     CURRENT_DATE AS report_run_date,
     CURRENT_TIMESTAMP AS report_run_timestamp
@@ -792,6 +869,9 @@ LEFT JOIN BlockCount
     ON BLAL.LICN_SEQ_NBR = BlockCount.LICN_SEQ_NBR
 LEFT JOIN bcts_staging.old_growth_tap_deferral_categories OGC
     ON CUTB.CUTB_SYSTEM_ID = OGC.UBI
+LEFT JOIN bcts_staging.cfs as cs
+    ON CUTB.CUTB_SYSTEM_ID = cs.cfs_ubi
+    
 
 WHERE
     COALESCE(TN.TENT_TENURE_ID, ' ') <> 'B07'
