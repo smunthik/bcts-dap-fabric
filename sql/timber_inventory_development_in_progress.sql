@@ -869,7 +869,7 @@ LEFT JOIN BlockCount
     ON BLAL.LICN_SEQ_NBR = BlockCount.LICN_SEQ_NBR
 LEFT JOIN bcts_staging.old_growth_tap_deferral_categories OGC
     ON CUTB.CUTB_SYSTEM_ID = OGC.UBI
-LEFT JOIN bcts_staging.cfs as cs
+LEFT JOIN bcts_staging.financial_transactions_summary as cs
     ON CUTB.CUTB_SYSTEM_ID = cs.cfs_ubi
     
 
