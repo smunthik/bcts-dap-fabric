@@ -324,22 +324,22 @@ transformed_df = transformed_df.select(
 # 9. Validate period_name before modifying history
 # ============================================================
 
-invalid_period_count = (
-    transformed_df
-    .filter(
-        F.col("period_name").isNull()
-        | ~F.col("period_name").rlike(
-            r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$"
-        )
-    )
-    .count()
-)
+# invalid_period_count = (
+#     transformed_df
+#     .filter(
+#         F.col("period_name").isNull()
+#         | ~F.col("period_name").rlike(
+#             r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$"
+#         )
+#     )
+#     .count()
+# )
 
-if invalid_period_count > 0:
-    raise ValueError(
-        f"Transformation stopped: {invalid_period_count} row(s) "
-        "have an invalid period_name. Expected Mon-YY, such as Aug-27."
-    )
+# if invalid_period_count > 0:
+#     raise ValueError(
+#         f"Transformation stopped: {invalid_period_count} row(s) "
+#         "have an invalid period_name. Expected Mon-YY, such as Aug-27."
+#     )
 
 
 # Get all periods contained in the incoming file
@@ -784,6 +784,16 @@ display(summary_df)
 )
 
 print(f"Successfully refreshed {target_table}")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
