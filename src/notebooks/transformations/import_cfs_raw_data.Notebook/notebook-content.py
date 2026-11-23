@@ -794,49 +794,6 @@ print(f"Successfully refreshed {target_table}")
 
 # CELL ********************
 
-for col in summary_df.columns:
-    print(f"{col},", end="")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-
-
-table_name = "bcts_staging.financial_transactions_summary"
-
-df = spark.table(table_name)
-
-columns = []
-
-for field in df.schema.fields:
-    nullable = "" if field.nullable else " NOT NULL"
-    columns.append(
-        f"    `{field.name}` {field.dataType.simpleString()}{nullable}"
-    )
-
-ddl = \
-f"""CREATE TABLE {table_name} (
-{',\n'.join(columns)}
-)
-USING DELTA"""
-
-print(ddl)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 
 # METADATA ********************
 
