@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "V1_20261120_add_cfs_columns_to_timber_inventory_development_in_progress_hist"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "105ee89d-1448-4950-a669-a5852d49f0f3"
+  }
+}

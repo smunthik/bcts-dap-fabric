@@ -318,3 +318,23 @@ relationship dc6cacf0-e120-d518-d6d1-21161f3f586c
 	fromColumn: 'bcts_staging dim_business_area_management_unit'.business_area_reporting_unit
 	toColumn: 'bcts_reporting timber_inventory_development_in_progress'.business_area
 
+relationship 4dbedd9f-1850-4793-9c67-b550c771b773
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting timber_inventory_development_in_progress'.first_date
+	toColumn: LocalDateTable_2110e544-ab3b-4f9d-903c-cdb72acf27d1.Date
+
+relationship 020efcdd-739b-43ec-b45e-ef7e80d833c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting timber_inventory_development_in_progress'.last_date
+	toColumn: LocalDateTable_ada3b4d9-b68a-4403-b097-2e4fff56117a.Date
+
+relationship 0b9b3a45-4c1e-4821-9e98-f96e411e3c36
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting timber_inventory_development_in_progress'.first_layout_date
+	toColumn: LocalDateTable_a78e9969-cd8f-4abc-aced-38f77f009056.Date
+
+relationship 7055c453-d25d-488b-a9a0-45ea0f6b3b35
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'bcts_reporting timber_inventory_development_in_progress'.last_layout_date
+	toColumn: LocalDateTable_9f4f8052-8f6f-49a1-ba3f-b44a53883827.Date
+

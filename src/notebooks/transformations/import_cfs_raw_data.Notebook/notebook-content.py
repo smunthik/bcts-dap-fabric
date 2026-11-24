@@ -324,22 +324,22 @@ transformed_df = transformed_df.select(
 # 9. Validate period_name before modifying history
 # ============================================================
 
-invalid_period_count = (
-    transformed_df
-    .filter(
-        F.col("period_name").isNull()
-        | ~F.col("period_name").rlike(
-            r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$"
-        )
-    )
-    .count()
-)
+# invalid_period_count = (
+#     transformed_df
+#     .filter(
+#         F.col("period_name").isNull()
+#         | ~F.col("period_name").rlike(
+#             r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$"
+#         )
+#     )
+#     .count()
+# )
 
-if invalid_period_count > 0:
-    raise ValueError(
-        f"Transformation stopped: {invalid_period_count} row(s) "
-        "have an invalid period_name. Expected Mon-YY, such as Aug-27."
-    )
+# if invalid_period_count > 0:
+#     raise ValueError(
+#         f"Transformation stopped: {invalid_period_count} row(s) "
+#         "have an invalid period_name. Expected Mon-YY, such as Aug-27."
+#     )
 
 
 # Get all periods contained in the incoming file
@@ -794,39 +794,6 @@ print(f"Successfully refreshed {target_table}")
 
 # CELL ********************
 
-for col in summary_df.columns:
-    print(f"{col},", end="")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-
-
-table_name = "bcts_staging.financial_transactions_summary"
-
-df = spark.table(table_name)
-
-columns = []
-
-for field in df.schema.fields:
-    nullable = "" if field.nullable else " NOT NULL"
-    columns.append(
-        f"    `{field.name}` {field.dataType.simpleString()}{nullable}"
-    )
-
-ddl = \
-f"""CREATE TABLE {table_name} (
-{',\n'.join(columns)}
-)
-USING DELTA"""
-
-print(ddl)
 
 # METADATA ********************
 

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "import_csf_historic_data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c35c72c5-fdf1-46c2-bfdd-e3e65a51c352"
+  }
+}

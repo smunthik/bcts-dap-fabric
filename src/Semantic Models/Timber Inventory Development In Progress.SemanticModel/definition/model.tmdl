@@ -78,6 +78,10 @@ ref table LocalDateTable_ca0bf6a8-f3d2-4485-ac40-a906a781f42f
 ref table LocalDateTable_b1a7ef67-2542-4f0b-b42f-6ea7fd55ec87
 ref table LocalDateTable_c83b0ac3-1ee4-4981-8962-0f0859a15d59
 ref table 'bcts_staging dim_business_area_management_unit'
+ref table LocalDateTable_2110e544-ab3b-4f9d-903c-cdb72acf27d1
+ref table LocalDateTable_ada3b4d9-b68a-4403-b097-2e4fff56117a
+ref table LocalDateTable_a78e9969-cd8f-4abc-aced-38f77f009056
+ref table LocalDateTable_9f4f8052-8f6f-49a1-ba3f-b44a53883827
 
 ref cultureInfo en-CA
 
