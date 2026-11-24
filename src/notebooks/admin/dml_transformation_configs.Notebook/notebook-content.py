@@ -489,6 +489,33 @@ upsert_transformation_config(
 
 # CELL ********************
 
+branch_name = notebookutils.variableLibrary.getLibrary("DATABASE-CONNECTIONS")["GIT_BRANCH_NAME"]
+
+upsert_transformation_config(
+    report_name="Silviculture Liability",
+    sql_path="sql/silviculture_liability_report.sql",
+    enabled_ind="Y",
+    target_table="silviliability_main",
+    target_schema="bcts_reporting",
+    branch_name=branch_name,
+    has_start_date='no',
+    has_end_date='yes', 
+    frequency = "MONTHLY",  
+    execution_order=1,
+    depends_on=None,
+    verbose=False
+)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 

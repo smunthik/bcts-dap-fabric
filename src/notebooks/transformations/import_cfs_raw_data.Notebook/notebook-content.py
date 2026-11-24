@@ -29,6 +29,11 @@
 from pyspark.sql.types import *
 from pyspark.sql.functions import current_date
 
+spark.conf.set(
+    "spark.sql.parquet.datetimeRebaseModeInWrite",
+    "CORRECTED"
+)
+
 # Path to CSV in Lakehouse Files
 csv_path = "Files/data/cfs_data.csv"
 
@@ -478,11 +483,13 @@ cfs_df = (
     )
     .withColumn(
         "effective_date",
-        F.coalesce(
-            F.to_date(F.col("effective_date"), "dd-MMM-yyyy"),
-            F.to_date(F.col("effective_date"), "yyyy-MM-dd"),
-            F.to_date(F.col("effective_date"), "MM/dd/yyyy"),
-            F.to_date(F.col("effective_date"), "M/d/yyyy")
+        F.to_date(
+            F.substring(
+                F.trim(F.col("effective_date")),
+                1,
+                10
+            ),
+            "yyyy-MM-dd"
         )
     )
 )

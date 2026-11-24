@@ -110,28 +110,39 @@ for target_table, csv_path in config.items():
 
     # Match the column names
     df = df.select(
-        F.col("Client").cast("string").alias("client"),
-        F.col("Period Name").cast("string").alias("period_name"),
-        F.col("Project").cast("string").alias("project"),
-        F.col("Responsibility").cast("string").alias("responsibility"),
-        F.col("Service Line").cast("string").alias("service_line"),
-        F.col("STOB").cast("string").alias("stob"),
+    F.col("Client").cast("string").alias("client"),
+    F.col("Period Name").cast("string").alias("period_name"),
+    F.col("Project").cast("string").alias("project"),
+    F.col("Responsibility").cast("string").alias("responsibility"),
+    F.col("Service Line").cast("string").alias("service_line"),
+    F.col("STOB").cast("string").alias("stob"),
 
-        F.col("Actual Amount")
-            .cast(DecimalType(18, 2))
-            .alias("actual_amount"),
+    F.regexp_replace(
+        F.col("Actual Amount"),
+        r"[$,]",
+        ""
+    ).cast(DecimalType(18, 2)).alias("actual_amount"),
 
-        F.col("Effective Date").cast("string").alias("effective_date"),
-        F.col("Creation Date").cast("string").alias("creation_date"),
+    F.to_timestamp(
+        F.col("Effective Date"),
+        "yyyy-M-d H:mm:ss"
+    ).cast("string").alias("effective_date"),
 
-        F.col("Encumbrance Amount")
-            .cast(DecimalType(18, 2))
-            .alias("encumbrance_amount"),
+    F.to_timestamp(
+        F.col("Creation Date"),
+        "yyyy-M-d H:mm:ss"
+    ).cast("string").alias("creation_date"),
 
-        F.col("Encumbrance Type").cast("string").alias("encumbrance_type"),
-        F.col("Batch Name").cast("string").alias("batch_name"),
+    F.regexp_replace(
+        F.col("Encumbrance Amount"),
+        r"[$,]",
+        ""
+    ).cast(DecimalType(18, 2)).alias("encumbrance_amount"),
 
-        F.current_date().alias("date_updated")
+    F.col("Encumbrance Type").cast("string").alias("encumbrance_type"),
+    F.col("Batch Name").cast("string").alias("batch_name"),
+
+    F.current_date().alias("date_updated")
     )
     # -----------------------------
     # Validate CSV columns
